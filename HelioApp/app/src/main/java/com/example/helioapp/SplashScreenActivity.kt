@@ -10,6 +10,8 @@ import android.view.animation.AnimationUtils
 import androidx.databinding.DataBindingUtil
 import com.example.helioapp.databinding.ActivitySplashScreenBinding
 import com.example.helioapp.utils.THREETHOUSAND
+import com.example.helioapp.utils.TWOTHOUSAND
+import com.example.helioapp.walkthrough_screen.WalkthroughOneActivity
 
 class SplashScreenActivity : AppCompatActivity() {
 
@@ -23,8 +25,8 @@ class SplashScreenActivity : AppCompatActivity() {
         topAnimation = AnimationUtils.loadAnimation(this, R.anim.anim_up_to_bottom_logo)
         binding.splashLogo.animation = topAnimation
         Handler(Looper.getMainLooper()).postDelayed({
-            startActivity(Intent(this,MainActivity::class.java))
+            startActivity(Intent(this,WalkthroughOneActivity::class.java))
             finish()
-        }, THREETHOUSAND.toLong())
+        }, TWOTHOUSAND.toLong())
     }
 }

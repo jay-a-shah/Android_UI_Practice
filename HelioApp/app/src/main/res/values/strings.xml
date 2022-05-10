@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">helioApp</string>
+    <string name="tv_welcome">Welcome to 👋</string>
+    <string name="btn_next">Next</string>
+    <string name="tv_subtitle">The best hotel booking in this century to accompany your vacation</string>
 </resources>
