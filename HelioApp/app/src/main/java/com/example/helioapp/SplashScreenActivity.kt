@@ -32,9 +32,9 @@ class SplashScreenActivity : AppCompatActivity() {
         }, THREETHOUSAND.toLong())
     }
 
-//    override fun onPause() {
-//        super.onPause()
-//        handler.removeCallbacksAndMessages(null)
-////        startActivity(Intent(this,WalkthroughOneActivity::class.java))
-//    }
+    override fun onPause() {
+        super.onPause()
+        handler.removeCallbacksAndMessages(null)
+//        startActivity(Intent(this,WalkthroughOneActivity::class.java))
+    }
 }
