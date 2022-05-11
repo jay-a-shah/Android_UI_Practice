@@ -10,4 +10,15 @@
     <string name="toast_last_page">It is the Last Page</string>
     <string name="tv_helia">Helia</string>
     <string name="btn_skip">Skip</string>
+    <string name="tv_lets_sign_you_in">Let’s you in</string>
+    <string name="tv_continue_with_facebook">Continue with Facebook</string>
+    <string name="tv_continue_with_google">Continue with Google</string>
+    <string name="tv_continue_with_apple">Continue with Apple</string>
+    <string name="tv_or">or</string>
+    <string name="btn_sign_in_with_password">Sign in with password</string>
+    <string name="tv_don_t_have_an_account">Don’t have an account?</string>
+    <string name="tv_sign_up">Sign up</string>
+    <string name="toast_facebook_btn">FaceBook button clicked</string>
+    <string name="toast_apple_btn">Apple button clicked</string>
+    <string name="toast_google_btn">Google button clicked</string>
 </resources>

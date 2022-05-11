@@ -17,6 +17,7 @@ class SplashScreenActivity : AppCompatActivity() {
 
     private  lateinit var topAnimation: Animation
     lateinit var binding: ActivitySplashScreenBinding
+    lateinit var handler: Handler
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,9 +25,16 @@ class SplashScreenActivity : AppCompatActivity() {
         supportActionBar?.hide()
         topAnimation = AnimationUtils.loadAnimation(this, R.anim.anim_up_to_bottom_logo)
         binding.splashLogo.animation = topAnimation
-        Handler(Looper.getMainLooper()).postDelayed({
+        handler  = Handler(Looper.getMainLooper())
+        handler.postDelayed({
             startActivity(Intent(this,WalkthroughOneActivity::class.java))
             finish()
-        }, TWOTHOUSAND.toLong())
+        }, THREETHOUSAND.toLong())
     }
+
+//    override fun onPause() {
+//        super.onPause()
+//        handler.removeCallbacksAndMessages(null)
+////        startActivity(Intent(this,WalkthroughOneActivity::class.java))
+//    }
 }

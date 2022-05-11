@@ -13,4 +13,6 @@
     <color name="primary_500">#1AB65C</color>
     <color name="grayscale_900">#212121</color>
     <color name="grayscale_700">#616161</color>
+    <color name="grayscale_200">#EEEEEE</color>
+    <color name="grayscale_500">#9E9E9E</color>
 </resources>
