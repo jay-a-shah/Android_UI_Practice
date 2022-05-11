@@ -22,9 +22,8 @@ class WalkthroughOneActivity : AppCompatActivity() {
         supportActionBar?.hide()
         val shader = LinearGradient(0f, 0f, 0f, binding.textViewHeader.textSize, resources.getColor(R.color.light_green) , resources.getColor(R.color.dark_green), Shader.TileMode.CLAMP)
         binding.textViewHeader.paint.shader = shader
-        Handler(Looper.getMainLooper()).postDelayed({
-            startActivity(Intent(this, OnBoardingActivity::class.java))
-            finish()
-        }, THREETHOUSAND.toLong())
+        binding.btnNext.setOnClickListener {
+            startActivity(Intent(this,OnBoardingActivity::class.java))
+        }
     }
 }

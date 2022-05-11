@@ -7,4 +7,7 @@
     <string name="subHeader">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
     <string name="header_two">Find the best hotels for your vacation</string>
     <string name="header_three">Let’s discover the world with us</string>
+    <string name="toast_last_page">It is the Last Page</string>
+    <string name="tv_helia">Helia</string>
+    <string name="btn_skip">Skip</string>
 </resources>

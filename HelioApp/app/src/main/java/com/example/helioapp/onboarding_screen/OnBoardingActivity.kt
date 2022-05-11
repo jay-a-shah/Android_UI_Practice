@@ -1,9 +1,12 @@
 package com.example.helioapp.onboarding_screen
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import com.example.helioapp.MainActivity
 import com.example.helioapp.R
 import com.example.helioapp.databinding.ActivityOnBoardingBinding
 import com.google.android.material.tabs.TabLayoutMediator
@@ -18,22 +21,50 @@ class OnBoardingActivity : AppCompatActivity() {
         setAdapter()
         window.setFlags(
             WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
-            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
+            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
+        )
         TabLayoutMediator(binding.tabLayout, binding.viewPager2) { tab, position ->
         }.attach()
+        binding.skipBtn.setOnClickListener {
+            startActivity(Intent(this, MainActivity::class.java))
+        }
+        binding.nextBtn.setOnClickListener {
+            if (binding.viewPager2.currentItem + 1  < onBoardingItemList.count()) {
+                binding.viewPager2.currentItem = binding.viewPager2.currentItem + 1
+            } else {
+             Toast.makeText(this,getString(R.string.toast_last_page),Toast.LENGTH_SHORT).show()
+            }
+        }
     }
-    fun setAdapter(){
+
+    fun setAdapter() {
         setData()
         binding.viewPager2.adapter = OnBoardingAdapter(onBoardingItemList)
     }
-    fun setData(){
+
+    fun setData() {
         onBoardingItemList.apply {
-            add(OnBoardingModel(R.drawable.background_image,getString(R.string.header_one),getString(
-                R.string.subHeader)))
-            add(OnBoardingModel(R.drawable.onboarding_two,getString(R.string.header_two),getString(
-                R.string.subHeader)))
-            add(OnBoardingModel(R.drawable.onboarding_one_hdpi,getString(R.string.header_three),getString(
-                R.string.subHeader)))
+            add(
+                OnBoardingModel(
+                    R.drawable.onboarding_three, getString(R.string.header_one), getString(
+                        R.string.subHeader
+                    )
+                )
+            )
+            add(
+                OnBoardingModel(
+                    R.drawable.onboarding_two, getString(R.string.header_two), getString(
+                        R.string.subHeader
+                    )
+                )
+            )
+            add(
+                OnBoardingModel(
+                    R.drawable.onboarding_one, getString(R.string.header_three), getString(
+                        R.string.subHeader
+                    )
+                )
+            )
         }
     }
 }

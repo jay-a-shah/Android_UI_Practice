@@ -26,6 +26,6 @@ class OnBoardingAdapter(val list: ArrayList<OnBoardingModel>): RecyclerView.Adap
     }
 
     class ViewPagerHolder(binding: ItemOnBoardingScreenBinding) : RecyclerView.ViewHolder(binding.root) {
-
+        //implement Later when needed
     }
 }

@@ -12,37 +12,38 @@
         <View
             android:id="@+id/view"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="0dp"
-            android:alpha="0.4"
+            android:layout_height="wrap_content"
+            android:alpha="0.2"
             android:background="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHeight_percent="0.65"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/textViewWelcome" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textViewWelcome"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="31dp"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_16sdp"
             android:layout_marginEnd="@dimen/_10sdp"
             android:fontFamily="@font/urbanist_bold"
             android:text="@string/tv_welcome"
             android:textColor="@color/white"
             android:textSize="48sp"
-            app:layout_constraintBottom_toTopOf="@id/textViewHeader"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/view" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textViewHeader"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
             android:fontFamily="@font/urbanist_black"
-            android:text="Helia"
+            android:text="@string/tv_helia"
             android:textColor="@color/white"
-            android:textSize="@dimen/_96ssp"
+            android:textSize="@dimen/_90ssp"
             app:layout_constraintEnd_toEndOf="@id/textViewWelcome"
             app:layout_constraintStart_toStartOf="@id/textViewWelcome"
             app:layout_constraintTop_toBottomOf="@id/textViewWelcome" />
@@ -51,17 +52,31 @@
             android:id="@+id/textViewSubtitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_18sdp"
-            android:layout_marginBottom="@dimen/_48sdp"
             android:fontFamily="@font/urbanist_semibold"
             android:letterSpacing="0.01"
             android:text="@string/tv_subtitle"
             android:textColor="@color/white"
             android:textSize="@dimen/_14ssp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/textViewWelcome"
             app:layout_constraintStart_toStartOf="@id/textViewWelcome"
             app:layout_constraintTop_toBottomOf="@id/textViewHeader" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnNext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:background="@drawable/rounded_filled_button"
+            android:fontFamily="@font/urbanist_bold"
+            android:text="@string/btn_next"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_18ssp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textViewSubtitle" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
