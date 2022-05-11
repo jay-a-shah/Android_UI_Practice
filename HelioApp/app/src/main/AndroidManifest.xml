@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HelioApp">
         <activity
-            android:name=".sign_up_screen.SignUpActivity"
+            android:name=".signup_screen.SignUpActivity"
             android:exported="false" />
         <activity
             android:name=".sign_in_screen.SignInActivity"
@@ -18,17 +18,18 @@
         <activity
             android:name=".onboarding_screen.OnBoardingActivity"
             android:exported="false"
-            android:theme="@style/AppTheme.ActionBar.Transparent"/>
+            android:theme="@style/AppTheme.ActionBar.Transparent" />
         <activity
             android:name=".walkthrough_screen.WalkthroughOneActivity"
             android:exported="false"
-            android:theme="@style/AppTheme.ActionBar.Transparent"/>
+            android:theme="@style/AppTheme.ActionBar.Transparent" />
         <activity
             android:name=".SplashScreenActivity"
             android:exported="true"
             android:theme="@style/AppTheme.ActionBar.Transparent">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
