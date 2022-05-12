@@ -15,4 +15,5 @@
     <color name="grayscale_700">#616161</color>
     <color name="grayscale_200">#EEEEEE</color>
     <color name="grayscale_500">#9E9E9E</color>
+    <color name="grayscale_50">#FAFAFA</color>
 </resources>

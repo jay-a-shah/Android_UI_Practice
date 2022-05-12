@@ -17,8 +17,9 @@
         <item name="boxCornerRadiusBottomStart">@dimen/_10sdp</item>
         <item name="boxCornerRadiusTopEnd">@dimen/_10sdp</item>
         <item name="boxCornerRadiusTopStart">@dimen/_10sdp</item>
-        <item name="hintAnimationEnabled">true</item>
+        <item name="fontFamily">@font/urbanist_medium</item>
         <item name="placeholderTextColor">@color/grayscale_500</item>
+        <item name="android:drawablePadding">@dimen/_16sdp</item>
     </style>
 
 </resources>
