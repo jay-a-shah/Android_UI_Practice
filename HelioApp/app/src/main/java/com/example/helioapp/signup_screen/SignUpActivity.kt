@@ -18,6 +18,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import com.example.helioapp.MainActivity
 import com.example.helioapp.R
 import com.example.helioapp.databinding.ActivitySignUpBinding
@@ -26,21 +27,31 @@ import com.example.helioapp.utils.setUpPasswordToggle
 
 class SignUpActivity : AppCompatActivity() {
     var isPasswordHidden: Boolean = true
-    var signUpViewModel = SignUpViewModel()
+
     lateinit var binding: ActivitySignUpBinding
+    private lateinit var signUpViewModel: SignUpViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this,R.layout.activity_sign_up)
+        signUpViewModel = ViewModelProvider(this).get(SignUpViewModel::class.java)
         setSpannableText()
-        setUpPasswordToggle(this,isPasswordHidden,binding.editTextPassword,binding.imageBtnEye)
+        setUpPasswordToggle(this,isPasswordHidden,binding.editTextPassword,binding.imageBtnEye,false)
         validation()
         binding.apply {
             editTextEmail.onFocusChangeListener = OnFocusChangeListener { _, hasFocus ->
                 if (!hasFocus) {
-                   setEyelogo()
+                    //setEyelogo()
                 }
             }
+                editTextPassword.onFocusChangeListener = OnFocusChangeListener { _, hasFocus ->
+                    if (hasFocus){
+                        setUpPasswordToggle(this@SignUpActivity,isPasswordHidden,editTextPassword,imageBtnEye,hasFocus)
+                    } else {
+                        setUpPasswordToggle(this@SignUpActivity,isPasswordHidden,editTextPassword,imageBtnEye,hasFocus)
+                    }
+                }
+
             imageBtnFacebook.setOnClickListener {
                 Toast.makeText(this@SignUpActivity,getString(R.string.toast_facebook_btn), Toast.LENGTH_SHORT).show()
             }
@@ -51,28 +62,29 @@ class SignUpActivity : AppCompatActivity() {
                 Toast.makeText(this@SignUpActivity,getString(R.string.toast_google_btn), Toast.LENGTH_SHORT).show()
             }
             imageBtnEye.setOnClickListener {
-                isPasswordHidden != isPasswordHidden
-                setUpPasswordToggle(this@SignUpActivity,isPasswordHidden,binding.editTextPassword,imageBtnEye)
+                isPasswordHidden = !isPasswordHidden
+                setUpPasswordToggle(this@SignUpActivity,isPasswordHidden,binding.editTextPassword,imageBtnEye,true)
             }
         }
     }
     private fun validation(){
-        signUpViewModel.email.observe(this){email ->
-            if (email.isNotEmpty()){
+        signUpViewModel.email.observe(this,{
+            if (it.isEmpty()) {
+                binding.btnSignUp.setBackgroundResource(R.drawable.rounded_tinted_button)
+            } else {
                 binding.btnSignUp.setBackgroundResource(R.drawable.rounded_filled_button)
             }
-
-        }
+        })
     }
-    private fun setEyelogo(){
-        binding.apply {
-            if(editTextPassword.isEnabled && editTextPassword.isFocused) {
-                imageBtnEye.setImageResource(R.drawable.icon_green_hide)
-            } else {
-                imageBtnEye.setImageResource(R.drawable.icon_eye_hide)
-            }
-        }
-    }
+//    private fun setEyelogo(){
+//        binding.apply {
+//            if(editTextPassword.isEnabled && editTextPassword.isFocused) {
+//                imageBtnEye.setImageResource(R.drawable.icon_green_hide)
+//            } else {
+//                imageBtnEye.setImageResource(R.drawable.icon_eye_hide)
+//            }
+//        }
+//    }
 
     private fun setSpannableText() {
         val spannable = SpannableString(binding.textViewAlreadyHaveSignIn.text)
