@@ -16,4 +16,6 @@
     <color name="grayscale_200">#EEEEEE</color>
     <color name="grayscale_500">#9E9E9E</color>
     <color name="grayscale_50">#FAFAFA</color>
+    <color name="green_tint">#141AB65C</color>
+    <color name="disable_button">#53A777</color>
 </resources>

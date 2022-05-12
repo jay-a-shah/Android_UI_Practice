@@ -35,31 +35,158 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/custom_toolbar" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/editTextMaterialEmailLayout"
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/editTextEmail"
+                style="@style/EditTextStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                style="@style/EditTextStyle"
-                app:placeholderText="Email"
-                app:startIconDrawable="@drawable/icon_message"
-                app:layout_constraintStart_toStartOf="parent"
-                android:background="@color/grayscale_50"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/textViewCreateYourAccount"
-                android:layout_marginTop="@dimen/_50sdp"
                 android:layout_marginStart="@dimen/_20sdp"
-                android:layout_marginEnd="@dimen/_20sdp">
+                android:layout_marginTop="@dimen/_48sdp"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:background="@drawable/edit_text_style"
+                android:drawableStart="@drawable/email_selector"
+                android:hint="@string/editText_email"
+                android:imeOptions="actionNext"
+                android:inputType="textEmailAddress"
+                android:singleLine="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textViewCreateYourAccount" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/txt_layout_password"
+                style="@style/EditTextEmailStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:background="@drawable/edit_text_style"
+                app:layout_constraintEnd_toEndOf="@id/editTextEmail"
+                app:layout_constraintStart_toStartOf="@id/editTextEmail"
+                app:layout_constraintTop_toBottomOf="@id/editTextEmail"
+                app:startIconDrawable="@drawable/lock_selector">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/editTextEmail"
+                    android:id="@+id/edi_txt_signup_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textEmailAddress"/>
-
+                    android:cursorVisible="true"
+                    android:focusable="true"
+                    android:imeOptions="actionDone"
+                    android:inputType="textPassword"
+                    android:maxLines="1"
+                    android:singleLine="true" />
             </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/checkboxRememberMe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_13sdp"
+                android:button="@drawable/custom_checkbox"
+                android:fontFamily="@font/urbanist_semibold"
+                android:padding="@dimen/_10sdp"
+                android:text="@string/tv_checkbox_remember_me"
+                android:textColor="@color/grayscale_900"
+                android:textSize="@dimen/_12ssp"
+                app:layout_constraintEnd_toEndOf="@id/editTextEmail"
+                app:layout_constraintStart_toStartOf="@id/editTextEmail"
+                app:layout_constraintTop_toBottomOf="@id/txt_layout_password" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnSignUp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:background="@drawable/rounded_filled_button"
+                android:fontFamily="@font/urbanist_bold"
+                android:padding="@dimen/_10sdp"
+                android:shadowColor="@color/primary_500"
+                android:shadowDx="4"
+                android:shadowDy="12"
+                android:text="@string/btn_sign_up"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12ssp"
+                app:layout_constraintEnd_toEndOf="@id/editTextEmail"
+                app:layout_constraintStart_toStartOf="@id/editTextEmail"
+                app:layout_constraintTop_toBottomOf="@id/checkboxRememberMe" />
+
+            <View
+                android:id="@+id/leftViewDivider"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_1sdp"
+                android:layout_marginTop="@dimen/_45sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:background="@color/grayscale_200"
+                app:layout_constraintEnd_toStartOf="@+id/textViewOr"
+                app:layout_constraintStart_toStartOf="@id/editTextEmail"
+                app:layout_constraintTop_toBottomOf="@id/btnSignUp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewOr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/urbanist_semibold"
+                android:text="@string/tv_or_continue_with"
+                android:textColor="@color/grayscale_700"
+                android:textSize="@dimen/_12ssp"
+                app:layout_constraintBottom_toBottomOf="@id/leftViewDivider"
+                app:layout_constraintEnd_toStartOf="@+id/rightViewDivider"
+                app:layout_constraintStart_toEndOf="@+id/leftViewDivider"
+                app:layout_constraintTop_toTopOf="@id/leftViewDivider" />
+
+            <View
+                android:id="@+id/rightViewDivider"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_1sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_45sdp"
+                android:background="@color/grayscale_200"
+                app:layout_constraintEnd_toEndOf="@id/editTextEmail"
+                app:layout_constraintStart_toEndOf="@+id/textViewOr"
+                app:layout_constraintTop_toBottomOf="@id/btnSignUp" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/imageBtnGoogle"
+                style="@style/ImageButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="@dimen/_17sdp"
+                android:src="@drawable/icon_google"
+                app:layout_constraintEnd_toStartOf="@+id/appCompatImageButton"
+                app:layout_constraintStart_toEndOf="@+id/imageBtnFacebook"
+                app:layout_constraintTop_toBottomOf="@id/leftViewDivider" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/imageBtnFacebook"
+                style="@style/ImageButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_32sdp"
+                android:layout_marginTop="@dimen/_32sdp"
+                android:layout_marginEnd="@dimen/_17sdp"
+                android:src="@drawable/icon_facebook"
+                app:layout_constraintEnd_toStartOf="@+id/imageBtnGoogle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/leftViewDivider" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/appCompatImageButton"
+                style="@style/ImageButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_32sdp"
+                android:layout_marginEnd="@dimen/_32sdp"
+                android:src="@drawable/icon_apple"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imageBtnGoogle"
+                app:layout_constraintTop_toBottomOf="@id/leftViewDivider" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
+
 </layout>
