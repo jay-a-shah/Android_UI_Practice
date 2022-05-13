@@ -45,4 +45,5 @@
     <string name="tv_via_email">via Email:</string>
     <string name="tv_dan_in_yourdomain_com">dan***in@yourdomain.com</string>
     <string name="btn_go_ahead">Go Ahead</string>
+    <string name="btn_continue">Continue</string>
 </resources>

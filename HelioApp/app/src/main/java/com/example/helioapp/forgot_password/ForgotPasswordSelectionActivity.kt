@@ -13,5 +13,10 @@ class ForgotPasswordSelectionActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this,R.layout.activity_forgot_password_selection)
+        binding.apply {
+           arrowImageView.setOnClickListener {
+                finish()
+            }
+        }
     }
 }
