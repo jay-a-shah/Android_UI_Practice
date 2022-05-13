@@ -14,60 +14,83 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHeight_percent="0.60"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/iconRectangle"/>
 
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tabLayout"
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iconRectangle"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_width="@dimen/_60sdp"
-            android:layout_marginTop="@dimen/_15sdp"
-            android:layout_marginBottom="@dimen/_16sdp"
-            app:tabIndicator="@drawable/ic_rectangle"
-            app:tabIndicatorAnimationMode="fade"
-           app:layout_constraintTop_toBottomOf="@id/viewPager2"
+            android:layout_marginTop="@dimen/_28sdp"
+           android:layout_marginEnd="@dimen/_6sdp"
+            android:src="@drawable/ic_rectangle"
+            app:layout_constraintEnd_toStartOf="@+id/iconCircle"
+            app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/viewPager2" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iconCircle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_6sdp"
+            android:src="@drawable/ic_circle"
+            app:layout_constraintBottom_toBottomOf="@id/iconRectangle"
+            app:layout_constraintEnd_toStartOf="@+id/iconLastCircle"
+            app:layout_constraintStart_toEndOf="@+id/iconRectangle"
+            app:layout_constraintTop_toTopOf="@id/iconRectangle" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iconLastCircle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_6sdp"
+            android:src="@drawable/ic_circle"
+            app:layout_constraintBottom_toBottomOf="@id/iconRectangle"
             app:layout_constraintEnd_toEndOf="parent"
-            app:tabMode="fixed" />
+            app:layout_constraintStart_toEndOf="@+id/iconCircle"
+            app:layout_constraintTop_toTopOf="@id/iconRectangle" />
+
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/nextBtn"
-            android:background="@drawable/rounded_filled_button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/btn_next"
-            android:textSize="@dimen/_15ssp"
-            android:padding="@dimen/_12sdp"
-            android:textAllCaps="false"
-            android:fontFamily="@font/urbanist_bold"
-            android:textColor="@color/white"
-            android:textAlignment="center"
             android:layout_marginStart="@dimen/_18sdp"
-            android:layout_marginTop="@dimen/_32sdp"
+            android:layout_marginTop="@dimen/_42sdp"
             android:layout_marginEnd="@dimen/_18sdp"
-            app:layout_constraintStart_toStartOf="parent"
+            android:background="@drawable/rounded_filled_button"
+            android:fontFamily="@font/urbanist_bold"
+            android:padding="@dimen/_12sdp"
+            android:text="@string/btn_next"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_15ssp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tabLayout" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iconRectangle"
+            app:layout_constraintBottom_toTopOf="@id/skipBtn"/>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/skipBtn"
-            android:background="@drawable/rounded_tinted_button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:background="@drawable/rounded_tinted_button"
+            android:fontFamily="@font/urbanist_bold"
             android:padding="@dimen/_12sdp"
             android:text="@string/btn_skip"
-            android:textSize="@dimen/_15ssp"
-            android:textAllCaps="false"
-            android:fontFamily="@font/urbanist_bold"
-            android:textColor="@color/primary_500"
             android:textAlignment="center"
-            android:layout_marginBottom="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_12sdp"
-            app:layout_constraintStart_toStartOf="@id/nextBtn"
+            android:textAllCaps="false"
+            android:textColor="@color/primary_500"
+            android:textSize="@dimen/_15ssp"
             app:layout_constraintEnd_toEndOf="@id/nextBtn"
+            app:layout_constraintStart_toStartOf="@id/nextBtn"
             app:layout_constraintTop_toBottomOf="@id/nextBtn"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

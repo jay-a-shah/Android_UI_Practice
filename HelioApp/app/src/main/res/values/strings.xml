@@ -16,7 +16,7 @@
     <string name="tv_continue_with_apple">Continue with Apple</string>
     <string name="tv_or">or</string>
     <string name="btn_sign_in_with_password">Sign in with password</string>
-    <string name="tv_don_t_have_an_account">Don’t have an account?</string>
+    <string name="tv_don_t_have_an_account">Don’t have an account? Sign up</string>
     <string name="tv_sign_up">Sign up</string>
     <string name="toast_facebook_btn">FaceBook button clicked</string>
     <string name="toast_apple_btn">Apple button clicked</string>
@@ -30,4 +30,12 @@
     <string name="hint_password">Password</string>
     <string name="tv_login_to_your_account">Login to your Account</string>
     <string name="btn_forgot_the_password">Forgot the password?</string>
+    <string name="toast_email_is_valid">Email is Valid</string>
+    <string name="toast_email_not_empty">Email Field is not Empty</string>
+    <string name="toast_email_empty">Email Field is Empty</string>
+    <string name="toast_password_invalid">Password is Invalid</string>
+    <string name="toast_password_valid">Password is Valid</string>
+    <string name="toast_email_valid">Email is Valid</string>
+    <string name="toast_email_not_valid">Email is Not Valid</string>
+    <string name="btn_sign_in">Sign in</string>
 </resources>

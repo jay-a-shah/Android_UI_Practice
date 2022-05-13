@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.viewpager2.widget.ViewPager2
 import com.example.helioapp.MainActivity
 import com.example.helioapp.R
 import com.example.helioapp.databinding.ActivityOnBoardingBinding
@@ -24,8 +25,32 @@ class OnBoardingActivity : AppCompatActivity() {
             WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
             WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
         )
-        TabLayoutMediator(binding.tabLayout, binding.viewPager2) { tab, position ->
-        }.attach()
+        binding.apply {
+            viewPager2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+                override fun onPageSelected(position: Int) {
+                    when (position) {
+                        0 -> {
+                            iconRectangle.setImageResource(R.drawable.ic_rectangle)
+                            iconCircle.setImageResource(R.drawable.icon_default_dot)
+                            iconLastCircle.setImageResource(R.drawable.icon_default_dot)
+                        }
+                        1 -> {
+                            iconRectangle.setImageResource(R.drawable.icon_default_dot)
+                            iconCircle.setImageResource(R.drawable.ic_rectangle)
+                            iconLastCircle.setImageResource(R.drawable.icon_default_dot)
+                        }
+                        2 -> {
+                            iconRectangle.setImageResource(R.drawable.icon_default_dot)
+                            iconCircle.setImageResource(R.drawable.icon_default_dot)
+                            iconLastCircle.setImageResource(R.drawable.ic_rectangle)
+                        }
+                    }
+                }
+            })
+
+        }
+
+
         binding.skipBtn.setOnClickListener {
             startActivity(Intent(this, SignInActivity::class.java))
         }

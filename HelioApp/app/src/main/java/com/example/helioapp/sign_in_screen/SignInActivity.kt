@@ -3,7 +3,14 @@ package com.example.helioapp.sign_in_screen
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.SpannableString
+import android.text.Spanned
+import android.text.TextPaint
+import android.text.method.LinkMovementMethod
+import android.text.style.ClickableSpan
+import android.view.View
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import com.example.helioapp.MainActivity
 import com.example.helioapp.R
@@ -17,12 +24,13 @@ class SignInActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         supportActionBar?.hide()
         binding = DataBindingUtil.setContentView(this,R.layout.activity_sign_in)
+        setSpannableText()
         binding.customToolbar.arrowImageView.setOnClickListener {
             finish()
         }
         binding.apply {
-            textViewSignUp.setOnClickListener {
-                startActivity(Intent(this@SignInActivity,SignUpActivity::class.java))
+            btnSignInWithPassword.setOnClickListener {
+                startActivity(Intent(this@SignInActivity,SignInWithPasswordActivity::class.java))
             }
             btnFacebook.setOnClickListener {
                 Toast.makeText(this@SignInActivity,getString(R.string.toast_facebook_btn),Toast.LENGTH_SHORT).show()
@@ -34,6 +42,21 @@ class SignInActivity : AppCompatActivity() {
                 Toast.makeText(this@SignInActivity,getString(R.string.toast_google_btn),Toast.LENGTH_SHORT).show()
             }
         }
-
+    }
+    private fun setSpannableText() {
+        val spannable = SpannableString(binding.textViewDontHaveSignIn.text)
+        val clickableSpan2: ClickableSpan = object : ClickableSpan() {
+            override fun onClick(p0: View) {
+                val signInIntent = Intent(this@SignInActivity, SignUpActivity::class.java)
+                startActivity(signInIntent)
+            }
+            override fun updateDrawState(ds: TextPaint) {
+                ds.color = ContextCompat.getColor(applicationContext, R.color.primary_500)
+                ds.bgColor = ContextCompat.getColor(applicationContext, R.color.white)
+            }
+        }
+        spannable.setSpan(clickableSpan2, 23, 30, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        binding.textViewDontHaveSignIn.text = spannable
+        binding.textViewDontHaveSignIn.movementMethod = LinkMovementMethod.getInstance()
     }
 }
