@@ -23,26 +23,39 @@ class SignInActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         supportActionBar?.hide()
-        binding = DataBindingUtil.setContentView(this,R.layout.activity_sign_in)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_sign_in)
         setSpannableText()
-        binding.customToolbar.arrowImageView.setOnClickListener {
-            finish()
-        }
         binding.apply {
+            customToolbar.arrowImageView.setOnClickListener {
+                finish()
+            }
             btnSignInWithPassword.setOnClickListener {
-                startActivity(Intent(this@SignInActivity,SignInWithPasswordActivity::class.java))
+                startActivity(Intent(this@SignInActivity, SignInWithPasswordActivity::class.java))
             }
             btnFacebook.setOnClickListener {
-                Toast.makeText(this@SignInActivity,getString(R.string.toast_facebook_btn),Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    this@SignInActivity,
+                    getString(R.string.toast_facebook_btn),
+                    Toast.LENGTH_SHORT
+                ).show()
             }
             btnApple.setOnClickListener {
-                Toast.makeText(this@SignInActivity,getString(R.string.toast_apple_btn),Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    this@SignInActivity,
+                    getString(R.string.toast_apple_btn),
+                    Toast.LENGTH_SHORT
+                ).show()
             }
             btnGoogle.setOnClickListener {
-                Toast.makeText(this@SignInActivity,getString(R.string.toast_google_btn),Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    this@SignInActivity,
+                    getString(R.string.toast_google_btn),
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
     }
+
     private fun setSpannableText() {
         val spannable = SpannableString(binding.textViewDontHaveSignIn.text)
         val clickableSpan2: ClickableSpan = object : ClickableSpan() {
@@ -50,6 +63,7 @@ class SignInActivity : AppCompatActivity() {
                 val signInIntent = Intent(this@SignInActivity, SignUpActivity::class.java)
                 startActivity(signInIntent)
             }
+
             override fun updateDrawState(ds: TextPaint) {
                 ds.color = ContextCompat.getColor(applicationContext, R.color.primary_500)
                 ds.bgColor = ContextCompat.getColor(applicationContext, R.color.white)

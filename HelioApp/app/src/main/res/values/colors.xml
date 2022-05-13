@@ -18,4 +18,5 @@
     <color name="grayscale_50">#FAFAFA</color>
     <color name="green_tint">#141AB65C</color>
     <color name="disable_button">#53A777</color>
+    <color name="grayscale_600">#757575</color>
 </resources>

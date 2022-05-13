@@ -16,6 +16,7 @@ fun setUpPasswordToggle(context: Context, isPasswordHidden: Boolean, field: Edit
         toggleButton.setImageResource(if (hasFocus) R.drawable.icon_open_green_eye else R.drawable.icon_open_eye)
         field.inputType = InputType.TYPE_CLASS_TEXT
     }
+    field.setSelection(field.text.length)
     val typeface = ResourcesCompat.getFont(context, R.font.urbanist_semibold)
     field.typeface = typeface
 }

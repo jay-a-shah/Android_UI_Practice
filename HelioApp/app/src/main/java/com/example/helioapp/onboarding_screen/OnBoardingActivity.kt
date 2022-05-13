@@ -1,6 +1,7 @@
 package com.example.helioapp.onboarding_screen
 
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
@@ -47,23 +48,22 @@ class OnBoardingActivity : AppCompatActivity() {
                     }
                 }
             })
-
-        }
-
-
-        binding.skipBtn.setOnClickListener {
-            startActivity(Intent(this, SignInActivity::class.java))
-        }
-        binding.nextBtn.setOnClickListener {
-            if (binding.viewPager2.currentItem + 1  < onBoardingItemList.count()) {
-                binding.viewPager2.currentItem = binding.viewPager2.currentItem + 1
-            } else if(binding.viewPager2.currentItem == onBoardingItemList.lastIndex){
-                binding.nextBtn.text = "Go Ahead"
-                binding.nextBtn.setOnClickListener {
-                    startActivity(Intent(this,SignInActivity::class.java))
+            skipBtn.setOnClickListener {
+                startActivity(Intent(this@OnBoardingActivity, SignInActivity::class.java))
+                finish()
+            }
+            nextBtn.setOnClickListener {
+                if (viewPager2.currentItem + 1 < onBoardingItemList.count()) {
+                    viewPager2.currentItem = binding.viewPager2.currentItem + 1
+                } else if (viewPager2.currentItem == onBoardingItemList.lastIndex) {
+                    nextBtn.text = getString(R.string.btn_go_ahead)
+                    nextBtn.setOnClickListener {
+                        startActivity(Intent(this@OnBoardingActivity, SignInActivity::class.java))
+                        finish()
+                    }
+                } else {
+                    Toast.makeText(this@OnBoardingActivity, getString(R.string.toast_last_page), Toast.LENGTH_SHORT).show()
                 }
-            }else {
-                Toast.makeText(this,getString(R.string.toast_last_page),Toast.LENGTH_SHORT).show()
             }
         }
     }

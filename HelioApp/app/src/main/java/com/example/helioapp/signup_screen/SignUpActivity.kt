@@ -49,11 +49,8 @@ class SignUpActivity : AppCompatActivity() {
             customToolbar.arrowImageView.setOnClickListener {
                 finish()
             }
-            editTextEmail.onFocusChangeListener = OnFocusChangeListener { _, hasFocus ->
-
-            }
-                editTextPassword.onFocusChangeListener = OnFocusChangeListener { _, hasFocus ->
-                    if (hasFocus){
+            editTextPassword.onFocusChangeListener = OnFocusChangeListener { _, hasFocus ->
+                if (hasFocus){
                         setUpPasswordToggle(this@SignUpActivity,isPasswordHidden,editTextPassword,imageBtnEye,hasFocus)
                     } else {
                         setUpPasswordToggle(this@SignUpActivity,isPasswordHidden,editTextPassword,imageBtnEye,hasFocus)
@@ -88,6 +85,7 @@ class SignUpActivity : AppCompatActivity() {
             }
         }
     }
+
     private fun validation(){
         signUpViewModel.email.observe(this) {
             if (it.isEmpty()) {
@@ -119,6 +117,4 @@ class SignUpActivity : AppCompatActivity() {
         binding.textViewAlreadyHaveSignIn.text = spannable
         binding.textViewAlreadyHaveSignIn.movementMethod = LinkMovementMethod.getInstance()
     }
-
-
 }

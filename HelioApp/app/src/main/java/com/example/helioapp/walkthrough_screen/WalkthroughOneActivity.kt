@@ -24,6 +24,7 @@ class WalkthroughOneActivity : AppCompatActivity() {
         binding.textViewHeader.paint.shader = shader
         binding.btnNext.setOnClickListener {
             startActivity(Intent(this,OnBoardingActivity::class.java))
+            finish()
         }
     }
 }
