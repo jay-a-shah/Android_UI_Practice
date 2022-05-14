@@ -17,6 +17,16 @@ class ForgotPasswordSelectionActivity : AppCompatActivity() {
            arrowImageView.setOnClickListener {
                 finish()
             }
+            cardViewOne.setOnClickListener {
+                cardLayoutTwo.background = null
+                    cardLayoutOne.setBackgroundResource(R.drawable.card_view_style)
+            }
+            cardViewTwo.setOnClickListener {
+                cardLayoutTwo.setBackgroundResource(R.drawable.card_view_style)
+                cardLayoutOne.background = null
+            }
+
+
         }
     }
 }

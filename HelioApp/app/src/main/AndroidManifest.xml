@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HelioApp">
         <activity
+            android:name=".forgot_password.ForgotPasswordOTP"
+            android:exported="false" />
+        <activity
             android:name=".forgot_password.ForgotPasswordSelectionActivity"
             android:exported="false" />
         <activity
