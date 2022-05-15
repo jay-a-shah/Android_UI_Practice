@@ -51,4 +51,7 @@
     <string name="btn_verify">Verify</string>
     <string name="toolbar_create_new_password">Create New Password</string>
     <string name="tv_create_your_new_password">Create Your New Password</string>
+    <string name="tv_congratulations">Congratulations!</string>
+    <string name="tv_your_account_is_ready_to_use">Your account is ready to use</string>
+    <string name="btn_go_to_homepage">Go to Homepage</string>
 </resources>
