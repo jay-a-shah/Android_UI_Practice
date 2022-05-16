@@ -10,22 +10,23 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HelioApp">
         <activity
+            android:name=".home_screen.HomeScreenActivity"
+            android:exported="false" />
+        <activity
             android:name=".forgot_password.CreateNewPasswordActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".forgot_password.ForgotPasswordOTPActivity"
-            android:exported="true">
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".forgot_password.ForgotPasswordSelectionActivity"
-            android:exported="true">
-
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".sign_in_screen.SignInWithPasswordActivity"
             android:exported="false" />
@@ -46,8 +47,7 @@
         <activity
             android:name=".SplashScreenActivity"
             android:exported="true"
-            android:theme="@style/AppTheme.ActionBar.Transparent">
-        </activity>
+            android:theme="@style/AppTheme.ActionBar.Transparent"></activity>
         <activity
             android:name=".MainActivity"
             android:exported="true" />
