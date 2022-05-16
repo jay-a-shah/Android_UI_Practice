@@ -31,16 +31,19 @@ class OnBoardingActivity : AppCompatActivity() {
                 override fun onPageSelected(position: Int) {
                     when (position) {
                         0 -> {
+                            nextBtn.text = getString(R.string.btn_next)
                             iconRectangle.setImageResource(R.drawable.ic_rectangle)
                             iconCircle.setImageResource(R.drawable.icon_default_dot)
                             iconLastCircle.setImageResource(R.drawable.icon_default_dot)
                         }
                         1 -> {
+                            nextBtn.text = getString(R.string.btn_next)
                             iconRectangle.setImageResource(R.drawable.icon_default_dot)
                             iconCircle.setImageResource(R.drawable.ic_rectangle)
                             iconLastCircle.setImageResource(R.drawable.icon_default_dot)
                         }
                         2 -> {
+                            nextBtn.text = getString(R.string.btn_go_ahead)
                             iconRectangle.setImageResource(R.drawable.icon_default_dot)
                             iconCircle.setImageResource(R.drawable.icon_default_dot)
                             iconLastCircle.setImageResource(R.drawable.ic_rectangle)
@@ -55,14 +58,9 @@ class OnBoardingActivity : AppCompatActivity() {
             nextBtn.setOnClickListener {
                 if (viewPager2.currentItem + 1 < onBoardingItemList.count()) {
                     viewPager2.currentItem = binding.viewPager2.currentItem + 1
-                } else if (viewPager2.currentItem == onBoardingItemList.lastIndex) {
-                    nextBtn.text = getString(R.string.btn_go_ahead)
-                    nextBtn.setOnClickListener {
-                        startActivity(Intent(this@OnBoardingActivity, SignInActivity::class.java))
-                        finish()
-                    }
                 } else {
-                    Toast.makeText(this@OnBoardingActivity, getString(R.string.toast_last_page), Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(this@OnBoardingActivity, SignInActivity::class.java))
+                    finish()
                 }
             }
         }

@@ -37,7 +37,7 @@
         <item name="android:drawablePadding">@dimen/_12sdp</item>
         <item name="fontFamily">@font/urbanist_semibold</item>
         <item name="android:padding">@dimen/_12sdp</item>
-        <item name="android:textSize">@dimen/_18ssp</item>
+        <item name="android:textSize">@dimen/_11ssp</item>
     </style>
 
     <style name="OTPEditText" parent="Widget.AppCompat.EditText">
