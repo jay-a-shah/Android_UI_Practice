@@ -11,7 +11,11 @@
         android:theme="@style/Theme.HelioApp">
         <activity
             android:name=".forgot_password.CreateNewPasswordActivity"
-            android:exported="false">
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".forgot_password.ForgotPasswordOTPActivity"
@@ -43,10 +47,6 @@
             android:name=".SplashScreenActivity"
             android:exported="true"
             android:theme="@style/AppTheme.ActionBar.Transparent">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".MainActivity"

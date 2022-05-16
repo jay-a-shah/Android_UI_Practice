@@ -57,4 +57,9 @@
     <string name="tv_resend_code">\"Resend code in \"</string>
     <string name="tv_s">s</string>
     <string name="tv_send_code_again">Resend Code Again</string>
+    <string name="toast_create_password_valid">Create Password is Valid</string>
+    <string name="toast_create_password_invalid">Create Password is Invalid</string>
+    <string name="toast_confirm_password_valid">Confirm Password is Valid</string>
+    <string name="toast_confirm_password_invalid">Confirm Password is InValid</string>
+    <string name="toast_password_does_not_matches">Password Does not Matches</string>
 </resources>

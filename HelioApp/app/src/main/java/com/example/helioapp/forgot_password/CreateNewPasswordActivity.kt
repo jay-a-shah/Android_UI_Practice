@@ -22,12 +22,14 @@ class CreateNewPasswordActivity : AppCompatActivity() {
     lateinit var binding: ActivityCreateNewPasswordBinding
     var isPasswordHidden: Boolean = true
     private lateinit var createPasswordViewModel: CreatePasswordModel
+    var confirmPassword = ""
+    var createPassword = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_create_new_password)
         createPasswordViewModel = ViewModelProvider(this)[CreatePasswordModel::class.java]
         binding.viewModel = createPasswordViewModel
-        updateButtonUi()
+
         setUpPasswordToggle(
             this,
             isPasswordHidden,
@@ -43,6 +45,7 @@ class CreateNewPasswordActivity : AppCompatActivity() {
             false
         )
         binding.apply {
+            btnContinue.isEnabled = false
             arrowImageView.setOnClickListener {
                 finish()
             }
@@ -57,7 +60,6 @@ class CreateNewPasswordActivity : AppCompatActivity() {
                             hasFocus
                         )
                     } else {
-                        validationPassword()
                         setUpPasswordToggle(
                             this@CreateNewPasswordActivity,
                             isPasswordHidden,
@@ -79,7 +81,6 @@ class CreateNewPasswordActivity : AppCompatActivity() {
                             hasFocus
                         )
                     } else {
-                        validationPassword()
                         setUpPasswordToggle(
                             this@CreateNewPasswordActivity,
                             isPasswordHidden,
@@ -90,18 +91,21 @@ class CreateNewPasswordActivity : AppCompatActivity() {
                     }
                 }
             btnContinue.setOnClickListener {
-                val builder =
-                    AlertDialog.Builder(this@CreateNewPasswordActivity, R.style.CustomAlertDialog)
-                        .create()
-                val view = layoutInflater.inflate(R.layout.custom_alert_dialog, null)
-                builder.setView(view)
-                val btnHomepage = view.findViewById<Button>(R.id.btnGoToHomepage)
-                btnHomepage.setOnClickListener {
-                    finish()
-                    startActivity(Intent(this@CreateNewPasswordActivity, MainActivity::class.java))
+                if (btnContinue.isEnabled) {
+                    val builder = AlertDialog.Builder(this@CreateNewPasswordActivity, R.style.CustomAlertDialog).create()
+                    val view = layoutInflater.inflate(R.layout.custom_alert_dialog, null)
+                    builder.setView(view)
+                    val btnHomepage = view.findViewById<Button>(R.id.btnGoToHomepage)
+                    btnHomepage.setOnClickListener {
+                        finish()
+                        startActivity(Intent(this@CreateNewPasswordActivity, MainActivity::class.java))
+                    }
+                    builder.setCanceledOnTouchOutside(false)
+                    builder.show()
+                } else {
+                    Toast.makeText(this@CreateNewPasswordActivity,getString(R.string.toast_password_does_not_matches), Toast.LENGTH_SHORT).show()
                 }
-                builder.setCanceledOnTouchOutside(false)
-                builder.show()
+
             }
             imageBtnEyeCreatePassword.setOnClickListener {
                 it.isSelected = !it.isSelected
@@ -126,52 +130,47 @@ class CreateNewPasswordActivity : AppCompatActivity() {
                 )
             }
         }
+        createPasswordViewModel.createPassword.observe(this) {
+            createPassword = it
+            if (it.isEmpty()) {
+                binding.btnContinue.isEnabled = false
+            }
+        }
+        createPasswordViewModel.confirmPassword.observe(this) {
+            confirmPassword = it
+            if (it.isEmpty()) {
+                binding.btnContinue.isEnabled = false
+            } else {
+                updateButtonUi()
+            }
+        }
+
     }
 
     private fun validationPassword() {
         binding.apply {
-            if (createPasswordViewModel.createPassword.toString().isNotEmpty() && isValidPassword(
-                    editTextCreatePassword.text.toString()
-                )
+
+            if (createPasswordViewModel.confirmPassword.toString().isNotEmpty() && isValidPassword(editTextConfirmPassword.text.toString())
             ) {
-                Toast.makeText(
-                    this@CreateNewPasswordActivity,
-                    getString(R.string.toast_password_valid),
-                    Toast.LENGTH_SHORT
-                ).show()
+                Toast.makeText(this@CreateNewPasswordActivity, getString(R.string.toast_confirm_password_valid), Toast.LENGTH_SHORT).show()
             } else {
-                Toast.makeText(
-                    this@CreateNewPasswordActivity,
-                    getString(R.string.toast_password_invalid),
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-            if (createPasswordViewModel.confirmPassword.toString().isNotEmpty() && isValidPassword(
-                    editTextConfirmPassword.text.toString()
-                )
-            ) {
-                Toast.makeText(
-                    this@CreateNewPasswordActivity,
-                    getString(R.string.toast_password_valid),
-                    Toast.LENGTH_SHORT
-                ).show()
-            } else {
-                Toast.makeText(
-                    this@CreateNewPasswordActivity,
-                    getString(R.string.toast_password_invalid),
-                    Toast.LENGTH_SHORT
-                ).show()
+                Toast.makeText(this@CreateNewPasswordActivity, getString(R.string.toast_confirm_password_invalid), Toast.LENGTH_SHORT).show()
             }
         }
     }
 
     private fun updateButtonUi() {
-        binding.apply {
-            if (editTextCreatePassword.text.toString() == editTextConfirmPassword.text.toString()) {
+        if (confirmPassword == createPassword) {
+            if (confirmPassword.length >= 8 && createPassword.length >= 8) {
+                Toast.makeText(this@CreateNewPasswordActivity, getString(R.string.toast_password_valid), Toast.LENGTH_SHORT).show()
                 binding.btnContinue.setBackgroundResource(R.drawable.rounded_filled_button)
+                binding.btnContinue.isEnabled = true
             } else {
-                btnContinue.setBackgroundResource(R.drawable.rounded_disable_button)
+                Toast.makeText(this@CreateNewPasswordActivity, getString(R.string.toast_password_invalid), Toast.LENGTH_SHORT).show()
             }
+        } else {
+            binding.btnContinue.setBackgroundResource(R.drawable.rounded_disable_button)
+            binding.btnContinue.isEnabled = false
         }
     }
 }
