@@ -147,18 +147,6 @@ class CreateNewPasswordActivity : AppCompatActivity() {
 
     }
 
-    private fun validationPassword() {
-        binding.apply {
-
-            if (createPasswordViewModel.confirmPassword.toString().isNotEmpty() && isValidPassword(editTextConfirmPassword.text.toString())
-            ) {
-                Toast.makeText(this@CreateNewPasswordActivity, getString(R.string.toast_confirm_password_valid), Toast.LENGTH_SHORT).show()
-            } else {
-                Toast.makeText(this@CreateNewPasswordActivity, getString(R.string.toast_confirm_password_invalid), Toast.LENGTH_SHORT).show()
-            }
-        }
-    }
-
     private fun updateButtonUi() {
         if (confirmPassword == createPassword) {
             if (confirmPassword.length >= 8 && createPassword.length >= 8) {
