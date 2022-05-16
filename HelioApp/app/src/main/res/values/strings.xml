@@ -47,11 +47,14 @@
     <string name="btn_go_ahead">Go Ahead</string>
     <string name="btn_continue">Continue</string>
     <string name="tv_code_has_been_send_to_1_111_99">Code has been send to +1 111 ******99</string>
-    <string name="tv_resend_code_in_53_s">Resend code in 53 s</string>
+    <string name="tv_resend_code_in_53_s">Resend code in %s s</string>
     <string name="btn_verify">Verify</string>
     <string name="toolbar_create_new_password">Create New Password</string>
     <string name="tv_create_your_new_password">Create Your New Password</string>
     <string name="tv_congratulations">Congratulations!</string>
     <string name="tv_your_account_is_ready_to_use">Your account is ready to use</string>
     <string name="btn_go_to_homepage">Go to Homepage</string>
+    <string name="tv_resend_code">\"Resend code in \"</string>
+    <string name="tv_s">s</string>
+    <string name="tv_send_code_again">Resend Code Again</string>
 </resources>

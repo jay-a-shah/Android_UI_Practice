@@ -2,8 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="@dimen/_15sdp">
+    android:layout_height="wrap_content">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/imageViewAlert"
@@ -24,7 +23,7 @@
         android:text="@string/tv_congratulations"
         android:textAlignment="center"
         android:textColor="@color/primary_500"
-        android:textSize="@dimen/_24ssp"
+        android:textSize="@dimen/_19ssp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/imageViewAlert" />
@@ -38,7 +37,7 @@
         android:text="@string/tv_your_account_is_ready_to_use"
         android:textAlignment="center"
         android:textColor="@color/grayscale_900"
-        android:textSize="@dimen/_16ssp"
+        android:textSize="@dimen/_14ssp"
         app:layout_constraintEnd_toEndOf="@id/textViewCongrats"
         app:layout_constraintStart_toStartOf="@id/textViewCongrats"
         app:layout_constraintTop_toBottomOf="@id/textViewCongrats" />
@@ -48,7 +47,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_29sdp"
-        android:layout_marginBottom="@dimen/_29sdp"
+        android:layout_marginBottom="@dimen/_20sdp"
         android:background="@drawable/rounded_filled_button"
         android:fontFamily="@font/urbanist_bold"
         android:padding="@dimen/_10sdp"
@@ -59,7 +58,7 @@
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="@color/white"
-        android:textSize="@dimen/_15ssp"
+        android:textSize="@dimen/_14ssp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/textViewCongrats"
         app:layout_constraintStart_toStartOf="@id/textViewCongrats"

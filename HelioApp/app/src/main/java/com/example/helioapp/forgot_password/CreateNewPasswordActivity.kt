@@ -13,6 +13,7 @@ import com.example.helioapp.databinding.CustomAlertDialogBinding
 
 class CreateNewPasswordActivity : AppCompatActivity() {
     lateinit var binding: ActivityCreateNewPasswordBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this,R.layout.activity_create_new_password)
