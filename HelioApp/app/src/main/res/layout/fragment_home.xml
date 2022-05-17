@@ -1,6 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     tools:context=".home_screen.HomeScreenActivity"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
@@ -95,56 +97,82 @@
         app:layout_constraintEnd_toEndOf="@id/searchBar"/>
 
     <HorizontalScrollView
+        android:id="@+id/horizontal_scrollview"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_18sdp"
         app:layout_constraintStart_toStartOf="@id/textViewHelloUser"
-        app:layout_constraintTop_toBottomOf="@id/searchBar">
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
+        app:layout_constraintTop_toBottomOf="@id/searchBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:scrollbars="none">
+
 
             <com.google.android.material.chip.ChipGroup
                 android:id="@+id/chipGroup"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                app:chipSpacingHorizontal="@dimen/_18sdp">
 
                 <com.google.android.material.chip.Chip
-                    android:id="@+id/chip_1"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:id="@+id/recommendChip"
+                    style="@style/CustomChipset"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="true"
                     android:text="@string/chip_recommended" />
 
                 <com.google.android.material.chip.Chip
-                    android:id="@+id/chip_1"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:id="@+id/popularChip"
+                    style="@style/CustomChipset"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:checked="true"
-                    android:text="@string/chip_recommended" />
+                    android:text="@string/tv_popular_chip" />
 
                 <com.google.android.material.chip.Chip
-                    android:id="@+id/chip_1"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:id="@+id/trendingChip"
+                    style="@style/CustomChipset"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:checked="true"
-                    android:text="@string/chip_recommended" />
+                    android:text="@string/tv_trending_chip" />
 
                 <com.google.android.material.chip.Chip
-                    android:id="@+id/chip_1"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:id="@+id/nearbyChip"
+                    style="@style/CustomChipset"
+                    android:layout_marginEnd="@dimen/_18sdp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:checked="true"
-                    android:text="@string/chip_recommended" />
+                    android:text="@string/tv_nearby_chip" />
             </com.google.android.material.chip.ChipGroup>
 
-        </LinearLayout>
     </HorizontalScrollView>
 
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Recently Booked"
+        app:layout_constraintTop_toBottomOf="@id/recyclerViewHotelImages"
+        app:layout_constraintStart_toStartOf="@id/recyclerViewHotelImages"
 
-</androidx.constraintlayout.widget.ConstraintLayout><?xml version="1.0" encoding="utf-8"?>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewHotelImages"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_19sdp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="@id/textViewHelloUser"
+        app:layout_constraintTop_toBottomOf="@id/horizontal_scrollview"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewRecentlyBooked"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/_19sdp"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="@id/textViewHelloUser"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

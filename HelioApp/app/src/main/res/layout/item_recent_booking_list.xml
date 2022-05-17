@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewTwo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:layout_marginBottom="@dimen/_15sdp"
+        android:clickable="true"
+        android:focusable="true"
+        app:cardCornerRadius="@dimen/_18sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cardLayoutTwo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/hotelImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10sdp"
+                android:src="@drawable/first_item_image"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_12sdp"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:fontFamily="@font/urbanist_bold"
+                android:text="@string/tv_president_hotel"
+                android:textColor="@color/grayscale_900"
+                android:textSize="@dimen/_17ssp"
+                app:layout_constraintStart_toEndOf="@id/hotelImage"
+                app:layout_constraintTop_toTopOf="@id/hotelImage" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewSubTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/urbanist_regular"
+                android:text="@string/tv_paris_france"
+                android:textColor="@color/grayscale_900"
+                android:textSize="@dimen/_11ssp"
+                android:layout_marginTop="@dimen/_8sdp"
+               app:layout_constraintStart_toStartOf="@id/textViewTitle"
+                app:layout_constraintTop_toBottomOf="@id/textViewTitle"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imageStar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_star"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:padding="@dimen/_5sdp"
+                app:layout_constraintStart_toStartOf="@id/textViewTitle"
+                app:layout_constraintTop_toBottomOf="@id/textViewSubTitle"
+                app:layout_constraintBottom_toBottomOf="@id/hotelImage"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewRating"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_1sdp"
+                android:fontFamily="@font/urbanist_semibold"
+                android:text="4.3"
+                android:textColor="@color/primary_500"
+                android:textSize="@dimen/_14ssp"
+                app:layout_constraintTop_toTopOf="@id/imageStar"
+                app:layout_constraintStart_toEndOf="@id/imageStar"
+                app:layout_constraintBottom_toBottomOf="@id/imageStar"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewReviews"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_1sdp"
+                android:fontFamily="@font/urbanist_regular"
+                android:text="(4,378 reviews)"
+                android:textColor="@color/grayscale_600"
+                android:textSize="@dimen/_10ssp"
+                app:layout_constraintTop_toTopOf="@id/imageStar"
+                app:layout_constraintStart_toEndOf="@id/textViewRating"
+                app:layout_constraintBottom_toBottomOf="@id/imageStar"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewPrice"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_3sdp"
+                android:layout_marginEnd="@dimen/_18sdp"
+                android:fontFamily="@font/urbanist_bold"
+                android:text="$35"
+                android:textColor="@color/primary_500"
+                android:textSize="@dimen/_22ssp"
+                app:layout_constraintTop_toTopOf="@id/hotelImage"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewPerNight"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/urbanist_regular"
+                android:text="/ night"
+                android:textAlignment="viewEnd"
+                android:textColor="@color/grayscale_700"
+                android:textSize="@dimen/_7ssp"
+                android:layout_marginTop="@dimen/_3sdp"
+                app:layout_constraintStart_toStartOf="@id/textViewPrice"
+                app:layout_constraintEnd_toEndOf="@id/textViewPrice"
+                app:layout_constraintTop_toBottomOf="@id/textViewPrice"/>
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/imageBtnBookmark"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_bookmark_filled"
+                android:layout_marginBottom="@dimen/_5sdp"
+                app:layout_constraintBottom_toBottomOf="@id/hotelImage"
+                app:layout_constraintEnd_toEndOf="@id/textViewPrice"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
