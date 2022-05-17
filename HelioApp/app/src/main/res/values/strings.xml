@@ -62,4 +62,9 @@
     <string name="toast_confirm_password_valid">Confirm Password is Valid</string>
     <string name="toast_confirm_password_invalid">Confirm Password is InValid</string>
     <string name="toast_password_does_not_matches">Password Does not Matches</string>
+    <string name="tv_hello_daniel">Hello, Daniel 👋</string>
+    <string name="hint_search">Search</string>
+    <string name="chip_recommended">Recommended</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

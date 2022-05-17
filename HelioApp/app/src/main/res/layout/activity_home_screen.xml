@@ -5,51 +5,27 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".home_screen.HomeScreenActivity">
+        android:layout_height="match_parent">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="0dp"
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragmentContainer"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:defaultNavHost="true"
+            app:layout_constraintBottom_toTopOf="@id/bottomNavigation"
+            app:layout_constraintTop_toTopOf="parent"
+            app:navGraph="@navigation/nav_graph" />
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottomNavigation"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:minHeight="?attr/actionBarSize"
-            android:layout_marginTop="@dimen/_18sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/logoImageView"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="@dimen/_18sdp"
-                android:src="@drawable/ic_logo" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/toolbarTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginStart="@dimen/_20sdp"
-                android:fontFamily="@font/urbanist_bold"
-                android:text="@string/tv_helia"
-                android:textColor="@color/grayscale_900"
-                android:textSize="@dimen/_24ssp" />
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/imageNotification"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="@dimen/_18sdp"
-                android:src="@drawable/ic_logo" />
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/imageBookmark"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="@dimen/_18sdp"
-                android:src="@drawable/ic_logo" />
-
-        </androidx.appcompat.widget.Toolbar>
-
+            app:itemHorizontalTranslationEnabled="true"
+            app:menu="@menu/dashboard_menu" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
