@@ -77,4 +77,7 @@
     <string name="tv_emeralda_de_hotel">Emeralda De Hotel</string>
     <string name="tv_president_hotel">President Hotel</string>
     <string name="tv_paris_france">Paris, France</string>
+    <string name="tv_recently_booked">Recently Booked</string>
+    <string name="tv_see_all">See All</string>
+    <string name="tv_night">/ night</string>
 </resources>

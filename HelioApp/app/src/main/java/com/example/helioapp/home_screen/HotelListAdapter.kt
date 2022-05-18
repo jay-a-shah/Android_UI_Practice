@@ -16,7 +16,7 @@ class HotelListAdapter(val list: ArrayList<HotelListModelClass>): RecyclerView.A
     }
 
     override fun onBindViewHolder(holder: ViewPagerHolder, position: Int) {
-        binding.onBoardingViewModel = list[position]
+       // binding.onBoardingViewModel = list[position]
     }
 
     override fun getItemCount(): Int {

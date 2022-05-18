@@ -14,6 +14,7 @@ import com.example.helioapp.MainActivity
 import com.example.helioapp.R
 import com.example.helioapp.databinding.ActivityCreateNewPasswordBinding
 import com.example.helioapp.databinding.CustomAlertDialogBinding
+import com.example.helioapp.home_screen.HomeScreenActivity
 import com.example.helioapp.sign_in_screen.SignInViewModel
 import com.example.helioapp.utils.isValidPassword
 import com.example.helioapp.utils.setUpPasswordToggle
@@ -98,7 +99,7 @@ class CreateNewPasswordActivity : AppCompatActivity() {
                     val btnHomepage = view.findViewById<Button>(R.id.btnGoToHomepage)
                     btnHomepage.setOnClickListener {
                         finish()
-                        startActivity(Intent(this@CreateNewPasswordActivity, MainActivity::class.java))
+                        startActivity(Intent(this@CreateNewPasswordActivity, HomeScreenActivity::class.java))
                     }
                     builder.setCanceledOnTouchOutside(false)
                     builder.show()

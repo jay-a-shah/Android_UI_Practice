@@ -12,10 +12,6 @@
         <activity
             android:name=".home_screen.HomeScreenActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".forgot_password.CreateNewPasswordActivity"
@@ -48,7 +44,12 @@
         <activity
             android:name=".SplashScreenActivity"
             android:exported="true"
-            android:theme="@style/AppTheme.ActionBar.Transparent"></activity>
+            android:theme="@style/AppTheme.ActionBar.Transparent">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".MainActivity"
             android:exported="true" />
