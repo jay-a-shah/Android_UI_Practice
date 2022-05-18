@@ -38,7 +38,6 @@ open class HttpCallbackViewModel : ViewModel() {
                         .use { it.readText() }
                     withContext(Dispatchers.Main) {
                         val gson = GsonBuilder().setPrettyPrinting().create()
-                        val prettyJson = gson.toJson(JsonParser.parseString(response))
                         var dataClass = gson.fromJson(response, modelClass)
                         httpCallback.onSuccessCallback(responseMessage)
                     }
