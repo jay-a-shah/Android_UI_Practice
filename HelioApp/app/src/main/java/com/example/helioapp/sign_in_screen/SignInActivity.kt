@@ -12,14 +12,14 @@ import android.view.View
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
-import com.example.helioapp.MainActivity
 import com.example.helioapp.R
 import com.example.helioapp.databinding.ActivitySignInBinding
-import com.example.helioapp.databinding.ItemOnBoardingScreenBinding
 import com.example.helioapp.signup_screen.SignUpActivity
 
 class SignInActivity : AppCompatActivity() {
+
     lateinit var binding: ActivitySignInBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         supportActionBar?.hide()
@@ -33,25 +33,13 @@ class SignInActivity : AppCompatActivity() {
                 startActivity(Intent(this@SignInActivity, SignInWithPasswordActivity::class.java))
             }
             btnFacebook.setOnClickListener {
-                Toast.makeText(
-                    this@SignInActivity,
-                    getString(R.string.toast_facebook_btn),
-                    Toast.LENGTH_SHORT
-                ).show()
+                Toast.makeText(this@SignInActivity, getString(R.string.toast_facebook_btn), Toast.LENGTH_SHORT).show()
             }
             btnApple.setOnClickListener {
-                Toast.makeText(
-                    this@SignInActivity,
-                    getString(R.string.toast_apple_btn),
-                    Toast.LENGTH_SHORT
-                ).show()
+                Toast.makeText(this@SignInActivity, getString(R.string.toast_apple_btn), Toast.LENGTH_SHORT).show()
             }
             btnGoogle.setOnClickListener {
-                Toast.makeText(
-                    this@SignInActivity,
-                    getString(R.string.toast_google_btn),
-                    Toast.LENGTH_SHORT
-                ).show()
+                Toast.makeText(this@SignInActivity, getString(R.string.toast_google_btn), Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -64,9 +52,9 @@ class SignInActivity : AppCompatActivity() {
                 startActivity(signInIntent)
             }
 
-            override fun updateDrawState(ds: TextPaint) {
-                ds.color = ContextCompat.getColor(applicationContext, R.color.primary_500)
-                ds.bgColor = ContextCompat.getColor(applicationContext, R.color.white)
+            override fun updateDrawState(drawState: TextPaint) {
+                drawState.color = ContextCompat.getColor(applicationContext, R.color.primary_500)
+                drawState.bgColor = ContextCompat.getColor(applicationContext, R.color.white)
             }
         }
         spannable.setSpan(clickableSpan2, 23, 30, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)

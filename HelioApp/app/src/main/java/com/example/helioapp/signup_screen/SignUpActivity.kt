@@ -19,15 +19,19 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.helioapp.MainActivity
 import com.example.helioapp.R
 import com.example.helioapp.databinding.ActivitySignUpBinding
+import com.example.helioapp.onboarding_screen.OnBoardingModel
 import com.example.helioapp.sign_in_screen.SignInWithPasswordActivity
-import com.example.helioapp.utils.EIGHT
-import com.example.helioapp.utils.isValidEmail
-import com.example.helioapp.utils.isValidPassword
-import com.example.helioapp.utils.setUpPasswordToggle
+import com.example.helioapp.utils.*
+import com.example.helioapp.utils.Constant.BASEURL
+import com.example.helioapp.utils.Constant.EIGHT
+import com.example.helioapp.webservices_without_retrofit.Callbacks
+import org.json.JSONObject
+import java.net.URL
 
 
 class SignUpActivity : AppCompatActivity() {
@@ -72,16 +76,32 @@ class SignUpActivity : AppCompatActivity() {
             }
             btnSignUp.setOnClickListener {
                 isValidPassword(editTextPassword.text.toString())
-                if (editTextPassword.text.toString().length >= EIGHT) {
-                    Toast.makeText(this@SignUpActivity,getString(R.string.toast_password_valid),Toast.LENGTH_SHORT).show()
+                if (editTextPassword.text.toString().length >= EIGHT && isValidEmail(editTextEmail.text.toString())) {
+                    val credential = JSONObject()
+                    credential.apply {
+                        put("email", editTextEmail.text.toString())
+                        put("password", editTextPassword.text.toString())
+                        put("name","Test123")
+                    }
+                    val url = URL(BASEURL)
+                    signUpViewModel?.apiCall(credential, url, "POST",object : Callbacks{
+                        override fun onSuccessCallback(output: String) {
+                            runOnUiThread {
+                                Toast.makeText(this@SignUpActivity,"User Created", Toast.LENGTH_SHORT).show()
+                            }
+                        }
+
+                        override fun onFailureCallback(responseCode: Int, output: String) {
+                            runOnUiThread {
+                                Toast.makeText(this@SignUpActivity,"User Not Created", Toast.LENGTH_SHORT).show()
+                            }
+                        }
+
+                    },Any::class.java)
                 } else {
-                    Toast.makeText(this@SignUpActivity,getString(R.string.toast_password_invalid),Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@SignUpActivity,getString(R.string.toast_credential_invalid),Toast.LENGTH_SHORT).show()
                 }
-               if(isValidEmail(editTextEmail.text.toString()))  {
-                   Toast.makeText(this@SignUpActivity,getString(R.string.toast_email_valid),Toast.LENGTH_SHORT).show()
-               } else {
-                   Toast.makeText(this@SignUpActivity,getString(R.string.toast_email_not_valid),Toast.LENGTH_SHORT).show()
-               }
+
             }
         }
     }

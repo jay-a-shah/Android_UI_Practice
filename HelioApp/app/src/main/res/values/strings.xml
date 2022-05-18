@@ -80,4 +80,5 @@
     <string name="tv_recently_booked">Recently Booked</string>
     <string name="tv_see_all">See All</string>
     <string name="tv_night">/ night</string>
+    <string name="toast_credential_invalid">Creadential is Not Valid</string>
 </resources>

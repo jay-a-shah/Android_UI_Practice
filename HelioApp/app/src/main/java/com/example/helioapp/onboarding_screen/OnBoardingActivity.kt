@@ -18,14 +18,12 @@ class OnBoardingActivity : AppCompatActivity() {
 
     var onBoardingItemList: ArrayList<OnBoardingModel> = arrayListOf()
     lateinit var binding: ActivityOnBoardingBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_on_boarding)
         setAdapter()
-        window.setFlags(
-            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
-            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
-        )
+        window.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
         binding.apply {
             viewPager2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
                 override fun onPageSelected(position: Int) {
@@ -35,14 +33,12 @@ class OnBoardingActivity : AppCompatActivity() {
                             iconRectangle.setImageResource(R.drawable.ic_rectangle)
                             iconCircle.setImageResource(R.drawable.icon_default_dot)
                             iconLastCircle.setImageResource(R.drawable.icon_default_dot)
-                        }
-                        1 -> {
+                        } 1 -> {
                             nextBtn.text = getString(R.string.btn_next)
                             iconRectangle.setImageResource(R.drawable.icon_default_dot)
                             iconCircle.setImageResource(R.drawable.ic_rectangle)
                             iconLastCircle.setImageResource(R.drawable.icon_default_dot)
-                        }
-                        2 -> {
+                        } 2 -> {
                             nextBtn.text = getString(R.string.btn_go_ahead)
                             iconRectangle.setImageResource(R.drawable.icon_default_dot)
                             iconCircle.setImageResource(R.drawable.icon_default_dot)
@@ -73,26 +69,15 @@ class OnBoardingActivity : AppCompatActivity() {
 
     fun setData() {
         onBoardingItemList.apply {
-            add(
-                OnBoardingModel(
-                    R.drawable.onboarding_three, getString(R.string.header_one), getString(
+            add(OnBoardingModel(R.drawable.onboarding_three, getString(R.string.header_one), getString(
                         R.string.subHeader
-                    )
-                )
-            )
-            add(
-                OnBoardingModel(
-                    R.drawable.onboarding_two, getString(R.string.header_two), getString(
+                    )))
+            add(OnBoardingModel(R.drawable.onboarding_two, getString(R.string.header_two), getString(
                         R.string.subHeader
-                    )
-                )
-            )
-            add(
-                OnBoardingModel(
-                    R.drawable.onboarding_one, getString(R.string.header_three), getString(
+                    )))
+            add(OnBoardingModel(R.drawable.onboarding_one, getString(R.string.header_three), getString(
                         R.string.subHeader
-                    )
-                )
+                    ))
             )
         }
     }

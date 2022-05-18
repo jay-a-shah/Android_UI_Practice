@@ -141,7 +141,7 @@
                     android:layout_marginBottom="@dimen/_5sdp"
                     android:checked="true"
                     android:background="@android:color/transparent"
-                    android:src="@drawable/bookmark_selector"
+                    android:src="@drawable/ic_bookmark"
                     app:layout_constraintBottom_toBottomOf="@id/hotelImage"
                     app:layout_constraintEnd_toEndOf="@id/textViewPrice" />
 

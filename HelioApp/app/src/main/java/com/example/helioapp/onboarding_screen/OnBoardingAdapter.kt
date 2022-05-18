@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.helioapp.R
 import com.example.helioapp.databinding.ItemOnBoardingScreenBinding
 
-class OnBoardingAdapter(val list: ArrayList<OnBoardingModel>): RecyclerView.Adapter<OnBoardingAdapter.ViewPagerHolder>() {
+class OnBoardingAdapter(private val list: ArrayList<OnBoardingModel>): RecyclerView.Adapter<OnBoardingAdapter.ViewPagerHolder>() {
 
     lateinit var binding: ItemOnBoardingScreenBinding
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewPagerHolder {

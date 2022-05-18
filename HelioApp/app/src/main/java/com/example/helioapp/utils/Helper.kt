@@ -21,7 +21,7 @@ fun setUpPasswordToggle(context: Context, isPasswordHidden: Boolean, field: Edit
     field.typeface = typeface
 }
 
-fun isValidEmail(str: String): Boolean{
+fun isValidEmail(str: String): Boolean {
     return android.util.Patterns.EMAIL_ADDRESS.matcher(str).matches()
 }
 fun isValidPassword(str: String): Boolean {

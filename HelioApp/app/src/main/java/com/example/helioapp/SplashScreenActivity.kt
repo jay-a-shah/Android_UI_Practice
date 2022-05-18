@@ -9,8 +9,7 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import androidx.databinding.DataBindingUtil
 import com.example.helioapp.databinding.ActivitySplashScreenBinding
-import com.example.helioapp.utils.THREETHOUSAND
-import com.example.helioapp.utils.TWOTHOUSAND
+import com.example.helioapp.utils.Constant
 import com.example.helioapp.walkthrough_screen.WalkthroughOneActivity
 
 class SplashScreenActivity : AppCompatActivity() {
@@ -29,7 +28,7 @@ class SplashScreenActivity : AppCompatActivity() {
         handler.postDelayed({
             startActivity(Intent(this,WalkthroughOneActivity::class.java))
             finish()
-        }, THREETHOUSAND.toLong())
+        }, Constant.THREETHOUSAND.toLong())
     }
 
     override fun onPause() {

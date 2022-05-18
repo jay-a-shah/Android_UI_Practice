@@ -11,7 +11,6 @@ import androidx.databinding.DataBindingUtil
 import com.example.helioapp.R
 import com.example.helioapp.databinding.ActivityWalkthroughOneBinding
 import com.example.helioapp.onboarding_screen.OnBoardingActivity
-import com.example.helioapp.utils.THREETHOUSAND
 
 class WalkthroughOneActivity : AppCompatActivity() {
 

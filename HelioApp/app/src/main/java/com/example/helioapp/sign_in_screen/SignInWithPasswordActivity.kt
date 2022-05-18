@@ -32,12 +32,13 @@ class SignInWithPasswordActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_sign_in_with_password)
-        signInViewModel = ViewModelProvider(this).get(SignInViewModel::class.java)
+        signInViewModel = ViewModelProvider(this)[SignInViewModel::class.java]
         binding.signInViewModel = signInViewModel
         validation()
         setSpannableText()
         setUpPasswordToggle(this, isPasswordHidden, binding.editTextPassword, binding.imageBtnEye, false)
-        binding.apply { imageBtnEye.isSelected = true
+        binding.apply {
+            imageBtnEye.isSelected = true
             customToolbar.arrowImageView.setOnClickListener {
                 finish()
             }
@@ -54,17 +55,21 @@ class SignInWithPasswordActivity : AppCompatActivity() {
             imageButtonApple.setOnClickListener {
                 Toast.makeText(this@SignInWithPasswordActivity, getString(R.string.toast_apple_btn), Toast.LENGTH_SHORT).show()
             }
+
             imageBtnGoogle.setOnClickListener {
                 Toast.makeText(this@SignInWithPasswordActivity, getString(R.string.toast_google_btn), Toast.LENGTH_SHORT).show()
             }
+
             imageBtnEye.setOnClickListener {
                 it.isSelected = !it.isSelected
                 isPasswordHidden = !isPasswordHidden
                 setUpPasswordToggle(this@SignInWithPasswordActivity, isPasswordHidden, binding.editTextPassword, imageBtnEye, editTextPassword.hasFocus())
             }
+
             btnForgotPassword.setOnClickListener {
                 startActivity(Intent(this@SignInWithPasswordActivity, ForgotPasswordSelectionActivity::class.java))
             }
+
             btnSignUp.setOnClickListener {
                 isValidPassword(editTextPassword.text.toString())
                 if (editTextPassword.text.toString().length >= 8) {
