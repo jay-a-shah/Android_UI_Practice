@@ -14,6 +14,7 @@ import java.net.URL
 
 class SignUpViewModel(application: Application): HttpCallbackViewModel(application){
 
+    val progressBarStatus: MutableLiveData<Boolean> = MutableLiveData()
     val email: MutableLiveData<String> = MutableLiveData()
     val password: MutableLiveData<String> = MutableLiveData()
     val name: MutableLiveData<String> = MutableLiveData("Test123")
@@ -26,6 +27,7 @@ class SignUpViewModel(application: Application): HttpCallbackViewModel(applicati
         } else if (password.value.isNullOrEmpty()) {
             signUpResult.value = getApplication<Application>().resources.getString(R.string.toast_password_empty)
         } else {
+            progressBarStatus.value = true
             apiCall()
         }
     }
@@ -39,9 +41,11 @@ class SignUpViewModel(application: Application): HttpCallbackViewModel(applicati
         val url = URL(Constant.BASEURL)
         apiCall(credential, url, "POST",object : Callbacks {
             override fun onSuccessCallback(output: String) {
+                progressBarStatus.postValue(false)
                 signUpResult.postValue(getApplication<Application>().resources.getString(R.string.user_create))
             }
             override fun onFailureCallback(responseCode: Int, output: String) {
+                progressBarStatus.postValue(false)
                 signUpResult.postValue(getApplication<Application>().resources.getString(R.string.user_not_created))
             }
         },Any::class.java)
