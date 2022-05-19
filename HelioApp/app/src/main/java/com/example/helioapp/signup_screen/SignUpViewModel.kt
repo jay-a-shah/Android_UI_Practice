@@ -7,6 +7,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.helioapp.R
 import com.example.helioapp.utils.Constant
+import com.example.helioapp.utils.Constant.KEYEMAIL
+import com.example.helioapp.utils.Constant.KEYNAME
+import com.example.helioapp.utils.Constant.KEYPASSWORD
+import com.example.helioapp.utils.Constant.POSTMETHOD
 import com.example.helioapp.webservices_without_retrofit.Callbacks
 import com.example.helioapp.webservices_without_retrofit.HttpCallbackViewModel
 import org.json.JSONObject
@@ -17,7 +21,7 @@ class SignUpViewModel(application: Application): HttpCallbackViewModel(applicati
     val progressBarStatus: MutableLiveData<Boolean> = MutableLiveData()
     val email: MutableLiveData<String> = MutableLiveData()
     val password: MutableLiveData<String> = MutableLiveData()
-    val name: MutableLiveData<String> = MutableLiveData("Test123")
+    val name: MutableLiveData<String> = MutableLiveData(application.getString(R.string.name_initial_value))
     fun getSignUpResult(): LiveData<String> = signUpResult
     private val signUpResult = MutableLiveData<String>()
 
@@ -34,12 +38,12 @@ class SignUpViewModel(application: Application): HttpCallbackViewModel(applicati
     fun apiCall() {
         val credential = JSONObject()
         credential.apply {
-            put("email", email.value)
-            put("password", password.value)
-            put("name",name.value)
+            put(KEYEMAIL, email.value)
+            put(KEYPASSWORD, password.value)
+            put(KEYNAME,name.value)
         }
         val url = URL(Constant.BASEURL)
-        apiCall(credential, url, "POST",object : Callbacks {
+        apiCall(credential, url, POSTMETHOD,object : Callbacks {
             override fun onSuccessCallback(output: String) {
                 progressBarStatus.postValue(false)
                 signUpResult.postValue(getApplication<Application>().resources.getString(R.string.user_create))

@@ -5,5 +5,9 @@ object Constant {
     const val TWOTHOUSAND = 2000
     const val EIGHT = 8
     const val BASEURL = "https://6283714992a6a5e46223ee72.mockapi.io/api/v1/createUser"
+    const val KEYEMAIL = "email"
+    const val KEYPASSWORD = "password"
+    const val KEYNAME = "name"
+    const val POSTMETHOD = "POST"
 }
 

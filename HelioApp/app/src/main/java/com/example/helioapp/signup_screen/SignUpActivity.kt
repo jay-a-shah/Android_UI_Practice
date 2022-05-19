@@ -89,6 +89,7 @@ class SignUpActivity : BaseActivity() {
     private fun setSpannableText() {
         val spannable = SpannableString(binding.textViewAlreadyHaveSignIn.text)
         val clickableSpan2: ClickableSpan = object : ClickableSpan() {
+
             override fun onClick(p0: View) {
                 startActivity(Intent(this@SignUpActivity,SignInWithPasswordActivity::class.java))
             }

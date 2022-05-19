@@ -84,4 +84,5 @@
     <string name="toast_password_empty">Password is Empty</string>
     <string name="user_create">User Created</string>
     <string name="user_not_created">User Not Created</string>
+    <string name="name_initial_value">Test123</string>
 </resources>
