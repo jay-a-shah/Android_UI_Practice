@@ -44,11 +44,11 @@ class SignUpActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this,R.layout.activity_sign_up)
         signUpViewModel = ViewModelProvider(this)[SignUpViewModel::class.java]
-        binding.signUpViewModel = signUpViewModel
         validation()
         setSpannableText()
         setUpPasswordToggle(this,isPasswordHidden,binding.editTextPassword,binding.imageBtnEye,false)
         binding.apply {
+            viewModel = signUpViewModel
             imageBtnEye.isSelected = true
             customToolbar.arrowImageView.setOnClickListener {
                 finish()
@@ -75,36 +75,14 @@ class SignUpActivity : AppCompatActivity() {
                 setUpPasswordToggle(this@SignUpActivity,isPasswordHidden,binding.editTextPassword,imageBtnEye,editTextPassword.hasFocus())
             }
             btnSignUp.setOnClickListener {
-                isValidPassword(editTextPassword.text.toString())
-                if (editTextPassword.text.toString().length >= EIGHT && isValidEmail(editTextEmail.text.toString())) {
-                    val credential = JSONObject()
-                    credential.apply {
-                        put("email", editTextEmail.text.toString())
-                        put("password", editTextPassword.text.toString())
-                        put("name","Test123")
-                    }
-                    val url = URL(BASEURL)
-                    signUpViewModel?.apiCall(credential, url, "POST",object : Callbacks{
-                        override fun onSuccessCallback(output: String) {
-                            runOnUiThread {
-                                Toast.makeText(this@SignUpActivity,"User Created", Toast.LENGTH_SHORT).show()
-                            }
-                        }
-
-                        override fun onFailureCallback(responseCode: Int, output: String) {
-                            runOnUiThread {
-                                Toast.makeText(this@SignUpActivity,"User Not Created", Toast.LENGTH_SHORT).show()
-                            }
-                        }
-
-                    },Any::class.java)
-                } else {
-                    Toast.makeText(this@SignUpActivity,getString(R.string.toast_credential_invalid),Toast.LENGTH_SHORT).show()
+               signUpViewModel?.performValidation()
                 }
-
+            signUpViewModel?.getSignUpResult()?.observe(this@SignUpActivity) { result ->
+                showMessage(this@SignUpActivity,result)
+            }
             }
         }
-    }
+
 
     private fun validation(){
         signUpViewModel.email.observe(this) {

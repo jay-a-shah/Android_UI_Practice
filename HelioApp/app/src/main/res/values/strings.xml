@@ -81,4 +81,7 @@
     <string name="tv_see_all">See All</string>
     <string name="tv_night">/ night</string>
     <string name="toast_credential_invalid">Creadential is Not Valid</string>
+    <string name="toast_password_empty">Password is Empty</string>
+    <string name="user_create">User Created</string>
+    <string name="user_not_created">User Not Created</string>
 </resources>

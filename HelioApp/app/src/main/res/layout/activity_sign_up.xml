@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
-            name="SignUpViewModel"
+            name="viewModel"
             type="com.example.helioapp.signup_screen.SignUpViewModel" />
     </data>
 
@@ -51,7 +51,7 @@
                 android:background="@drawable/edit_text_style"
                 android:drawableStart="@drawable/email_selector"
                 android:hint="@string/editText_email"
-                android:text="@={SignUpViewModel.email}"
+                android:text="@={viewModel.email}"
                 android:imeOptions="actionNext"
                 android:singleLine="true"
                 android:inputType="textEmailAddress"
@@ -71,6 +71,7 @@
                 android:imeOptions="actionDone"
                 android:inputType="textPassword"
                 android:singleLine="true"
+                android:text="@={viewModel.password}"
                 app:layout_constraintEnd_toEndOf="@id/editTextEmail"
                 app:layout_constraintStart_toStartOf="@id/editTextEmail"
                 app:layout_constraintTop_toBottomOf="@id/editTextEmail" />

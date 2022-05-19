@@ -5,6 +5,7 @@ import android.text.InputType
 import android.text.TextUtils
 import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.Toast
 import androidx.core.content.res.ResourcesCompat
 import com.example.helioapp.R
 
@@ -26,4 +27,7 @@ fun isValidEmail(str: String): Boolean {
 }
 fun isValidPassword(str: String): Boolean {
     return TextUtils.isEmpty(str)
+}
+fun showMessage(context:Context,message: String) {
+    Toast.makeText(context,message, Toast.LENGTH_SHORT).show()
 }
