@@ -1,42 +1,29 @@
 package com.example.helioapp.signup_screen
 
-import android.R.attr.button
+
 import android.content.Intent
 import android.os.Bundle
-import android.provider.SyncStateContract
-import android.text.Editable
 import android.text.SpannableString
 import android.text.Spanned
 import android.text.TextPaint
-import android.text.TextWatcher
 import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
 import android.view.View
 import android.view.View.OnFocusChangeListener
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.helioapp.MainActivity
 import com.example.helioapp.R
 import com.example.helioapp.databinding.ActivitySignUpBinding
-import com.example.helioapp.onboarding_screen.OnBoardingModel
 import com.example.helioapp.sign_in_screen.SignInWithPasswordActivity
-import com.example.helioapp.utils.*
-import com.example.helioapp.utils.Constant.BASEURL
-import com.example.helioapp.utils.Constant.EIGHT
-import com.example.helioapp.webservices_without_retrofit.Callbacks
-import org.json.JSONObject
-import java.net.URL
+import com.example.helioapp.utils.setUpPasswordToggle
+import com.example.helioapp.utils.showMessage
 
 
 class SignUpActivity : AppCompatActivity() {
-    var isPasswordHidden: Boolean = true
 
+    var isPasswordHidden: Boolean = true
     lateinit var binding: ActivitySignUpBinding
     private lateinit var signUpViewModel: SignUpViewModel
 
@@ -44,7 +31,7 @@ class SignUpActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this,R.layout.activity_sign_up)
         signUpViewModel = ViewModelProvider(this)[SignUpViewModel::class.java]
-        validation()
+        performValidation()
         setSpannableText()
         setUpPasswordToggle(this,isPasswordHidden,binding.editTextPassword,binding.imageBtnEye,false)
         binding.apply {
@@ -61,13 +48,13 @@ class SignUpActivity : AppCompatActivity() {
                     }
                 }
             imageBtnFacebook.setOnClickListener {
-                Toast.makeText(this@SignUpActivity,getString(R.string.toast_facebook_btn), Toast.LENGTH_SHORT).show()
+                showMessage(this@SignUpActivity,getString(R.string.toast_facebook_btn))
             }
             imageButtonApple.setOnClickListener {
-                Toast.makeText(this@SignUpActivity,getString(R.string.toast_apple_btn), Toast.LENGTH_SHORT).show()
+                showMessage(this@SignUpActivity,getString(R.string.toast_apple_btn))
             }
             imageBtnGoogle.setOnClickListener {
-                Toast.makeText(this@SignUpActivity,getString(R.string.toast_google_btn), Toast.LENGTH_SHORT).show()
+               showMessage(this@SignUpActivity,getString(R.string.toast_google_btn))
             }
             imageBtnEye.setOnClickListener {
                 it.isSelected = !it.isSelected
@@ -83,8 +70,7 @@ class SignUpActivity : AppCompatActivity() {
             }
         }
 
-
-    private fun validation(){
+    private fun performValidation(){
         signUpViewModel.email.observe(this) {
             if (it.isEmpty()) {
                 binding.btnSignUp.setBackgroundResource(R.drawable.rounded_disable_button)
