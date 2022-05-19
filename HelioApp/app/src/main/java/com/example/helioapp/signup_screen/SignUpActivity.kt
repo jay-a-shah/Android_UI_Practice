@@ -21,7 +21,6 @@ import com.example.helioapp.utils.showMessage
 
 class SignUpActivity : BaseActivity() {
 
-    var isPasswordHidden: Boolean = true
     lateinit var binding: ActivitySignUpBinding
     private lateinit var signUpViewModel: SignUpViewModel
 
@@ -31,7 +30,7 @@ class SignUpActivity : BaseActivity() {
         signUpViewModel = ViewModelProvider(this)[SignUpViewModel::class.java]
         performValidation()
         setSpannableText()
-        setUpPasswordToggle(this, isPasswordHidden, binding.editTextPassword, binding.imageBtnEye, false)
+        setUpPasswordToggle(this, binding.imageBtnEye.isSelected, binding.editTextPassword, binding.imageBtnEye, false)
         binding.apply {
             viewModel = signUpViewModel
             imageBtnEye.isSelected = true
@@ -40,9 +39,9 @@ class SignUpActivity : BaseActivity() {
             }
             editTextPassword.onFocusChangeListener = OnFocusChangeListener { _, hasFocus ->
                 if (hasFocus) {
-                    setUpPasswordToggle(this@SignUpActivity, isPasswordHidden, editTextPassword, imageBtnEye, hasFocus)
+                    setUpPasswordToggle(this@SignUpActivity, imageBtnEye.isSelected, editTextPassword, imageBtnEye, hasFocus)
                 } else {
-                    setUpPasswordToggle(this@SignUpActivity, isPasswordHidden, editTextPassword, imageBtnEye, hasFocus)
+                    setUpPasswordToggle(this@SignUpActivity, imageBtnEye.isSelected, editTextPassword, imageBtnEye, hasFocus)
                 }
             }
             imageBtnFacebook.setOnClickListener {
@@ -56,8 +55,8 @@ class SignUpActivity : BaseActivity() {
             }
             imageBtnEye.setOnClickListener {
                 it.isSelected = !it.isSelected
-                isPasswordHidden = !isPasswordHidden
-                setUpPasswordToggle(this@SignUpActivity, isPasswordHidden, binding.editTextPassword, imageBtnEye, editTextPassword.hasFocus())
+                //isPasswordHidden = !isPasswordHidden
+                setUpPasswordToggle(this@SignUpActivity, it.isSelected, binding.editTextPassword, imageBtnEye, editTextPassword.hasFocus())
             }
             btnSignUp.setOnClickListener {
                 signUpViewModel.performValidation()

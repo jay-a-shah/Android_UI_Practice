@@ -16,7 +16,7 @@ import java.net.URL
 
 open class HttpCallbackViewModel(application: Application) : AndroidViewModel(application) {
 
-    fun <T> apiCall(jsonObject: JSONObject, url: URL, request: String, httpCallback: Callbacks, modelClass: Class<T>?) {
+    fun <T> apiCall(jsonObject: JSONObject, url: URL, request: String, httpCallback: Callbacks, modelClass: Class<T>? = null) {
         viewModelScope.launch(Dispatchers.IO) {
             val httpURLConnection = url.openConnection() as HttpURLConnection
             with(httpURLConnection) {

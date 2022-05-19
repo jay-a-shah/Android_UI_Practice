@@ -35,6 +35,7 @@ class SignUpViewModel(application: Application): HttpCallbackViewModel(applicati
             apiCall()
         }
     }
+
     fun apiCall() {
         val credential = JSONObject()
         credential.apply {
