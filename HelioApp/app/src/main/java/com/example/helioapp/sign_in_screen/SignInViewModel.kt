@@ -14,9 +14,8 @@ import java.net.URL
 
 class SignInViewModel(application: Application): HttpCallbackViewModel(application) {
 
-    val progressBarStatus: MutableLiveData<Boolean> = MutableLiveData()
-    val email: MutableLiveData<String> = MutableLiveData()
-    val password: MutableLiveData<String> = MutableLiveData()
+    val email: MutableLiveData<String> = MutableLiveData("")
+    val password: MutableLiveData<String> = MutableLiveData("")
     val logInResult = MutableLiveData<String>()
 
     fun performValidation() {
@@ -25,7 +24,6 @@ class SignInViewModel(application: Application): HttpCallbackViewModel(applicati
         } else if (password.value.isNullOrEmpty()) {
             logInResult.value = getApplication<Application>().resources.getString(R.string.toast_password_empty)
         } else {
-            progressBarStatus.value = true
             apiCall()
         }
     }
@@ -39,11 +37,10 @@ class SignInViewModel(application: Application): HttpCallbackViewModel(applicati
         val url = URL(BASEURL + LOGINURL)
         apiCall(credential, url, Constant.POSTMETHOD,object : Callbacks {
             override fun onSuccessCallback(output: String) {
-                progressBarStatus.postValue(false)
-                logInResult.postValue(output)
+                logInResult.postValue(getApplication<Application>().resources.getString(R.string.login_successfully))
             }
+
             override fun onFailureCallback(responseCode: Int, output: String) {
-                progressBarStatus.postValue(false)
                 logInResult.postValue(getApplication<Application>().resources.getString(R.string.login_not_successfull))
             }
         },Any::class.java)

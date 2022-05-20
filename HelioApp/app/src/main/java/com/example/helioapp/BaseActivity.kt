@@ -26,9 +26,6 @@ open class BaseActivity : AppCompatActivity() {
             window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
             setCancelable(true)
             setContentView(binding.root)
-            Glide.with(this@BaseActivity)
-                .load(R.drawable.progress_bar)
-                .into(binding.imageView)
             show()
         }
     }

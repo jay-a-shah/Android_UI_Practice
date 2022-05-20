@@ -85,4 +85,6 @@
     <string name="user_not_created">User Not Created</string>
     <string name="name_initial_value">Test123</string>
     <string name="login_not_successfull">Login Not Successfull</string>
+    <string name="tv_please_wait">Please Wait</string>
+    <string name="login_successfully">Login Succesfull</string>
 </resources>

@@ -1,8 +1,9 @@
 package com.example.helioapp.utils
 
 import android.content.Context
-import android.text.InputType
-import android.text.TextUtils
+import android.text.*
+import android.text.style.ClickableSpan
+import android.view.View
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.Toast
@@ -30,4 +31,21 @@ fun isValidPassword(str: String): Boolean {
 }
 fun showMessage(context:Context,message: String) {
     Toast.makeText(context,message, Toast.LENGTH_SHORT).show()
+}
+
+
+fun setSpannableText(text: String, startIndex: Int, endIndex: Int, color: Int, spanClickCallback: () -> Unit): Spannable {
+    val spannable = SpannableString(text)
+    val clickableSpan = object : ClickableSpan() {
+        override fun onClick(p0: View) {
+            spanClickCallback()
+        }
+        override fun updateDrawState(drawstate: TextPaint) {
+            super.updateDrawState(drawstate)
+            drawstate.isUnderlineText = false
+            drawstate.color = color
+        }
+    }
+    spannable.setSpan(clickableSpan, startIndex, endIndex, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+    return spannable
 }

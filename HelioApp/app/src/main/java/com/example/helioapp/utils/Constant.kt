@@ -11,5 +11,9 @@ object Constant {
     const val POSTMETHOD = "POST"
     const val REGISTERURL = "/register"
     const val LOGINURL = "/login"
+    const val TWENTYTHREE = 23
+    const val TWENTYFOUR = 24
+    const val THIRTY = 30
+    const val THIRTYTWO = 32
 }
 

@@ -6,37 +6,71 @@ import android.text.SpannableString
 import android.text.Spanned
 import android.text.TextPaint
 import android.text.method.LinkMovementMethod
-import android.text.style.ClickableSpan
 import android.view.View
 import android.view.View.OnFocusChangeListener
 import androidx.core.content.ContextCompat
+import androidx.core.text.toSpannable
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.example.helioapp.BaseActivity
 import com.example.helioapp.R
 import com.example.helioapp.databinding.ActivitySignUpBinding
+import com.example.helioapp.home_screen.HomeScreenActivity
 import com.example.helioapp.sign_in_screen.SignInWithPasswordActivity
+import com.example.helioapp.utils.Constant.THIRTYTWO
+import com.example.helioapp.utils.Constant.TWENTYFOUR
+import com.example.helioapp.utils.setSpannableText
 import com.example.helioapp.utils.setUpPasswordToggle
 import com.example.helioapp.utils.showMessage
 
-class SignUpActivity : BaseActivity() {
+class SignUpActivity : BaseActivity(), View.OnClickListener {
 
     lateinit var binding: ActivitySignUpBinding
     private lateinit var signUpViewModel: SignUpViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        initialSetup()
+    }
+
+    override fun onClick(v: View?) {
+        binding.apply {
+            when (v) {
+                customToolbar.arrowImageView -> {
+                    finish()
+                }
+                imageBtnFacebook -> {
+                    showMessage(this@SignUpActivity, getString(R.string.toast_facebook_btn))
+                }
+                imageButtonApple -> {
+                    showMessage(this@SignUpActivity, getString(R.string.toast_apple_btn))
+                }
+                imageBtnGoogle -> {
+                    showMessage(this@SignUpActivity, getString(R.string.toast_google_btn))
+                }
+                imageBtnEye -> {
+                    imageBtnEye.isSelected = imageBtnEye.isSelected
+                    setUpPasswordToggle(this@SignUpActivity, imageBtnEye.isSelected, binding.editTextPassword, imageBtnEye, editTextPassword.hasFocus())
+                }
+                btnSignUp -> {
+                    showProgressBar()
+                    signUpViewModel.performValidation()
+                }
+            }
+        }
+    }
+
+    fun initialSetup() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_sign_up)
         signUpViewModel = ViewModelProvider(this)[SignUpViewModel::class.java]
         performValidation()
-        setSpannableText()
+        setSpannable()
         setUpPasswordToggle(this, binding.imageBtnEye.isSelected, binding.editTextPassword, binding.imageBtnEye, false)
         binding.apply {
+            clickHandler = this@SignUpActivity
+            customToolbar.toolbarClickHandler = this@SignUpActivity
             viewModel = signUpViewModel
             imageBtnEye.isSelected = true
-            customToolbar.arrowImageView.setOnClickListener {
-                finish()
-            }
             editTextPassword.onFocusChangeListener = OnFocusChangeListener { _, hasFocus ->
                 if (hasFocus) {
                     setUpPasswordToggle(this@SignUpActivity, imageBtnEye.isSelected, editTextPassword, imageBtnEye, hasFocus)
@@ -44,66 +78,36 @@ class SignUpActivity : BaseActivity() {
                     setUpPasswordToggle(this@SignUpActivity, imageBtnEye.isSelected, editTextPassword, imageBtnEye, hasFocus)
                 }
             }
-            imageBtnFacebook.setOnClickListener {
-                showMessage(this@SignUpActivity, getString(R.string.toast_facebook_btn))
-            }
-            imageButtonApple.setOnClickListener {
-                showMessage(this@SignUpActivity, getString(R.string.toast_apple_btn))
-            }
-            imageBtnGoogle.setOnClickListener {
-                showMessage(this@SignUpActivity, getString(R.string.toast_google_btn))
-            }
-            imageBtnEye.setOnClickListener {
-                it.isSelected = !it.isSelected
-                //isPasswordHidden = !isPasswordHidden
-                setUpPasswordToggle(this@SignUpActivity, it.isSelected, binding.editTextPassword, imageBtnEye, editTextPassword.hasFocus())
-            }
-            btnSignUp.setOnClickListener {
-                signUpViewModel.performValidation()
-                signUpViewModel.progressBarStatus.observe(this@SignUpActivity) { status ->
-                    if(status) { showProgressBar() } else { hideProgressBar() }
-                }
-            }
-            signUpViewModel.getSignUpResult().observe(this@SignUpActivity) { result ->
+            signUpViewModel.signUpResult.observe(this@SignUpActivity) { result ->
                 showMessage(this@SignUpActivity, result)
+                hideProgressBar()
             }
         }
     }
 
     private fun performValidation() {
-        signUpViewModel.email.observe(this) {
-            if (it.isEmpty()) {
-                binding.btnSignUp.setBackgroundResource(R.drawable.rounded_disable_button)
-            } else {
-                binding.btnSignUp.setBackgroundResource(R.drawable.rounded_filled_button)
+        binding.apply {
+            signUpViewModel.email.observe(this@SignUpActivity) {
+                setBtnBackground()
             }
-        }
-        signUpViewModel.password.observe(this) {
-            if (it.isNotEmpty()) {
-                binding.btnSignUp.setBackgroundResource(R.drawable.rounded_filled_button)
+            signUpViewModel.password.observe(this@SignUpActivity) {
+               setBtnBackground()
             }
         }
     }
 
-    private fun setSpannableText() {
-        val spannable = SpannableString(binding.textViewAlreadyHaveSignIn.text)
-        val clickableSpan2: ClickableSpan = object : ClickableSpan() {
-
-            override fun onClick(p0: View) {
-                startActivity(Intent(this@SignUpActivity,SignInWithPasswordActivity::class.java))
-            }
-
-            override fun updateDrawState(ds: TextPaint) {
-                ds.apply {
-                    color = ContextCompat.getColor(applicationContext, R.color.primary_500)
-                    bgColor = ContextCompat.getColor(applicationContext, R.color.white)
-                }
-            }
-        }
-        spannable.setSpan(clickableSpan2, 24, 32, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+    private fun setSpannable() {
+        val spannable = setSpannableText(binding.textViewAlreadyHaveSignIn.text.toString(), TWENTYFOUR, THIRTYTWO, ContextCompat.getColor(this, R.color.primary_500)) {}
         binding.apply {
             textViewAlreadyHaveSignIn.text = spannable
             textViewAlreadyHaveSignIn.movementMethod = LinkMovementMethod.getInstance()
         }
     }
+
+    private fun setBtnBackground() {
+        binding.apply {
+            btnSignUp.isSelected = editTextPassword.text.toString().isNotEmpty() && editTextEmail.text.toString().isNotEmpty()
+        }
+    }
+
 }
