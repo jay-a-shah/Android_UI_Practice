@@ -17,7 +17,7 @@ class SignInViewModel(application: Application): HttpCallbackViewModel(applicati
     val progressBarStatus: MutableLiveData<Boolean> = MutableLiveData()
     val email: MutableLiveData<String> = MutableLiveData()
     val password: MutableLiveData<String> = MutableLiveData()
-    private val logInResult = MutableLiveData<String>()
+    val logInResult = MutableLiveData<String>()
 
     fun performValidation() {
         if (email.value.isNullOrEmpty()) {

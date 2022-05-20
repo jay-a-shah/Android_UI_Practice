@@ -22,6 +22,7 @@ import com.example.helioapp.signup_screen.SignUpViewModel
 import com.example.helioapp.utils.isValidEmail
 import com.example.helioapp.utils.isValidPassword
 import com.example.helioapp.utils.setUpPasswordToggle
+import com.example.helioapp.utils.showMessage
 
 class SignInWithPasswordActivity : AppCompatActivity() {
 
@@ -73,6 +74,10 @@ class SignInWithPasswordActivity : AppCompatActivity() {
             btnSignUp.setOnClickListener {
                signInViewModel?.performValidation()
             }
+
+        }
+        signInViewModel.logInResult.observe(this) { result ->
+            showMessage(this,result)
         }
     }
 
