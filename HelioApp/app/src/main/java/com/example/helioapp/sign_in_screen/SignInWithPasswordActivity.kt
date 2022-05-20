@@ -1,29 +1,18 @@
 package com.example.helioapp.sign_in_screen
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.SpannableString
-import android.text.Spanned
-import android.text.TextPaint
 import android.text.method.LinkMovementMethod
-import android.text.style.ClickableSpan
 import android.view.View
-import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.example.helioapp.BaseActivity
-import com.example.helioapp.MainActivity
 import com.example.helioapp.R
 import com.example.helioapp.databinding.ActivitySignInWithPasswordBinding
 import com.example.helioapp.forgot_password.ForgotPasswordSelectionActivity
-import com.example.helioapp.signup_screen.SignUpActivity
-import com.example.helioapp.signup_screen.SignUpViewModel
 import com.example.helioapp.utils.*
 import com.example.helioapp.utils.Constant.THIRTY
-import com.example.helioapp.utils.Constant.THIRTYTWO
 import com.example.helioapp.utils.Constant.TWENTYTHREE
 
 class SignInWithPasswordActivity : BaseActivity(), View.OnClickListener {
