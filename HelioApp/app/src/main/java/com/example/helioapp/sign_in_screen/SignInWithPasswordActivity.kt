@@ -64,7 +64,6 @@ class SignInWithPasswordActivity : BaseActivity(), View.OnClickListener {
         binding.apply {
             viewModel = signInViewModel
             clickHandler = this@SignInWithPasswordActivity
-            customToolbar.toolbarClickHandler = this@SignInWithPasswordActivity
             imageBtnEye.isSelected = true
             editTextPassword.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
                 if (hasFocus) {
