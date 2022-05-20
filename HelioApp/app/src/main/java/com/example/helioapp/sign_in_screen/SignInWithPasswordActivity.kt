@@ -71,17 +71,7 @@ class SignInWithPasswordActivity : AppCompatActivity() {
             }
 
             btnSignUp.setOnClickListener {
-                isValidPassword(editTextPassword.text.toString())
-                if (editTextPassword.text.toString().length >= 8) {
-                    Toast.makeText(this@SignInWithPasswordActivity, getString(R.string.toast_password_valid), Toast.LENGTH_SHORT).show()
-                } else {
-                    Toast.makeText(this@SignInWithPasswordActivity, getString(R.string.toast_password_invalid), Toast.LENGTH_SHORT).show()
-                }
-                if (isValidEmail(editTextEmail.text.toString())) {
-                    Toast.makeText(this@SignInWithPasswordActivity, getString(R.string.toast_email_valid), Toast.LENGTH_SHORT).show()
-                } else {
-                    Toast.makeText(this@SignInWithPasswordActivity, getString(R.string.toast_email_not_valid), Toast.LENGTH_SHORT).show()
-                }
+               signInViewModel?.performValidation()
             }
         }
     }

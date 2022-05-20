@@ -109,7 +109,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_16sdp"
                 android:fontFamily="@font/urbanist_bold"
-                android:background="@drawable/rounded_disable_button"
+                android:background="@drawable/rounded_filled_button"
                 android:padding="@dimen/_10sdp"
                 android:shadowColor="@color/primary_500"
                 android:shadowDx="4"

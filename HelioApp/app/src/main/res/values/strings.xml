@@ -65,7 +65,6 @@
     <string name="tv_hello_daniel">Hello, Daniel 👋</string>
     <string name="hint_search">Search</string>
     <string name="chip_recommended">Recommended</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="home">Home</string>
     <string name="search">Search</string>
@@ -85,4 +84,5 @@
     <string name="user_create">User Created</string>
     <string name="user_not_created">User Not Created</string>
     <string name="name_initial_value">Test123</string>
+    <string name="login_not_successfull">Login Not Successfull</string>
 </resources>

@@ -73,9 +73,9 @@ class SignUpActivity : BaseActivity() {
     private fun performValidation() {
         signUpViewModel.email.observe(this) {
             if (it.isEmpty()) {
-                binding.btnSignUp.setBackgroundResource(R.drawable.rounded_disable_button)
+                binding.btnSignUp.alpha = 0.5f
             } else {
-                binding.btnSignUp.setBackgroundResource(R.drawable.rounded_filled_button)
+                binding.btnSignUp.alpha = 0.1f
             }
         }
         signUpViewModel.password.observe(this) {

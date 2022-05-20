@@ -7,10 +7,12 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.helioapp.R
 import com.example.helioapp.utils.Constant
+import com.example.helioapp.utils.Constant.BASEURL
 import com.example.helioapp.utils.Constant.KEYEMAIL
 import com.example.helioapp.utils.Constant.KEYNAME
 import com.example.helioapp.utils.Constant.KEYPASSWORD
 import com.example.helioapp.utils.Constant.POSTMETHOD
+import com.example.helioapp.utils.Constant.REGISTERURL
 import com.example.helioapp.webservices_without_retrofit.Callbacks
 import com.example.helioapp.webservices_without_retrofit.HttpCallbackViewModel
 import org.json.JSONObject
@@ -41,13 +43,13 @@ class SignUpViewModel(application: Application): HttpCallbackViewModel(applicati
         credential.apply {
             put(KEYEMAIL, email.value)
             put(KEYPASSWORD, password.value)
-            put(KEYNAME,name.value)
         }
-        val url = URL(Constant.BASEURL)
+        val url = URL(BASEURL + REGISTERURL)
         apiCall(credential, url, POSTMETHOD,object : Callbacks {
             override fun onSuccessCallback(output: String) {
                 progressBarStatus.postValue(false)
                 signUpResult.postValue(getApplication<Application>().resources.getString(R.string.user_create))
+
             }
             override fun onFailureCallback(responseCode: Int, output: String) {
                 progressBarStatus.postValue(false)

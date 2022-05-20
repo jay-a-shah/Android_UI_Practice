@@ -29,7 +29,7 @@ open class HttpCallbackViewModel(application: Application) : AndroidViewModel(ap
                 println("URL : $url")
                 println("cred: $cred")
                 println("Response Code: $responseCode")
-                if (responseCode == HttpURLConnection.HTTP_CREATED) {
+                if (responseCode == HttpURLConnection.HTTP_OK) {
                     val response = httpURLConnection.inputStream.bufferedReader()
                         .use { it.readText() }
                     withContext(Dispatchers.Main) {
