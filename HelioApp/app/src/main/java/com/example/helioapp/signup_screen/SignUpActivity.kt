@@ -34,33 +34,33 @@ class SignUpActivity : BaseActivity(), View.OnClickListener {
     }
 
     override fun onClick(v: View?) {
-        binding.apply {
-            when (v) {
-                customToolbar.arrowImageView -> {
+            when (v?.id) {
+                R.id.arrowImageView -> {
                     finish()
                 }
-                imageBtnFacebook -> {
+                R.id.imageBtnFacebook -> {
                     showMessage(this@SignUpActivity, getString(R.string.toast_facebook_btn))
                 }
-                imageButtonApple -> {
+                R.id.imageButtonApple -> {
                     showMessage(this@SignUpActivity, getString(R.string.toast_apple_btn))
                 }
-                imageBtnGoogle -> {
+                R.id.imageBtnGoogle -> {
                     showMessage(this@SignUpActivity, getString(R.string.toast_google_btn))
                 }
-                imageBtnEye -> {
-                    imageBtnEye.isSelected = imageBtnEye.isSelected
-                    setUpPasswordToggle(this@SignUpActivity, imageBtnEye.isSelected, binding.editTextPassword, imageBtnEye, editTextPassword.hasFocus())
+                R.id.imageBtnEye -> {
+                    binding.apply {
+                        imageBtnEye.isSelected = imageBtnEye.isSelected
+                        setUpPasswordToggle(this@SignUpActivity, imageBtnEye.isSelected, binding.editTextPassword, imageBtnEye, editTextPassword.hasFocus())
+                    }
                 }
-                btnSignUp -> {
+                R.id.btnSignUp -> {
                     showProgressBar()
                     signUpViewModel.performValidation()
                 }
-            }
         }
     }
 
-    fun initialSetup() {
+    private fun initialSetup() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_sign_up)
         signUpViewModel = ViewModelProvider(this)[SignUpViewModel::class.java]
         performValidation()
@@ -78,12 +78,16 @@ class SignUpActivity : BaseActivity(), View.OnClickListener {
                     setUpPasswordToggle(this@SignUpActivity, imageBtnEye.isSelected, editTextPassword, imageBtnEye, hasFocus)
                 }
             }
-            signUpViewModel.signUpResult.observe(this@SignUpActivity) { result ->
-                showMessage(this@SignUpActivity, getString(result))
+            signUpViewModel.signUpResult.observe(this@SignUpActivity) { apiResult ->
                 hideProgressBar()
-                if (result == R.string.user_create){
+                if (apiResult.isSuccess){
                     startActivity(Intent(this@SignUpActivity,HomeScreenActivity::class.java))
+                } else {
+                    showMessage(this@SignUpActivity,getString(R.string.user_not_created))
                 }
+            }
+            signUpViewModel.validateData.observe(this@SignUpActivity) { validateData ->
+                showMessage(this@SignUpActivity,getString(validateData))
             }
         }
     }

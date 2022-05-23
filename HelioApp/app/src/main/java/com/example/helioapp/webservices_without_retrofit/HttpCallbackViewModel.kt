@@ -35,7 +35,7 @@ open class HttpCallbackViewModel() : ViewModel() {
                     withContext(Dispatchers.Main) {
                         val gson = GsonBuilder().setPrettyPrinting().create()
                         var dataClass = gson.fromJson(response, modelClass)
-                        httpCallback.onSuccessCallback(responseMessage)
+                        httpCallback.onSuccessCallback(responseMessage,dataClass)
                     }
                 } else {
                     httpCallback.onFailureCallback(responseCode, responseMessage)
