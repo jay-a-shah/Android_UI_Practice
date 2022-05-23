@@ -16,13 +16,13 @@ class SignInViewModel(application: Application): HttpCallbackViewModel(applicati
 
     val email: MutableLiveData<String> = MutableLiveData("")
     val password: MutableLiveData<String> = MutableLiveData("")
-    val logInResult = MutableLiveData<String>()
+    val logInResult = MutableLiveData<Int>()
 
     fun performValidation() {
         if (email.value.isNullOrEmpty()) {
-            logInResult.value = getApplication<Application>().resources.getString(R.string.toast_email_empty)
+            logInResult.value = R.string.toast_email_empty
         } else if (password.value.isNullOrEmpty()) {
-            logInResult.value = getApplication<Application>().resources.getString(R.string.toast_password_empty)
+            logInResult.value = R.string.toast_password_empty
         } else {
             apiCall()
         }
@@ -37,11 +37,11 @@ class SignInViewModel(application: Application): HttpCallbackViewModel(applicati
         val url = URL(BASEURL + LOGINURL)
         apiCall(credential, url, Constant.POSTMETHOD,object : Callbacks {
             override fun onSuccessCallback(output: String) {
-                logInResult.postValue(getApplication<Application>().resources.getString(R.string.login_successfully))
+                logInResult.postValue(R.string.login_successfully)
             }
 
             override fun onFailureCallback(responseCode: Int, output: String) {
-                logInResult.postValue(getApplication<Application>().resources.getString(R.string.login_not_successfull))
+                logInResult.postValue(R.string.login_not_successfull)
             }
         },Any::class.java)
     }

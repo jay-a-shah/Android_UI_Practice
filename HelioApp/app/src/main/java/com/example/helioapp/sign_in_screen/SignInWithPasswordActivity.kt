@@ -11,6 +11,7 @@ import com.example.helioapp.BaseActivity
 import com.example.helioapp.R
 import com.example.helioapp.databinding.ActivitySignInWithPasswordBinding
 import com.example.helioapp.forgot_password.ForgotPasswordSelectionActivity
+import com.example.helioapp.home_screen.HomeScreenActivity
 import com.example.helioapp.utils.*
 import com.example.helioapp.utils.Constant.THIRTY
 import com.example.helioapp.utils.Constant.TWENTYTHREE
@@ -74,8 +75,9 @@ class SignInWithPasswordActivity : BaseActivity(), View.OnClickListener {
             }
         }
         signInViewModel.logInResult.observe(this) { result ->
-            showMessage(this, result)
+            showMessage(this, getString(result))
             hideProgressBar()
+            startActivity(Intent(this,HomeScreenActivity::class.java))
         }
     }
 

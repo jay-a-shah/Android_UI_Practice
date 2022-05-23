@@ -14,7 +14,7 @@ import java.io.OutputStreamWriter
 import java.net.HttpURLConnection
 import java.net.URL
 
-open class HttpCallbackViewModel(application: Application) : AndroidViewModel(application) {
+open class HttpCallbackViewModel() : ViewModel() {
 
     fun <T> apiCall(jsonObject: JSONObject, url: URL, request: String, httpCallback: Callbacks, modelClass: Class<T>? = null) {
         viewModelScope.launch(Dispatchers.IO) {
