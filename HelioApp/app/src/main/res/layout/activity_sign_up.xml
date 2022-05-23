@@ -5,7 +5,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.helioapp.signup_screen.SignUpViewModel" />
+            type="com.example.helioapp.signup_screen.SignUpViewModelWithRetrofit" />
         <variable
             name="clickHandler"
             type="android.view.View.OnClickListener" />

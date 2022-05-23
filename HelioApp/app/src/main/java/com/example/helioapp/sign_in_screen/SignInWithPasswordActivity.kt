@@ -19,7 +19,7 @@ import com.example.helioapp.utils.Constant.TWENTYTHREE
 class SignInWithPasswordActivity : BaseActivity(), View.OnClickListener {
 
     lateinit var binding: ActivitySignInWithPasswordBinding
-    private lateinit var signInViewModel : SignInViewModel
+    private lateinit var signInViewModel : SignInViewModelWithRetrofit
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,7 +58,7 @@ class SignInWithPasswordActivity : BaseActivity(), View.OnClickListener {
 
     private fun initialSetup() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_sign_in_with_password)
-        signInViewModel = ViewModelProvider(this)[SignInViewModel::class.java]
+        signInViewModel = ViewModelProvider(this)[SignInViewModelWithRetrofit::class.java]
         validation()
         setSpannable()
         setUpPasswordToggle(this, binding.imageBtnEye.isSelected, binding.editTextPassword, binding.imageBtnEye, false)
@@ -77,6 +77,7 @@ class SignInWithPasswordActivity : BaseActivity(), View.OnClickListener {
         signInViewModel.logInResult.observe(this) { apiResult ->
             hideProgressBar()
             if (apiResult.isSuccess){
+                finish()
                 startActivity(Intent(this,HomeScreenActivity::class.java))
             } else {
                 showMessage(this,getString(R.string.login_not_successfull))
@@ -97,9 +98,9 @@ class SignInWithPasswordActivity : BaseActivity(), View.OnClickListener {
 
     private fun setSpannable() {
         val spannable = setSpannableText(binding.textViewAlreadyHaveSignIn.text.toString(), TWENTYTHREE, THIRTY, ContextCompat.getColor(this, R.color.primary_500)) {}
-        binding.apply {
-            textViewAlreadyHaveSignIn.text = spannable
-            textViewAlreadyHaveSignIn.movementMethod = LinkMovementMethod.getInstance()
+        binding.textViewAlreadyHaveSignIn.apply {
+            text = spannable
+            movementMethod = LinkMovementMethod.getInstance()
         }
     }
 
