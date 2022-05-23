@@ -2,6 +2,7 @@ package com.example.helioapp.webservices_with_retrofit
 
 import com.example.helioapp.BuildConfig
 import com.example.helioapp.sign_in_screen.UserModel
+import com.example.helioapp.signup_screen.SignUpModel
 import com.example.helioapp.utils.Constant.BASEURL
 import com.example.helioapp.utils.Constant.LOGINURL
 import com.example.helioapp.utils.Constant.REGISTERURL
@@ -15,7 +16,7 @@ import retrofit2.http.POST
 
 interface ApiInterface {
     @POST(REGISTERURL)
-    fun registerUser(@Body userData: UserModel): Call<UserModel>
+    fun registerUser(@Body userData: UserModel): Call<SignUpModel>
 
     @POST(LOGINURL)
     fun logInUser(@Body userData: UserModel): Call<UserModel>

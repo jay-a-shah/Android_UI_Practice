@@ -2,6 +2,8 @@ package com.example.helioapp.signup_screen
 
 import androidx.lifecycle.MutableLiveData
 import com.example.helioapp.R
+import com.example.helioapp.sign_in_screen.SignInModel
+import com.example.helioapp.sign_in_screen.SignInResponseModel
 import com.example.helioapp.sign_in_screen.UserModel
 import com.example.helioapp.utils.Constant
 import com.example.helioapp.webservices_with_retrofit.ApiInterface
@@ -33,7 +35,7 @@ class SignUpViewModelWithRetrofit: BaseRetrofitViewModel() {
        val retrofit = ApiInterface.getRetrofitObject().registerUser(UserModel(email.value?:"",password.value?:""))
         Call(retrofit,object : CallbacksRetrofit{
             override fun <T : Any> onSuccess(data: T) {
-                signUpResult.postValue(SignUpResponseModel(true,SignUpModel::class.java))
+                signUpResult.postValue(SignUpResponseModel(true,data))
             }
 
             override fun onFailure(error: ErrorResponseModel) {
@@ -42,4 +44,5 @@ class SignUpViewModelWithRetrofit: BaseRetrofitViewModel() {
 
         })
     }
+
 }

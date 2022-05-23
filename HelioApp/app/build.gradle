@@ -55,7 +55,7 @@ dependencies {
     implementation "androidx.fragment:fragment-ktx:1.4.1"
     //Fragment Navigation
     implementation 'androidx.navigation:navigation-fragment:2.4.2'
-    implementation 'com.google.code.gson:gson:2.8.9'
+    implementation 'com.google.code.gson:gson:2.9.0'
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.4.1'
     //Glide
     implementation 'com.github.bumptech.glide:glide:4.11.0'

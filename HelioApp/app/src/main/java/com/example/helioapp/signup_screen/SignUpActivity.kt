@@ -81,6 +81,7 @@ class SignUpActivity : BaseActivity(), View.OnClickListener {
             signUpViewModel.signUpResult.observe(this@SignUpActivity) { apiResult ->
                 hideProgressBar()
                 if (apiResult.isSuccess){
+                    showMessage(this@SignUpActivity,apiResult.dataClassBody.toString())
                     finish()
                     startActivity(Intent(this@SignUpActivity,HomeScreenActivity::class.java))
                 } else {
