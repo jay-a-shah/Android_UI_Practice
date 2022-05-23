@@ -77,7 +77,9 @@ class SignInWithPasswordActivity : BaseActivity(), View.OnClickListener {
         signInViewModel.logInResult.observe(this) { result ->
             showMessage(this, getString(result))
             hideProgressBar()
-            startActivity(Intent(this,HomeScreenActivity::class.java))
+            if (result == R.string.login_successfully){
+                startActivity(Intent(this,HomeScreenActivity::class.java))
+            }
         }
     }
 

@@ -81,6 +81,9 @@ class SignUpActivity : BaseActivity(), View.OnClickListener {
             signUpViewModel.signUpResult.observe(this@SignUpActivity) { result ->
                 showMessage(this@SignUpActivity, getString(result))
                 hideProgressBar()
+                if (result == R.string.user_create){
+                    startActivity(Intent(this@SignUpActivity,HomeScreenActivity::class.java))
+                }
             }
         }
     }

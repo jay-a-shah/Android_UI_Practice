@@ -12,7 +12,7 @@ import com.example.helioapp.webservices_without_retrofit.HttpCallbackViewModel
 import org.json.JSONObject
 import java.net.URL
 
-class SignInViewModel(application: Application): HttpCallbackViewModel(application) {
+class SignInViewModel(): HttpCallbackViewModel() {
 
     val email: MutableLiveData<String> = MutableLiveData("")
     val password: MutableLiveData<String> = MutableLiveData("")
