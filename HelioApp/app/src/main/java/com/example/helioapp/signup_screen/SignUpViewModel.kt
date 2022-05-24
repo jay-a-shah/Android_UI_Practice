@@ -60,7 +60,7 @@ class SignUpViewModel: BaseViewModel(){
             }
 
             override fun onFailure(error: ErrorResponseModel) {
-                signUpResult.postValue(SignUpResponseModel(false,SignUpModel::class.java))
+                signUpResult.postValue(SignUpResponseModel(false,error.error))
             }
         })
     }

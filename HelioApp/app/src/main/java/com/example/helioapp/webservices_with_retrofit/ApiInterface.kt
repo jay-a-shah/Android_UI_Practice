@@ -19,7 +19,7 @@ interface ApiInterface {
     fun registerUser(@Body userData: UserModel): Call<SignUpModel>
 
     @POST(LOGINURL)
-    fun logInUser(@Body userData: UserModel): Call<UserModel>
+    fun logInUser(@Body userData: UserModel): Call<ErrorResponseModel>
 
     companion object {
         private val okHttpClientBuilder = OkHttpClient.Builder().apply {

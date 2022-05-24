@@ -85,7 +85,7 @@ class SignUpActivity : BaseActivity(), View.OnClickListener {
                     startActivity(Intent(this@SignUpActivity,HomeScreenActivity::class.java))
                     finish()
                 } else {
-                    showMessage(this@SignUpActivity,getString(R.string.user_not_created))
+                    showMessage(this@SignUpActivity,apiResult.dataClassBody.toString())
                 }
             }
             signUpViewModel.validateData.observe(this@SignUpActivity) { validateData ->

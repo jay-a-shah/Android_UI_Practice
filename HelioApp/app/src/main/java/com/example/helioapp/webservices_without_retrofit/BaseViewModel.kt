@@ -51,11 +51,14 @@ open class BaseViewModel() : ViewModel() {
     fun <T : Any> retrofitCall(retrofitCall: Call<T>, apiCallBackListener: CallbacksRetrofit) {
         retrofitCall.enqueue(object : Callback<T> {
             override fun onResponse(call: Call<T>, response: Response<T>) {
-                response.body()?.let { ApiResponse ->
-                    apiCallBackListener.onSuccess(ApiResponse)
+                response.body()?.let { apiResponse ->
+                    apiCallBackListener.onSuccess(apiResponse)
                 }
                 response.errorBody()?.let { responseBody ->
-                    apiCallBackListener.onFailure(ErrorResponseModel(responseBody.toString()))
+                    val error = responseBody.byteStream().bufferedReader().use {
+                        it.readText()
+                    }
+                    apiCallBackListener.onFailure(ErrorResponseModel(error))
                 }
             }
 

@@ -49,8 +49,7 @@ class SignInViewModel() : BaseViewModel() {
     }
 
     private fun retrofitSignInApiCall() {
-        retrofitCall(
-            retrofitObject.logInUser(UserModel(email.value ?: "", password.value ?: "")),
+        retrofitCall(retrofitObject.logInUser(UserModel(email.value ?: "", password.value ?: "")),
             object : CallbacksRetrofit {
                 override fun <T : Any> onSuccess(data: T) {
                     logInResult.postValue(SignInResponseModel(true, SignInModel::class.java))
