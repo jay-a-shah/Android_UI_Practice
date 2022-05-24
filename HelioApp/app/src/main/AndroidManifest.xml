@@ -10,20 +10,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HelioApp">
         <activity
-            android:name=".onboarding_screen.OnBoardingActivity"
+            android:name=".signin.SignInActivity"
             android:exported="false" />
         <activity
-            android:name=".walkthrough_screen.WalkthroughOneActivity"
-            android:exported="false" />
+            android:name=".onboarding.OnBoardingActivity"
+            android:exported="false"
+            android:theme="@style/AppTheme.ActionBar.Transparent"/>
         <activity
-            android:name=".walkthrough_screen.FirstWalthroughScreenActivity"
-            android:exported="false" />
+            android:name=".walkthrough.WalkthroughOneActivity"
+            android:exported="false"
+            android:theme="@style/AppTheme.ActionBar.Transparent"/>
         <activity
             android:name=".SplashScreenActivity"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/AppTheme.ActionBar.Transparent">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

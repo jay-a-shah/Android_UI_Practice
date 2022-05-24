@@ -1,4 +1,4 @@
-package com.example.helioapp.onboarding_screen
+package com.example.helioapp.onboarding
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -19,7 +19,7 @@ class OnBoardingAdapter(private val onBoardingList: ArrayList<OnBoardingModel>) 
 
     class ViewPagerHolder(val binding: ItemOnBoardingScreenBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(itemViewModel: OnBoardingModel) {
-            binding.setVariable(BR.OnBoardingViewModel, itemViewModel)
+            binding.setVariable(BR.onBoardingViewModel, itemViewModel)
         }
     }
 }

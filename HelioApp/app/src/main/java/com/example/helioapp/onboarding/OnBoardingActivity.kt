@@ -1,15 +1,14 @@
-package com.example.helioapp.onboarding_screen
+package com.example.helioapp.onboarding
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import com.example.helioapp.MainActivity
 import com.example.helioapp.R
 import com.example.helioapp.databinding.ActivityOnBoardingBinding
+import com.example.helioapp.signin.SignInActivity
 import com.example.helioapp.utils.ONE
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -26,14 +25,16 @@ class OnBoardingActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.skipBtn -> {
-                startActivity(Intent(this@OnBoardingActivity, MainActivity::class.java))
+                startActivity(Intent(this@OnBoardingActivity, SignInActivity::class.java))
+                finish()
             }
             R.id.nextBtn -> {
                 binding.apply {
                     if (viewPagerTwo.currentItem + ONE < onBoardingItemList.count()) {
                         viewPagerTwo.currentItem = viewPagerTwo.currentItem + ONE
                     } else {
-                        Toast.makeText(this@OnBoardingActivity, getString(R.string.toast_last_page), Toast.LENGTH_SHORT).show()
+                        startActivity(Intent(this@OnBoardingActivity, SignInActivity::class.java))
+                        finish()
                     }
                 }
             }

@@ -9,9 +9,8 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import androidx.databinding.DataBindingUtil
 import com.example.helioapp.databinding.ActivitySplashScreenBinding
-import com.example.helioapp.onboarding_screen.OnBoardingActivity
 import com.example.helioapp.utils.THREETHOUSAND
-import com.example.helioapp.walkthrough_screen.WalkthroughOneActivity
+import com.example.helioapp.walkthrough.WalkthroughOneActivity
 
 class SplashScreenActivity : AppCompatActivity() {
 

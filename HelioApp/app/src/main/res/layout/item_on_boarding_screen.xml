@@ -6,7 +6,7 @@
 
         <variable
             name="onBoardingViewModel"
-            type="com.example.helioapp.onboarding_screen.OnBoardingModel" />
+            type="com.example.helioapp.onboarding.OnBoardingModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -15,10 +15,10 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/itemImage"
+            imageUrl="@{onBoardingViewModel.image}"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:scaleType="centerCrop"
-            android:src="@{onBoardingViewModel.image}"
             app:layout_constraintBottom_toTopOf="@id/itemHeader"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
