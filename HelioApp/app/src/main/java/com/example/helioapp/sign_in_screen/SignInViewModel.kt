@@ -1,18 +1,19 @@
 package com.example.helioapp.sign_in_screen
 
-import android.app.Application
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.example.helioapp.R
 import com.example.helioapp.utils.Constant
 import com.example.helioapp.utils.Constant.BASEURL
 import com.example.helioapp.utils.Constant.LOGINURL
+import com.example.helioapp.webservices_with_retrofit.ApiInterface
+import com.example.helioapp.webservices_with_retrofit.CallbacksRetrofit
+import com.example.helioapp.webservices_with_retrofit.ErrorResponseModel
 import com.example.helioapp.webservices_without_retrofit.Callbacks
-import com.example.helioapp.webservices_without_retrofit.HttpCallbackViewModel
+import com.example.helioapp.webservices_without_retrofit.BaseViewModel
 import org.json.JSONObject
 import java.net.URL
 
-class SignInViewModel() : HttpCallbackViewModel() {
+class SignInViewModel() : BaseViewModel() {
 
     val email: MutableLiveData<String> = MutableLiveData("")
     val password: MutableLiveData<String> = MutableLiveData("")
@@ -25,11 +26,11 @@ class SignInViewModel() : HttpCallbackViewModel() {
         } else if (password.value.isNullOrEmpty()) {
             validateData.value = R.string.toast_password_empty
         } else {
-            apiCall()
+            retrofitSignInApiCall()
         }
     }
 
-    private fun apiCall() {
+    private fun signInApiCall() {
         val credential = JSONObject()
         credential.apply {
             put(Constant.KEYEMAIL, email.value)
@@ -45,5 +46,19 @@ class SignInViewModel() : HttpCallbackViewModel() {
                 logInResult.postValue(SignInResponseModel(false, Any::class.java))
             }
         }, Any::class.java)
+    }
+
+    private fun retrofitSignInApiCall() {
+        retrofitCall(
+            retrofitObject.logInUser(UserModel(email.value ?: "", password.value ?: "")),
+            object : CallbacksRetrofit {
+                override fun <T : Any> onSuccess(data: T) {
+                    logInResult.postValue(SignInResponseModel(true, SignInModel::class.java))
+                }
+
+                override fun onFailure(error: ErrorResponseModel) {
+                    logInResult.postValue(SignInResponseModel(false, SignInModel::class.java))
+                }
+            })
     }
 }

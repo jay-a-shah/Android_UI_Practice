@@ -1,21 +1,22 @@
 package com.example.helioapp.signup_screen
 
-import android.app.Application
 import androidx.lifecycle.MutableLiveData
 import com.example.helioapp.R
-import com.example.helioapp.utils.Constant
+import com.example.helioapp.sign_in_screen.UserModel
 import com.example.helioapp.utils.Constant.BASEURL
 import com.example.helioapp.utils.Constant.KEYEMAIL
-import com.example.helioapp.utils.Constant.KEYNAME
 import com.example.helioapp.utils.Constant.KEYPASSWORD
 import com.example.helioapp.utils.Constant.POSTMETHOD
 import com.example.helioapp.utils.Constant.REGISTERURL
+import com.example.helioapp.webservices_with_retrofit.ApiInterface
+import com.example.helioapp.webservices_with_retrofit.CallbacksRetrofit
+import com.example.helioapp.webservices_with_retrofit.ErrorResponseModel
 import com.example.helioapp.webservices_without_retrofit.Callbacks
-import com.example.helioapp.webservices_without_retrofit.HttpCallbackViewModel
+import com.example.helioapp.webservices_without_retrofit.BaseViewModel
 import org.json.JSONObject
 import java.net.URL
 
-class SignUpViewModel(): HttpCallbackViewModel(){
+class SignUpViewModel: BaseViewModel(){
 
     val email: MutableLiveData<String> = MutableLiveData()
     val password: MutableLiveData<String> = MutableLiveData()
@@ -29,11 +30,11 @@ class SignUpViewModel(): HttpCallbackViewModel(){
         } else if (password.value.isNullOrEmpty()) {
             validateData.value = R.string.toast_password_empty
         } else {
-            apiCall()
+           retrofitSignUpApiCall()
         }
     }
 
-    private fun apiCall() {
+    private fun signUpapiCall() {
         val credential = JSONObject()
         credential.apply {
             put(KEYEMAIL, email.value)
@@ -50,6 +51,18 @@ class SignUpViewModel(): HttpCallbackViewModel(){
                 signUpResult.postValue(SignUpResponseModel(false,SignUpModel::class.java))
             }
         },Any::class.java)
+    }
+
+    private fun retrofitSignUpApiCall() {
+        retrofitCall(retrofitObject.registerUser(UserModel(email.value?:"",password.value?:"")),object : CallbacksRetrofit {
+            override fun <T : Any> onSuccess(data: T) {
+                signUpResult.postValue(SignUpResponseModel(true,data))
+            }
+
+            override fun onFailure(error: ErrorResponseModel) {
+                signUpResult.postValue(SignUpResponseModel(false,SignUpModel::class.java))
+            }
+        })
     }
 }
 

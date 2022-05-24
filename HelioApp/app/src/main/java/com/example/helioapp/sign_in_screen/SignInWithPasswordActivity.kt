@@ -19,7 +19,7 @@ import com.example.helioapp.utils.Constant.TWENTYTHREE
 class SignInWithPasswordActivity : BaseActivity(), View.OnClickListener {
 
     lateinit var binding: ActivitySignInWithPasswordBinding
-    private lateinit var signInViewModel : SignInViewModelWithRetrofit
+    private lateinit var signInViewModel : SignInViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,7 +58,7 @@ class SignInWithPasswordActivity : BaseActivity(), View.OnClickListener {
 
     private fun initialSetup() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_sign_in_with_password)
-        signInViewModel = ViewModelProvider(this)[SignInViewModelWithRetrofit::class.java]
+        signInViewModel = ViewModelProvider(this)[SignInViewModel::class.java]
         validation()
         setSpannable()
         setUpPasswordToggle(this, binding.imageBtnEye.isSelected, binding.editTextPassword, binding.imageBtnEye, false)
@@ -77,8 +77,8 @@ class SignInWithPasswordActivity : BaseActivity(), View.OnClickListener {
         signInViewModel.logInResult.observe(this) { apiResult ->
             hideProgressBar()
             if (apiResult.isSuccess){
-                finish()
                 startActivity(Intent(this,HomeScreenActivity::class.java))
+                finish()
             } else {
                 showMessage(this,getString(R.string.login_not_successfull))
             }

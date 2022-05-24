@@ -2,16 +2,23 @@ package com.example.helioapp.webservices_without_retrofit
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.helioapp.webservices_with_retrofit.ApiInterface
+import com.example.helioapp.webservices_with_retrofit.CallbacksRetrofit
+import com.example.helioapp.webservices_with_retrofit.ErrorResponseModel
 import com.google.gson.GsonBuilder
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.json.JSONObject
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.io.OutputStreamWriter
 import java.net.HttpURLConnection
 import java.net.URL
 
-open class HttpCallbackViewModel() : ViewModel() {
+open class BaseViewModel() : ViewModel() {
+    val retrofitObject = ApiInterface.getRetrofitObject()
 
     fun <T> apiCall(jsonObject: JSONObject, url: URL, request: String, httpCallback: Callbacks, modelClass: Class<T>? = null) {
         viewModelScope.launch(Dispatchers.IO) {
@@ -39,5 +46,22 @@ open class HttpCallbackViewModel() : ViewModel() {
                 }
             }
         }
+    }
+
+    fun <T : Any> retrofitCall(retrofitCall: Call<T>, apiCallBackListener: CallbacksRetrofit) {
+        retrofitCall.enqueue(object : Callback<T> {
+            override fun onResponse(call: Call<T>, response: Response<T>) {
+                response.body()?.let { ApiResponse ->
+                    apiCallBackListener.onSuccess(ApiResponse)
+                }
+                response.errorBody()?.let { responseBody ->
+                    apiCallBackListener.onFailure(ErrorResponseModel(responseBody.toString()))
+                }
+            }
+
+            override fun onFailure(call: Call<T>, t: Throwable) {
+                apiCallBackListener.onFailure(ErrorResponseModel(t.toString()))
+            }
+        })
     }
 }

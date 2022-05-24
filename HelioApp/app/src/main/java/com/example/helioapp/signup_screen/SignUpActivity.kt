@@ -26,7 +26,7 @@ import com.example.helioapp.utils.showMessage
 class SignUpActivity : BaseActivity(), View.OnClickListener {
 
     lateinit var binding: ActivitySignUpBinding
-    private lateinit var signUpViewModel: SignUpViewModelWithRetrofit
+    private lateinit var signUpViewModel: SignUpViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,7 +62,7 @@ class SignUpActivity : BaseActivity(), View.OnClickListener {
 
     private fun initialSetup() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_sign_up)
-        signUpViewModel = ViewModelProvider(this)[SignUpViewModelWithRetrofit::class.java]
+        signUpViewModel = ViewModelProvider(this)[SignUpViewModel::class.java]
         performValidation()
         setSpannable()
         setUpPasswordToggle(this, binding.imageBtnEye.isSelected, binding.editTextPassword, binding.imageBtnEye, false)
@@ -82,8 +82,8 @@ class SignUpActivity : BaseActivity(), View.OnClickListener {
                 hideProgressBar()
                 if (apiResult.isSuccess){
                     showMessage(this@SignUpActivity,apiResult.dataClassBody.toString())
-                    finish()
                     startActivity(Intent(this@SignUpActivity,HomeScreenActivity::class.java))
+                    finish()
                 } else {
                     showMessage(this@SignUpActivity,getString(R.string.user_not_created))
                 }
