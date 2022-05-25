@@ -85,9 +85,10 @@ class SignInWithPasswordActivity : BaseActivity(), View.OnClickListener {
                 }
             }
             validateData.observe(this@SignInWithPasswordActivity) { validation ->
-                showMessage(this@SignInWithPasswordActivity,getString(validation))
                 if (validation == R.string.valid_credentials) {
                     showProgressBar()
+                } else {
+                    showMessage(this@SignInWithPasswordActivity,getString(validation))
                 }
             }
         }

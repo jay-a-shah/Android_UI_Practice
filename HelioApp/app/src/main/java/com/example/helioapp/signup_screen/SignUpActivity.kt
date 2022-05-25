@@ -54,7 +54,6 @@ class SignUpActivity : BaseActivity(), View.OnClickListener {
                     }
                 }
                 R.id.btnSignUp -> {
-                    showProgressBar()
                     signUpViewModel.performValidation()
                 }
         }
@@ -78,18 +77,24 @@ class SignUpActivity : BaseActivity(), View.OnClickListener {
                     setUpPasswordToggle(this@SignUpActivity, imageBtnEye.isSelected, editTextPassword, imageBtnEye, hasFocus)
                 }
             }
-            signUpViewModel.signUpResult.observe(this@SignUpActivity) { apiResult ->
-                hideProgressBar()
-                if (apiResult.isSuccess){
-                    showMessage(this@SignUpActivity,apiResult.dataClassBody.toString())
-                    startActivity(Intent(this@SignUpActivity,HomeScreenActivity::class.java))
-                    finish()
-                } else {
-                    showMessage(this@SignUpActivity,apiResult.dataClassBody.toString())
+            signUpViewModel.apply {
+                signUpResult.observe(this@SignUpActivity) { apiResult ->
+                    hideProgressBar()
+                    if (apiResult.isSuccess){
+                        showMessage(this@SignUpActivity,apiResult.dataClassBody.toString())
+                        startActivity(Intent(this@SignUpActivity,HomeScreenActivity::class.java))
+                        finish()
+                    } else {
+                        showMessage(this@SignUpActivity,apiResult.dataClassBody.toString())
+                    }
                 }
-            }
-            signUpViewModel.validateData.observe(this@SignUpActivity) { validateData ->
-                showMessage(this@SignUpActivity,getString(validateData))
+                validateData.observe(this@SignUpActivity) { validation ->
+                    if (validation == R.string.valid_credentials) {
+                        showProgressBar()
+                    } else {
+                        showMessage(this@SignUpActivity,getString(validation))
+                    }
+                }
             }
         }
     }

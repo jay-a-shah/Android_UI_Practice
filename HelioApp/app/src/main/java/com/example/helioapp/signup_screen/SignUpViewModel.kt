@@ -1,5 +1,6 @@
 package com.example.helioapp.signup_screen
 
+import android.util.Patterns
 import androidx.lifecycle.MutableLiveData
 import com.example.helioapp.R
 import com.example.helioapp.sign_in_screen.UserModel
@@ -16,12 +17,12 @@ import com.example.helioapp.webservices_without_retrofit.BaseViewModel
 import org.json.JSONObject
 import java.net.URL
 
-class SignUpViewModel: BaseViewModel(){
+class SignUpViewModel : BaseViewModel() {
 
     val email: MutableLiveData<String> = MutableLiveData()
     val password: MutableLiveData<String> = MutableLiveData()
     val name: MutableLiveData<Int> = MutableLiveData(R.string.name_initial_value)
-    val validateData:MutableLiveData<Int> = MutableLiveData()
+    val validateData: MutableLiveData<Int> = MutableLiveData()
     val signUpResult = MutableLiveData<SignUpResponseModel>()
 
     fun performValidation() {
@@ -29,8 +30,13 @@ class SignUpViewModel: BaseViewModel(){
             validateData.value = R.string.toast_email_empty
         } else if (password.value.isNullOrEmpty()) {
             validateData.value = R.string.toast_password_empty
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(email.value).matches()) {
+            validateData.value = R.string.toast_email_not_valid
+        } else if ((password.value?.length ?: 0) <= 8) {
+            validateData.value = R.string.toast_password_invalid
         } else {
-           retrofitSignUpApiCall()
+            validateData.value = R.string.valid_credentials
+            retrofitSignUpApiCall()
         }
     }
 
@@ -41,28 +47,28 @@ class SignUpViewModel: BaseViewModel(){
             put(KEYPASSWORD, password.value)
         }
         val url = URL(BASEURL + REGISTERURL)
-        apiCall(credential, url, POSTMETHOD,object : Callbacks {
+        apiCall(credential, url, POSTMETHOD, object : Callbacks {
 
             override fun <T> onSuccessCallback(output: String, dataClass: T?) {
-                signUpResult.postValue(SignUpResponseModel(true,SignUpModel::class.java))
+                signUpResult.postValue(SignUpResponseModel(true, SignUpModel::class.java))
             }
 
             override fun onFailureCallback(responseCode: Int, output: String) {
-                signUpResult.postValue(SignUpResponseModel(false,SignUpModel::class.java))
+                signUpResult.postValue(SignUpResponseModel(false, SignUpModel::class.java))
             }
-        },Any::class.java)
+        }, Any::class.java)
     }
 
     private fun retrofitSignUpApiCall() {
-        retrofitCall(retrofitObject.registerUser(UserModel(email.value?:"",password.value?:"")),object : CallbacksRetrofit {
-            override fun <T : Any> onSuccess(data: T) {
-                signUpResult.postValue(SignUpResponseModel(true,data))
-            }
+        retrofitCall(retrofitObject.registerUser(UserModel(email.value ?: "", password.value ?: "")), object : CallbacksRetrofit {
+                override fun <T : Any> onSuccess(data: T) {
+                    signUpResult.postValue(SignUpResponseModel(true, data))
+                }
 
-            override fun onFailure(error: ErrorResponseModel) {
-                signUpResult.postValue(SignUpResponseModel(false,error.error))
-            }
-        })
+                override fun onFailure(error: ErrorResponseModel) {
+                    signUpResult.postValue(SignUpResponseModel(false, error.error))
+                }
+            })
     }
 }
 
