@@ -1,6 +1,7 @@
 package com.example.helioapp.utils
 
 import android.content.Context
+import android.provider.SyncStateContract
 import android.text.*
 import android.text.style.ClickableSpan
 import android.view.View

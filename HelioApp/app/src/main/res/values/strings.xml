@@ -88,4 +88,5 @@
     <string name="tv_please_wait">Please Wait</string>
     <string name="login_successfully">Login Succesfull</string>
     <string name="valid_credentials">Your Credentials is Valid</string>
+    <string name="btn_logout">Logout</string>
 </resources>

@@ -1,6 +1,7 @@
 package com.example.helioapp
 
 import android.app.Dialog
+import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
@@ -24,7 +25,7 @@ open class BaseActivity : AppCompatActivity() {
         var binding:CustomProgressBarBinding = DataBindingUtil.inflate(LayoutInflater.from(this),R.layout.custom_progress_bar,null,false)
         progressBar.apply {
             window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-            setCancelable(true)
+            setCancelable(false)
             setContentView(binding.root)
             show()
         }

@@ -111,7 +111,10 @@ class SignUpActivity : BaseActivity(), View.OnClickListener {
     }
 
     private fun setSpannable() {
-        val spannable = setSpannableText(binding.textViewAlreadyHaveSignIn.text.toString(), TWENTYFOUR, THIRTYTWO, ContextCompat.getColor(this, R.color.primary_500)) {}
+        val spannable = setSpannableText(binding.textViewAlreadyHaveSignIn.text.toString(), TWENTYFOUR, THIRTYTWO, ContextCompat.getColor(this, R.color.primary_500)) {
+            startActivity(Intent(this,SignInWithPasswordActivity::class.java))
+            finish()
+        }
         binding.textViewAlreadyHaveSignIn.apply {
             text = spannable
             movementMethod = LinkMovementMethod.getInstance()

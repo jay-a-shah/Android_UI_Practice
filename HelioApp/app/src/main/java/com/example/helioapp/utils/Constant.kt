@@ -15,5 +15,8 @@ object Constant {
     const val TWENTYFOUR = 24
     const val THIRTY = 30
     const val THIRTYTWO = 32
+    const val ONBOARDKEY = "onBoard"
+    const val MAINSCREENKEY = "MainScreen"
+    const val SHAREDKEY = "sharedPref"
 }
 

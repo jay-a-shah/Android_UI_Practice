@@ -1,5 +1,6 @@
 package com.example.helioapp.sign_in_screen
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.text.method.LinkMovementMethod
@@ -12,7 +13,10 @@ import com.example.helioapp.R
 import com.example.helioapp.databinding.ActivitySignInWithPasswordBinding
 import com.example.helioapp.forgot_password.ForgotPasswordSelectionActivity
 import com.example.helioapp.home_screen.HomeScreenActivity
+import com.example.helioapp.signup_screen.SignUpActivity
 import com.example.helioapp.utils.*
+import com.example.helioapp.utils.Constant.MAINSCREENKEY
+import com.example.helioapp.utils.Constant.SHAREDKEY
 import com.example.helioapp.utils.Constant.THIRTY
 import com.example.helioapp.utils.Constant.TWENTYTHREE
 
@@ -78,6 +82,8 @@ class SignInWithPasswordActivity : BaseActivity(), View.OnClickListener {
             logInResult.observe(this@SignInWithPasswordActivity) { apiResult ->
                 hideProgressBar()
                 if (apiResult.isSuccess){
+                    val prefs = getSharedPreferences(SHAREDKEY, Context.MODE_PRIVATE)
+                    prefs.getBoolean(MAINSCREENKEY,true)
                     startActivity(Intent(this@SignInWithPasswordActivity,HomeScreenActivity::class.java))
                     finish()
                 } else {
@@ -86,6 +92,7 @@ class SignInWithPasswordActivity : BaseActivity(), View.OnClickListener {
             }
             validateData.observe(this@SignInWithPasswordActivity) { validation ->
                 if (validation == R.string.valid_credentials) {
+
                     showProgressBar()
                 } else {
                     showMessage(this@SignInWithPasswordActivity,getString(validation))
@@ -106,7 +113,10 @@ class SignInWithPasswordActivity : BaseActivity(), View.OnClickListener {
     }
 
     private fun setSpannable() {
-        val spannable = setSpannableText(binding.textViewAlreadyHaveSignIn.text.toString(), TWENTYTHREE, THIRTY, ContextCompat.getColor(this, R.color.primary_500)) {}
+        val spannable = setSpannableText(binding.textViewAlreadyHaveSignIn.text.toString(), TWENTYTHREE, THIRTY, ContextCompat.getColor(this, R.color.primary_500)) {
+            startActivity(Intent(this,SignUpActivity::class.java))
+            finish()
+        }
         binding.textViewAlreadyHaveSignIn.apply {
             text = spannable
             movementMethod = LinkMovementMethod.getInstance()
