@@ -2,6 +2,12 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="clickHandler"
+            type="android.view.View.OnClickListener" />
+    </data>
+
 
     <ScrollView
         android:layout_width="match_parent"
@@ -17,7 +23,8 @@
                 layout="@layout/custom_toolbar"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:toolbarClickHandler="@{clickHandler}"/>
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/textViewSignIn"
@@ -53,6 +60,7 @@
                 android:textAllCaps="false"
                 android:textColor="@color/grayscale_900"
                 android:textSize="@dimen/_13ssp"
+                android:onClick="@{clickHandler::onClick}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/textViewSignIn" />
@@ -75,6 +83,7 @@
                 android:textAllCaps="false"
                 android:textColor="@color/grayscale_900"
                 android:textSize="@dimen/_13ssp"
+                android:onClick="@{clickHandler::onClick}"
                 app:layout_constraintEnd_toEndOf="@id/btnFacebook"
                 app:layout_constraintStart_toStartOf="@id/btnFacebook"
                 app:layout_constraintTop_toBottomOf="@id/btnFacebook" />
@@ -97,6 +106,7 @@
                 android:textAllCaps="false"
                 android:textColor="@color/grayscale_900"
                 android:textSize="@dimen/_13ssp"
+                android:onClick="@{clickHandler::onClick}"
                 app:layout_constraintEnd_toEndOf="@id/btnFacebook"
                 app:layout_constraintStart_toStartOf="@id/btnFacebook"
                 app:layout_constraintTop_toBottomOf="@id/btnGoogle" />
@@ -155,6 +165,7 @@
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_12ssp"
+                android:onClick="@{clickHandler::onClick}"
                 app:layout_constraintEnd_toEndOf="@id/btnFacebook"
                 app:layout_constraintStart_toStartOf="@id/btnFacebook"
                 app:layout_constraintTop_toBottomOf="@id/textViewOr" />

@@ -15,8 +15,9 @@ import androidx.databinding.DataBindingUtil
 import com.example.helioapp.R
 import com.example.helioapp.databinding.ActivitySignInBinding
 import com.example.helioapp.signup_screen.SignUpActivity
+import com.example.helioapp.utils.showMessage
 
-class SignInActivity : AppCompatActivity() {
+class SignInActivity : AppCompatActivity(),View.OnClickListener {
 
     lateinit var binding: ActivitySignInBinding
 
@@ -26,22 +27,28 @@ class SignInActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_sign_in)
         setSpannableText()
         binding.apply {
-            customToolbar.arrowImageView.setOnClickListener {
-                finish()
-            }
-            btnSignInWithPassword.setOnClickListener {
-                startActivity(Intent(this@SignInActivity, SignInWithPasswordActivity::class.java))
-            }
-            btnFacebook.setOnClickListener {
-                Toast.makeText(this@SignInActivity, getString(R.string.toast_facebook_btn), Toast.LENGTH_SHORT).show()
-            }
-            btnApple.setOnClickListener {
-                Toast.makeText(this@SignInActivity, getString(R.string.toast_apple_btn), Toast.LENGTH_SHORT).show()
-            }
-            btnGoogle.setOnClickListener {
-                Toast.makeText(this@SignInActivity, getString(R.string.toast_google_btn), Toast.LENGTH_SHORT).show()
-            }
+            clickHandler = this@SignInActivity
         }
+    }
+
+    override fun onClick(v: View?) {
+       when (v?.id) {
+           R.id.arrowImageView -> {
+               finish()
+           }
+           R.id.btnSignInWithPassword -> {
+               startActivity(Intent(this@SignInActivity, SignInWithPasswordActivity::class.java))
+           }
+           R.id.btnFacebook -> {
+              showMessage(this,getString(R.string.toast_facebook_btn))
+           }
+           R.id.btnApple -> {
+              showMessage(this,getString(R.string.toast_apple_btn))
+           }
+           R.id.btnGoogle -> {
+               showMessage(this,getString(R.string.toast_google_btn))
+           }
+       }
     }
 
     private fun setSpannableText() {

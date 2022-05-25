@@ -27,33 +27,33 @@ class SignInWithPasswordActivity : BaseActivity(), View.OnClickListener {
     }
 
     override fun onClick(v: View?) {
-        binding.apply {
-            when (v) {
-                customToolbar.arrowImageView -> {
+            when (v?.id) {
+                R.id.arrowImageView -> {
                     finish()
                 }
-                imageBtnFacebook -> {
+                R.id.imageBtnFacebook -> {
                     showMessage(this@SignInWithPasswordActivity, getString(R.string.toast_facebook_btn))
                 }
-                imageButtonApple -> {
+                R.id.imageButtonApple -> {
                     showMessage(this@SignInWithPasswordActivity, getString(R.string.toast_apple_btn))
                 }
-                imageBtnGoogle -> {
+                R.id.imageBtnGoogle -> {
                     showMessage(this@SignInWithPasswordActivity, getString(R.string.toast_google_btn))
                 }
-                imageBtnEye -> {
-                    imageBtnEye.isSelected = !imageBtnEye.isSelected
-                    setUpPasswordToggle(this@SignInWithPasswordActivity, imageBtnEye.isSelected, binding.editTextPassword, imageBtnEye, editTextPassword.hasFocus())
+                R.id.imageBtnEye -> {
+                    binding.apply {
+                        imageBtnEye.isSelected = !imageBtnEye.isSelected
+                        setUpPasswordToggle(this@SignInWithPasswordActivity, imageBtnEye.isSelected, binding.editTextPassword, imageBtnEye, editTextPassword.hasFocus())
+                    }
                 }
-                btnForgotPassword -> {
+                R.id.btnForgotPassword -> {
                     startActivity(Intent(this@SignInWithPasswordActivity, ForgotPasswordSelectionActivity::class.java))
                 }
-                btnSignUp -> {
-                    showProgressBar()
+                R.id.btnSignUp -> {
+
                     signInViewModel.performValidation()
                 }
             }
-        }
     }
 
     private fun initialSetup() {
@@ -74,13 +74,21 @@ class SignInWithPasswordActivity : BaseActivity(), View.OnClickListener {
                 }
             }
         }
-        signInViewModel.logInResult.observe(this) { apiResult ->
-            hideProgressBar()
-            if (apiResult.isSuccess){
-                startActivity(Intent(this,HomeScreenActivity::class.java))
-                finish()
-            } else {
-                showMessage(this,getString(R.string.login_not_successfull))
+        signInViewModel.apply {
+            logInResult.observe(this@SignInWithPasswordActivity) { apiResult ->
+                hideProgressBar()
+                if (apiResult.isSuccess){
+                    startActivity(Intent(this@SignInWithPasswordActivity,HomeScreenActivity::class.java))
+                    finish()
+                } else {
+                    showMessage(this@SignInWithPasswordActivity,getString(R.string.login_not_successfull))
+                }
+            }
+            validateData.observe(this@SignInWithPasswordActivity) { validation ->
+                showMessage(this@SignInWithPasswordActivity,getString(validation))
+                if (validation == R.string.valid_credentials) {
+                    showProgressBar()
+                }
             }
         }
     }

@@ -87,4 +87,5 @@
     <string name="login_not_successfull">Login Not Successfull</string>
     <string name="tv_please_wait">Please Wait</string>
     <string name="login_successfully">Login Succesfull</string>
+    <string name="valid_credentials">Your Credentials is Valid</string>
 </resources>
