@@ -37,6 +37,7 @@ class ProfileFragment : Fragment(),View.OnClickListener {
               val prefs = activity?.getSharedPreferences(Constant.SHAREDKEY, Context.MODE_PRIVATE)
               prefs?.edit()?.putBoolean(Constant.MAINSCREENKEY,false)?.apply()
               startActivity(Intent(requireContext(),SignInActivity::class.java))
+              requireActivity().finish()
           }
       }
     }

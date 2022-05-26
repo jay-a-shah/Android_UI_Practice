@@ -21,6 +21,7 @@ import com.example.helioapp.R
 import com.example.helioapp.databinding.ActivityForgotPasswordOtpBinding
 import com.example.helioapp.signup_screen.SignUpActivity
 import com.example.helioapp.signup_screen.SignUpViewModel
+import com.example.helioapp.utils.showMessage
 
 class ForgotPasswordOTPActivity : AppCompatActivity() {
     lateinit var binding: ActivityForgotPasswordOtpBinding
@@ -36,12 +37,12 @@ class ForgotPasswordOTPActivity : AppCompatActivity() {
                 finish()
             }
             btnVerify.setOnClickListener {
-                startActivity(
-                    Intent(
-                        this@ForgotPasswordOTPActivity,
-                        CreateNewPasswordActivity::class.java
-                    )
-                )
+                if (editTextOne.text.toString().isEmpty() || editTextTwo.text.toString().isEmpty() || editTextThree.text.toString().isEmpty() || editTextFour.text.toString().isEmpty()) {
+                    showMessage(this@ForgotPasswordOTPActivity,getString(R.string.toast_enter_otp))
+                } else {
+                    startActivity(Intent(this@ForgotPasswordOTPActivity, CreateNewPasswordActivity::class.java))
+                    finish()
+                }
             }
             forgotPasswordViewModel.etOne.observe(this@ForgotPasswordOTPActivity) {
                 if (it.length == 1) {

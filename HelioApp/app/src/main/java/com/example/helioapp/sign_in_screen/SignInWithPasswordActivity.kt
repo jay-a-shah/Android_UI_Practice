@@ -2,6 +2,7 @@ package com.example.helioapp.sign_in_screen
 
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.method.LinkMovementMethod
 import android.view.View
@@ -15,6 +16,7 @@ import com.example.helioapp.forgot_password.ForgotPasswordSelectionActivity
 import com.example.helioapp.home_screen.HomeScreenActivity
 import com.example.helioapp.signup_screen.SignUpActivity
 import com.example.helioapp.utils.*
+import com.example.helioapp.utils.Constant.CHECKEDPREF
 import com.example.helioapp.utils.Constant.MAINSCREENKEY
 import com.example.helioapp.utils.Constant.SHAREDKEY
 import com.example.helioapp.utils.Constant.THIRTY
@@ -24,6 +26,7 @@ class SignInWithPasswordActivity : BaseActivity(), View.OnClickListener {
 
     lateinit var binding: ActivitySignInWithPasswordBinding
     private lateinit var signInViewModel : SignInViewModel
+    lateinit var prefs: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,7 +57,6 @@ class SignInWithPasswordActivity : BaseActivity(), View.OnClickListener {
                     startActivity(Intent(this@SignInWithPasswordActivity, ForgotPasswordSelectionActivity::class.java))
                 }
                 R.id.btnSignUp -> {
-
                     signInViewModel.performValidation()
                 }
             }
@@ -70,6 +72,10 @@ class SignInWithPasswordActivity : BaseActivity(), View.OnClickListener {
             viewModel = signInViewModel
             clickHandler = this@SignInWithPasswordActivity
             imageBtnEye.isSelected = true
+            prefs = getSharedPreferences(SHAREDKEY, Context.MODE_PRIVATE)
+            prefs.getString(CHECKEDPREF,null).let {
+                signInViewModel.email.value = it
+            }
             editTextPassword.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
                 if (hasFocus) {
                     setUpPasswordToggle(this@SignInWithPasswordActivity, imageBtnEye.isSelected, editTextPassword, imageBtnEye, hasFocus)
@@ -82,17 +88,20 @@ class SignInWithPasswordActivity : BaseActivity(), View.OnClickListener {
             logInResult.observe(this@SignInWithPasswordActivity) { apiResult ->
                 hideProgressBar()
                 if (apiResult.isSuccess){
-                    val prefs = getSharedPreferences(SHAREDKEY, Context.MODE_PRIVATE)
-                    prefs.getBoolean(MAINSCREENKEY,true)
+                    if (checkBoxStatus.value == true) {
+                        prefs.edit().putString(CHECKEDPREF,email.value.toString()).apply()
+                    }
+                    prefs.edit().putBoolean(MAINSCREENKEY,true).apply()
                     startActivity(Intent(this@SignInWithPasswordActivity,HomeScreenActivity::class.java))
                     finish()
                 } else {
+                    binding.btnSignUp.visibility = View.VISIBLE
                     showMessage(this@SignInWithPasswordActivity,getString(R.string.login_not_successfull))
                 }
             }
             validateData.observe(this@SignInWithPasswordActivity) { validation ->
                 if (validation == R.string.valid_credentials) {
-
+                    binding.btnSignUp.visibility = View.GONE
                     showProgressBar()
                 } else {
                     showMessage(this@SignInWithPasswordActivity,getString(validation))
@@ -126,6 +135,7 @@ class SignInWithPasswordActivity : BaseActivity(), View.OnClickListener {
     private fun setBtnBackground() {
         binding.apply {
             btnSignUp.isSelected = editTextPassword.text.toString().isNotEmpty() && editTextEmail.text.toString().isNotEmpty()
+            btnSignUp.isEnabled =  editTextPassword.text.toString().isNotEmpty() && editTextEmail.text.toString().isNotEmpty()
         }
     }
 }

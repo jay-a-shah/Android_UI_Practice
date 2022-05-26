@@ -22,6 +22,7 @@ class SignInViewModel() : BaseViewModel() {
     val password: MutableLiveData<String> = MutableLiveData("")
     val logInResult = MutableLiveData<SignInResponseModel>()
     val validateData: MutableLiveData<Int> = MutableLiveData()
+    val checkBoxStatus: MutableLiveData<Boolean> = MutableLiveData()
     val progressBarStatus: MutableLiveData<Boolean> = MutableLiveData(false)
 
     fun performValidation() {

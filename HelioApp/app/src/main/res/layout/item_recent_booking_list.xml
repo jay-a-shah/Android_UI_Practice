@@ -44,7 +44,7 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/textViewTitle"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_12sdp"
                     android:layout_marginTop="@dimen/_4sdp"
@@ -52,6 +52,8 @@
                     android:text="@{viewModel.hotelName}"
                     android:textColor="@color/grayscale_900"
                     android:textSize="@dimen/_17ssp"
+                    android:textAlignment="viewStart"
+                    app:layout_constraintEnd_toStartOf="@id/textViewPrice"
                     app:layout_constraintStart_toEndOf="@id/hotelImage"
                     app:layout_constraintTop_toTopOf="@id/hotelImage" />
 
@@ -129,7 +131,7 @@
                     android:text="@string/tv_night"
                     android:textAlignment="viewEnd"
                     android:textColor="@color/grayscale_700"
-                    android:textSize="@dimen/_7ssp"
+                    android:textSize="@dimen/_10ssp"
                     app:layout_constraintEnd_toEndOf="@id/textViewPrice"
                     app:layout_constraintStart_toStartOf="@id/textViewPrice"
                     app:layout_constraintTop_toBottomOf="@id/textViewPrice" />

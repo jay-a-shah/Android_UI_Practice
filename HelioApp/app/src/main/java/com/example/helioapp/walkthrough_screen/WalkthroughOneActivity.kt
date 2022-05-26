@@ -13,6 +13,8 @@ import com.example.helioapp.R
 import com.example.helioapp.databinding.ActivityWalkthroughOneBinding
 import com.example.helioapp.onboarding_screen.OnBoardingActivity
 import com.example.helioapp.sign_in_screen.SignInActivity
+import com.example.helioapp.utils.Constant
+import com.example.helioapp.utils.Constant.SHAREDKEY
 
 class WalkthroughOneActivity : AppCompatActivity() {
 
@@ -23,7 +25,7 @@ class WalkthroughOneActivity : AppCompatActivity() {
         supportActionBar?.hide()
         val shader = LinearGradient(0f, 0f, 0f, binding.textViewHeader.textSize, resources.getColor(R.color.light_green), resources.getColor(R.color.dark_green), Shader.TileMode.CLAMP)
         binding.textViewHeader.paint.shader = shader
-        val prefs = getSharedPreferences("SplashScreen", Context.MODE_PRIVATE)
+        val prefs = getSharedPreferences(SHAREDKEY, Context.MODE_PRIVATE)
         binding.btnNext.setOnClickListener {
             prefs.edit().putBoolean("onBoard",false).apply()
             startActivity(Intent(this, OnBoardingActivity::class.java))

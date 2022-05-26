@@ -15,6 +15,7 @@ import com.example.helioapp.sign_in_screen.SignInActivity
 import com.example.helioapp.utils.Constant
 import com.example.helioapp.utils.Constant.MAINSCREENKEY
 import com.example.helioapp.utils.Constant.ONBOARDKEY
+import com.example.helioapp.utils.Constant.SHAREDKEY
 import com.example.helioapp.walkthrough_screen.WalkthroughOneActivity
 
 class SplashScreenActivity : AppCompatActivity() {
@@ -29,7 +30,7 @@ class SplashScreenActivity : AppCompatActivity() {
         supportActionBar?.hide()
         topAnimation = AnimationUtils.loadAnimation(this, R.anim.anim_up_to_bottom_logo)
         binding.splashLogo.animation = topAnimation
-        val prefs = getSharedPreferences("SplashScreen", Context.MODE_PRIVATE)
+        val prefs = getSharedPreferences(SHAREDKEY, Context.MODE_PRIVATE)
         val intent = if (prefs.getBoolean(ONBOARDKEY,true)) {
             Intent(this,WalkthroughOneActivity::class.java)
         } else {

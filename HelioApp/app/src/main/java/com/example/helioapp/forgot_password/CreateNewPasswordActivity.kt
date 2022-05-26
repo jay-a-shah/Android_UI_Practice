@@ -98,8 +98,8 @@ class CreateNewPasswordActivity : AppCompatActivity() {
                     builder.setView(view)
                     val btnHomepage = view.findViewById<Button>(R.id.btnGoToHomepage)
                     btnHomepage.setOnClickListener {
-                        finish()
                         startActivity(Intent(this@CreateNewPasswordActivity, HomeScreenActivity::class.java))
+                        finish()
                     }
                     builder.setCanceledOnTouchOutside(false)
                     builder.show()

@@ -93,13 +93,14 @@
                     app:layout_constraintTop_toBottomOf="@id/editTextEmail" />
 
                 <androidx.appcompat.widget.AppCompatImageButton
-                    android:id="@+id/imageBtnEye"
+                    android:id="@+id/imageBtnEyeSignUp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/_10sdp"
                     android:background="@android:color/transparent"
                     android:padding="@dimen/_5sdp"
                     android:src="@drawable/icon_eye_hide"
+                    android:onClick="@{clickHandler::onClick}"
                     app:layout_constraintBottom_toBottomOf="@id/editTextPassword"
                     app:layout_constraintEnd_toEndOf="@id/editTextPassword"
                     app:layout_constraintTop_toTopOf="@id/editTextPassword" />
@@ -136,6 +137,7 @@
                     android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:textSize="@dimen/_12ssp"
+                    android:enabled="false"
                     app:layout_constraintEnd_toEndOf="@id/editTextEmail"
                     app:layout_constraintStart_toStartOf="@id/editTextEmail"
                     app:layout_constraintTop_toBottomOf="@id/checkboxRememberMe" />

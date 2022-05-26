@@ -27,6 +27,7 @@ class ForgotPasswordSelectionActivity : AppCompatActivity() {
             }
             btnSignUp.setOnClickListener {
                 startActivity(Intent(this@ForgotPasswordSelectionActivity,ForgotPasswordOTPActivity::class.java))
+                finish()
             }
         }
     }

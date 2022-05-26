@@ -18,5 +18,6 @@ object Constant {
     const val ONBOARDKEY = "onBoard"
     const val MAINSCREENKEY = "MainScreen"
     const val SHAREDKEY = "sharedPref"
+    const val CHECKEDPREF = "CHECKEDBOX"
 }
 
