@@ -16,14 +16,21 @@ class SplashScreenActivity : AppCompatActivity() {
 
     private lateinit var topAnimation: Animation
     lateinit var binding: ActivitySplashScreenBinding
+    lateinit var handler: Handler
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initialSetup()
-        Handler(Looper.getMainLooper()).postDelayed({
+        handler = Handler(Looper.getMainLooper())
+        handler.postDelayed({
             startActivity(Intent(this, WalkthroughOneActivity::class.java))
             finish()
         }, THREETHOUSAND.toLong())
+    }
+
+    override fun onPause() {
+        super.onPause()
+        handler.removeCallbacksAndMessages(null)
     }
 
     private fun initialSetup() {

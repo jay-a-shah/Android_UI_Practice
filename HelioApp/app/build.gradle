@@ -49,6 +49,8 @@ dependencies {
     implementation 'com.intuit.sdp:sdp-android:1.0.6'
     //Picasso
     implementation 'com.squareup.picasso:picasso:2.71828'
-
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.4.1"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1"
+    implementation "androidx.fragment:fragment-ktx:1.4.1"
 
 }

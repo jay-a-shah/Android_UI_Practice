@@ -7,3 +7,5 @@ const val THIRTY = 30
 const val TWENTYFOUR = 24
 const val THIRTYTWO = 32
 const val TWENTYTWO = 22
+const val EIGHT = 8
+const val TWENTYTHREE = 23

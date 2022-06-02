@@ -22,4 +22,21 @@
     <string name="toast_apple_btn">Apple button clicked</string>
     <string name="toast_google_btn">Google button clicked</string>
     <string name="tv_hello_world">Hello World</string>
+    <string name="tv_create_your_account">Create your Account</string>
+    <string name="editText_email">Email</string>
+    <string name="tv_checkbox_remember_me">Remember me</string>
+    <string name="btn_sign_up">Sign up</string>
+    <string name="tv_or_continue_with">or continue with</string>
+    <string name="tv_already_have_an_account_sign_in">Already have an account? Sign in</string>
+    <string name="hint_password">Password</string>
+    <string name="tv_login_to_your_account">Login to your Account</string>
+    <string name="btn_forgot_the_password">Forgot the password?</string>
+    <string name="toast_email_is_valid">Email is Valid</string>
+    <string name="toast_email_not_empty">Email Field is not Empty</string>
+    <string name="toast_email_empty">Email Field is Empty</string>
+    <string name="toast_password_invalid">Password is Invalid</string>
+    <string name="toast_password_valid">Password is Valid</string>
+    <string name="toast_email_valid">Email is Valid</string>
+    <string name="toast_email_not_valid">Email is Not Valid</string>
+    <string name="btn_sign_in">Sign in</string>
 </resources>

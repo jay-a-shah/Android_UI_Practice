@@ -10,6 +10,7 @@ import androidx.databinding.DataBindingUtil
 import com.example.helioapp.MainActivity
 import com.example.helioapp.R
 import com.example.helioapp.databinding.ActivitySignInBinding
+import com.example.helioapp.signup.SignUpActivity
 import com.example.helioapp.utils.THIRTY
 import com.example.helioapp.utils.TWENTYTWO
 import com.example.helioapp.utils.setSpannableText
@@ -30,7 +31,7 @@ class SignInActivity : AppCompatActivity(), View.OnClickListener {
             R.id.btnApple ->  showMessage(this, getString(R.string.toast_apple_btn))
             R.id.btnFacebook -> showMessage(this, getString(R.string.toast_facebook_btn))
             R.id.btnGoogle -> showMessage(this, getString(R.string.toast_google_btn))
-            R.id.btnSignInWithPassword -> startActivity(Intent(this,MainActivity::class.java))
+            R.id.btnSignInWithPassword -> startActivity(Intent(this,SignInWithPasswordActivity::class.java))
         }
     }
 
@@ -43,7 +44,7 @@ class SignInActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun setSpannable() {
         val spannable = setSpannableText(binding.textViewDontHaveSignIn.text.toString(), TWENTYTWO, THIRTY, ContextCompat.getColor(this, R.color.primary_500)) {
-            startActivity(Intent(this,MainActivity::class.java))
+            startActivity(Intent(this,SignUpActivity::class.java))
         }
         binding.textViewDontHaveSignIn.apply {
             text = spannable
