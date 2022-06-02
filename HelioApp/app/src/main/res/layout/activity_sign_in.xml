@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="clickHandler"
+            type="android.view.View.OnClickListener" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:context=".signin.SignInActivity">
+
+            <include
+                android:id="@+id/customToolbar"
+                layout="@layout/custom_toolbar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:toolbarClickHandler="@{clickHandler}" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewSignIn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_55sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:fontFamily="@font/urbanist_bold"
+                android:text="@string/tv_lets_sign_you_in"
+                android:textAlignment="center"
+                android:textColor="@color/grayscale_900"
+                android:textSize="@dimen/_32ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/customToolbar" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnFacebook"
+                style="@style/CustomOutlineButton"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_60sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:drawableStart="@drawable/icon_facebook"
+                android:onClick="@{clickHandler::onClick}"
+                android:text="@string/tv_continue_with_facebook"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textViewSignIn" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnGoogle"
+                style="@style/CustomOutlineButton"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:drawableStart="@drawable/icon_google"
+                android:onClick="@{clickHandler::onClick}"
+                android:text="@string/tv_continue_with_google"
+                app:layout_constraintEnd_toEndOf="@id/btnFacebook"
+                app:layout_constraintStart_toStartOf="@id/btnFacebook"
+                app:layout_constraintTop_toBottomOf="@id/btnFacebook" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnApple"
+                style="@style/CustomOutlineButton"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:drawableStart="@drawable/icon_apple"
+                android:onClick="@{clickHandler::onClick}"
+                android:text="@string/tv_continue_with_apple"
+                app:layout_constraintEnd_toEndOf="@id/btnFacebook"
+                app:layout_constraintStart_toStartOf="@id/btnFacebook"
+                app:layout_constraintTop_toBottomOf="@id/btnGoogle" />
+
+            <View
+                android:id="@+id/leftViewDivider"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_1sdp"
+                android:layout_marginTop="@dimen/_45sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:background="@color/grayscale_200"
+                app:layout_constraintEnd_toStartOf="@+id/textViewOr"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@id/btnFacebook"
+                app:layout_constraintTop_toBottomOf="@id/btnApple" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewOr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/urbanist_semibold"
+                android:text="@string/tv_or"
+                android:textColor="@color/grayscale_700"
+                android:textSize="@dimen/_12ssp"
+                app:layout_constraintBottom_toBottomOf="@id/leftViewDivider"
+                app:layout_constraintEnd_toStartOf="@+id/rightViewDivider"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/leftViewDivider"
+                app:layout_constraintTop_toTopOf="@id/leftViewDivider" />
+
+            <View
+                android:id="@+id/rightViewDivider"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_1sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_45sdp"
+                android:background="@color/grayscale_200"
+                app:layout_constraintEnd_toEndOf="@id/btnFacebook"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/textViewOr"
+                app:layout_constraintTop_toBottomOf="@id/btnApple" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnSignInWithPassword"
+                style="@style/CustomButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:background="@drawable/rounded_filled_button"
+                android:onClick="@{clickHandler::onClick}"
+                android:text="@string/btn_sign_in_with_password"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_14ssp"
+                app:layout_constraintEnd_toEndOf="@id/btnFacebook"
+                app:layout_constraintStart_toStartOf="@id/btnFacebook"
+                app:layout_constraintTop_toBottomOf="@id/textViewOr" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewDontHaveSignIn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_75sdp"
+                android:layout_marginBottom="@dimen/_35sdp"
+                android:fontFamily="@font/urbanist_medium"
+                android:maxLines="1"
+                android:text="@string/tv_don_t_have_an_account"
+                android:textAlignment="center"
+                android:textColor="@color/grayscale_500"
+                android:textSize="@dimen/_12ssp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/btnFacebook"
+                app:layout_constraintStart_toStartOf="@id/btnFacebook"
+                app:layout_constraintTop_toBottomOf="@id/btnSignInWithPassword" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</layout>

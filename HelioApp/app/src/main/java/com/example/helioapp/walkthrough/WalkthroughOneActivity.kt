@@ -1,18 +1,15 @@
-package com.example.helioapp.walkthrough_screen
+package com.example.helioapp.walkthrough
 
 import android.content.Intent
 import android.graphics.LinearGradient
 import android.graphics.Shader
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.view.View
 import androidx.databinding.DataBindingUtil
 import com.example.helioapp.R
 import com.example.helioapp.databinding.ActivityWalkthroughOneBinding
-import com.example.helioapp.onboarding_screen.OnBoardingActivity
-import com.example.helioapp.utils.THREETHOUSAND
+import com.example.helioapp.onboarding.OnBoardingActivity
 import com.example.helioapp.utils.ZERO
 
 class WalkthroughOneActivity : AppCompatActivity(), View.OnClickListener {
@@ -28,6 +25,7 @@ class WalkthroughOneActivity : AppCompatActivity(), View.OnClickListener {
         when (v?.id) {
             R.id.btnNext -> {
                 startActivity(Intent(this@WalkthroughOneActivity, OnBoardingActivity::class.java))
+                finish()
             }
         }
     }
