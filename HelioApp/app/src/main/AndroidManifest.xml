@@ -15,7 +15,7 @@
         <!--Set custom default icon.-->
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
-            android:resource="@drawable/ic_logo" />
+            android:resource="@drawable/icon_apple" />
         <!-- Set color used with incoming notification messages. -->
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"

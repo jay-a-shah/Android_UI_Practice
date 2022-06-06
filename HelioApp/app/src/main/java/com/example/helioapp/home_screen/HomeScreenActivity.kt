@@ -2,11 +2,15 @@ package com.example.helioapp.home_screen
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.example.helioapp.R
 import com.example.helioapp.databinding.ActivityHomeScreenBinding
+import com.example.helioapp.utils.showMessage
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.messaging.FirebaseMessaging
 
 class HomeScreenActivity : AppCompatActivity() {
     lateinit var binding: ActivityHomeScreenBinding
@@ -20,6 +24,16 @@ class HomeScreenActivity : AppCompatActivity() {
         binding.apply {
         }
         setBottomNavigation()
+        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
+            if (!task.isSuccessful) {
+                Log.d("token", "Fetching FCM registration token failed", task.exception)
+                return@OnCompleteListener
+            }
+            // Get new FCM registration token
+            val token = task.result
+            Log.d("token", token)
+            showMessage(this,token)
+        })
     }
     fun setBottomNavigation() {
         binding.bottomNavigationView.setOnItemSelectedListener {
