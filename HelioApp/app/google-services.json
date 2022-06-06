@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "959551576517",
+    "project_id": "android-notification-dem-ff798",
+    "storage_bucket": "android-notification-dem-ff798.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:959551576517:android:296ac0ebe70a2aea7a93ac",
+        "android_client_info": {
+          "package_name": "com.example.helioapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "959551576517-omppd2s49eltubieqd0tp10j3fh0ikdk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBJxLNYO_kc4M0SBz7Dcoq7HA59HSaAoH4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "959551576517-omppd2s49eltubieqd0tp10j3fh0ikdk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
