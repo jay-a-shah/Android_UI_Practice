@@ -28,6 +28,7 @@ class HomeFragment : Fragment() {
         setAdapter()
         binding.apply {
             recyclerViewRecentlyBooked.layoutManager = LinearLayoutManager(requireContext())
+
         }
     }
     fun setAdapter(){

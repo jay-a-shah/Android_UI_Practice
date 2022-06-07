@@ -19,5 +19,6 @@ object Constant {
     const val MAINSCREENKEY = "MainScreen"
     const val SHAREDKEY = "sharedPref"
     const val CHECKEDPREF = "CHECKEDBOX"
+    const val CHANNEL_ID = "Local Notification"
 }
 

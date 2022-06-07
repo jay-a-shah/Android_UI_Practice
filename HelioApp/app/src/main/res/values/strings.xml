@@ -91,4 +91,8 @@
     <string name="btn_logout">Logout</string>
     <string name="toast_enter_otp">Enter Valid OTP</string>
     <string name="msg_token">\"Token : \"</string>
+    <string name="btn_get_notification">Get Notification</string>
+    <string name="btn_snooze">Snooze</string>
+    <string name="lbl_please_reply">Please Reply</string>
+    <string name="tv_still_notification_s_reply_has_not_arrived">Still Notification\'s Reply has not arrived</string>
 </resources>
