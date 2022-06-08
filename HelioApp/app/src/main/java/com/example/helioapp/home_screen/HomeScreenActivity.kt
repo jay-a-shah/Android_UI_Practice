@@ -47,6 +47,7 @@ class HomeScreenActivity : AppCompatActivity() {
             PendingIntent.getActivity(this, 0, intentActivity, PendingIntent.FLAG_IMMUTABLE)
         createNotificationChannel()
         //setUpNotification()
+        handleIntent()
         setBottomNavigation()
         remoteInput()
         FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
@@ -57,7 +58,7 @@ class HomeScreenActivity : AppCompatActivity() {
             // Get new FCM registration token
             val token = task.result
             Log.d("token", token)
-            showMessage(this, token)
+            //showMessage(this, token)
         })
 
     }
@@ -139,6 +140,17 @@ class HomeScreenActivity : AppCompatActivity() {
         notificationManager.notify(0,newMessageNotification)
 
     }
+    fun handleIntent() {
+        val intent = this.intent
+        val remoteInput = RemoteInput.getResultsFromIntent(intent)
+        if (remoteInput != null) {
+            val inputString = remoteInput.getCharSequence(Constant.keyForReply).toString()
+            val mBundle = Bundle()
+            mBundle.putString("mText",inputString)
+            searchFragment.arguments = mBundle
+        }
+    }
+
 
 
 }

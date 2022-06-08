@@ -15,10 +15,66 @@
         tools:context=".home_screen.SearchFragment">
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnExpandedNotification"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:layout_marginStart="@dimen/_30sdp"
+            android:layout_marginEnd="@dimen/_30sdp"
+            android:background="@drawable/rounded_filled_button"
+            android:fontFamily="@font/urbanist_bold"
+            android:padding="@dimen/_10sdp"
+            android:text="@string/btn_expanded_notification"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_13ssp"
+            android:onClick="@{clickHandler::onClick}"
+            app:layout_constraintBottom_toTopOf="@id/btnGroupedNotification"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnGroupedNotification"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:background="@drawable/rounded_filled_button"
+            android:fontFamily="@font/urbanist_bold"
+            android:padding="@dimen/_10sdp"
+            android:text="@string/btn_group_notification"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_13ssp"
+            android:onClick="@{clickHandler::onClick}"
+            app:layout_constraintBottom_toTopOf="@id/btnProgressNotification"
+            app:layout_constraintEnd_toEndOf="@id/btnExpandedNotification"
+            app:layout_constraintStart_toStartOf="@id/btnExpandedNotification" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnProgressNotification"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:background="@drawable/rounded_filled_button"
+            android:fontFamily="@font/urbanist_bold"
+            android:padding="@dimen/_10sdp"
+            android:text="@string/btn_progress_notification"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_13ssp"
+            android:onClick="@{clickHandler::onClick}"
+            app:layout_constraintBottom_toTopOf="@id/btnGetNotification"
+            app:layout_constraintEnd_toEndOf="@id/btnExpandedNotification"
+            app:layout_constraintStart_toStartOf="@id/btnExpandedNotification" />
+
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnGetNotification"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_30sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
             android:background="@drawable/rounded_filled_button"
             android:fontFamily="@font/urbanist_bold"
             android:padding="@dimen/_10sdp"
@@ -29,8 +85,9 @@
             android:textSize="@dimen/_13ssp"
             android:onClick="@{clickHandler::onClick}"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintEnd_toEndOf="@id/btnProgressNotification"
+            app:layout_constraintStart_toStartOf="@id/btnProgressNotification" />
+
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvNotificationReply"

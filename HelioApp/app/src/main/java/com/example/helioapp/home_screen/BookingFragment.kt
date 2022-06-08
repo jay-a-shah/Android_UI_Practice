@@ -5,12 +5,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.app.RemoteInput
 import androidx.databinding.DataBindingUtil
 import com.example.helioapp.R
 import com.example.helioapp.databinding.FragmentBookingBinding
+import com.example.helioapp.utils.Constant.keyForReply
 
 
 class BookingFragment : Fragment() {
+
     lateinit var binding: FragmentBookingBinding
 
     override fun onCreateView(
@@ -23,9 +26,7 @@ class BookingFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.apply {
-
-        }
     }
+
 
 }

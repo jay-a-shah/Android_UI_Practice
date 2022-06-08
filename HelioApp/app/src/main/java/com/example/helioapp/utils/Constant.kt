@@ -20,5 +20,9 @@ object Constant {
     const val SHAREDKEY = "sharedPref"
     const val CHECKEDPREF = "CHECKEDBOX"
     const val CHANNEL_ID = "Local Notification"
+    const val NOTIFICATIONID = 0
+    const val GroupNotificationID = "GroupNotification"
+    const val SUMMARY_ID = 0
+    const val keyForReply = "key_text_reply"
 }
 

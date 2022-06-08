@@ -10,11 +10,13 @@ import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
 import android.view.View
 import android.widget.Toast
+import androidx.core.app.RemoteInput
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import com.example.helioapp.R
 import com.example.helioapp.databinding.ActivitySignInBinding
 import com.example.helioapp.signup_screen.SignUpActivity
+import com.example.helioapp.utils.Constant
 import com.example.helioapp.utils.showMessage
 
 class SignInActivity : AppCompatActivity(),View.OnClickListener {
