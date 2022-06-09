@@ -18,7 +18,7 @@ import com.example.helioapp.utils.Constant.ONBOARDKEY
 import com.example.helioapp.utils.Constant.SHAREDKEY
 import com.example.helioapp.walkthrough_screen.WalkthroughOneActivity
 
-class SplashScreenActivity : AppCompatActivity() {
+class SplashScreenActivity : BaseActivity() {
 
     private  lateinit var topAnimation: Animation
     lateinit var binding: ActivitySplashScreenBinding
@@ -28,6 +28,7 @@ class SplashScreenActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this,R.layout.activity_splash_screen)
         supportActionBar?.hide()
+        inAppMessagingInitialization(this,true,""); //Stops inAppMessaging
         topAnimation = AnimationUtils.loadAnimation(this, R.anim.anim_up_to_bottom_logo)
         binding.splashLogo.animation = topAnimation
         val prefs = getSharedPreferences(SHAREDKEY, Context.MODE_PRIVATE)

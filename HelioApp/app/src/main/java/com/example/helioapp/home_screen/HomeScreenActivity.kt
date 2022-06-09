@@ -1,31 +1,32 @@
 package com.example.helioapp.home_screen
 
-import android.app.Notification
-import android.app.Notification.EXTRA_NOTIFICATION_ID
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import androidx.core.app.RemoteInput
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import com.example.helioapp.BaseActivity
 import com.example.helioapp.R
 import com.example.helioapp.databinding.ActivityHomeScreenBinding
 import com.example.helioapp.sign_in_screen.SignInActivity
 import com.example.helioapp.utils.Constant
 import com.example.helioapp.utils.Constant.CHANNEL_ID
-import com.example.helioapp.utils.showMessage
+import com.example.helioapp.utils.Constant.bundleKey
 import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.inappmessaging.FirebaseInAppMessaging
 import com.google.firebase.messaging.FirebaseMessaging
 
-class HomeScreenActivity : AppCompatActivity() {
+
+class HomeScreenActivity : BaseActivity() {
     lateinit var notificationManager: NotificationManager
     lateinit var binding: ActivityHomeScreenBinding
     private var homeFragment = HomeFragment()
@@ -43,13 +44,14 @@ class HomeScreenActivity : AppCompatActivity() {
         intentActivity = Intent(this, SignInActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
+        inAppMessagingInitialization(this,false,"main_activity_inappmessaging"); //Starts inAppMessaging
+        FirebaseAnalytics.getInstance(this).logEvent("main_activity_ready",null)
         pendingIntent =
             PendingIntent.getActivity(this, 0, intentActivity, PendingIntent.FLAG_IMMUTABLE)
         createNotificationChannel()
-        //setUpNotification()
+        setUpNotification()
         handleIntent()
         setBottomNavigation()
-        remoteInput()
         FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
             if (!task.isSuccessful) {
                 Log.d("token", "Fetching FCM registration token failed", task.exception)
@@ -114,45 +116,16 @@ class HomeScreenActivity : AppCompatActivity() {
         }
     }
 
-    fun remoteInput() {
-
-        var replyLabel: String = getString(R.string.lbl_please_reply)
-        val remoteInput: RemoteInput = RemoteInput.Builder(keyForReply)
-            .run {
-                setLabel("Write your message here")
-                build()
-            }
-
-        // Build a PendingIntent for the reply action to trigger.
-        var replyPendingIntent: PendingIntent = PendingIntent.getBroadcast(this, 0, intentActivity, PendingIntent.FLAG_UPDATE_CURRENT)
-        // Create the reply action and add the remote input.
-        var action: NotificationCompat.Action = NotificationCompat.Action.Builder(R.drawable.ic_search, replyLabel, replyPendingIntent)
-                .addRemoteInput(remoteInput)
-                .build()
-
-        val newMessageNotification = NotificationCompat.Builder(this, CHANNEL_ID)
-            .setSmallIcon(R.drawable.ic_message)
-            .setContentTitle("Reply Notification")
-            .setContentText("You Can Reply into this Notification")
-            .addAction(action)
-            .build()
-
-        notificationManager.notify(0,newMessageNotification)
-
-    }
     fun handleIntent() {
         val intent = this.intent
         val remoteInput = RemoteInput.getResultsFromIntent(intent)
         if (remoteInput != null) {
             val inputString = remoteInput.getCharSequence(Constant.keyForReply).toString()
             val mBundle = Bundle()
-            mBundle.putString("mText",inputString)
+            mBundle.putString(bundleKey,inputString)
             searchFragment.arguments = mBundle
         }
     }
-
-
-
 }
 
 

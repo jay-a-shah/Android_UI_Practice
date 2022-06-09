@@ -20,6 +20,8 @@ import com.example.helioapp.databinding.CustomProgressBarBinding
 import com.example.helioapp.home_screen.HomeScreenActivity
 import com.example.helioapp.utils.Constant
 import com.example.helioapp.utils.Constant.CHANNEL_ID
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.inappmessaging.FirebaseInAppMessaging
 
 open class BaseActivity : AppCompatActivity() {
     lateinit var progressBar: Dialog
@@ -44,6 +46,14 @@ open class BaseActivity : AppCompatActivity() {
         progressBar.dismiss()
     }
 
+    fun inAppMessagingInitialization(context: Context?, setSuppressed: Boolean, eventName: String
+    ) { //setSuppressed false means start getting message
+        FirebaseInAppMessaging.getInstance().setMessagesSuppressed(setSuppressed) //true==Stop inAppMessaging
+        if (eventName != "") {
+            FirebaseAnalytics.getInstance(context!!).logEvent( eventName, null) //To Show InAppMessage in MainActivity. Need to add this event name in Web console campaign
+            FirebaseInAppMessaging.getInstance().triggerEvent(eventName)
+        }
+    }
 
 
 }

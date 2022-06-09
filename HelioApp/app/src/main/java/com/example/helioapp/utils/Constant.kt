@@ -24,5 +24,6 @@ object Constant {
     const val GroupNotificationID = "GroupNotification"
     const val SUMMARY_ID = 0
     const val keyForReply = "key_text_reply"
+    const val bundleKey = "Text"
 }
 

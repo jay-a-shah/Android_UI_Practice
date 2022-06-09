@@ -26,13 +26,13 @@ import com.example.helioapp.databinding.FragmentSearchBinding
 import com.example.helioapp.notification.BaseNotificationHelper
 import com.example.helioapp.sign_in_screen.SignInActivity
 import com.example.helioapp.utils.Constant.CHANNEL_ID
+import com.example.helioapp.utils.Constant.bundleKey
 import com.example.helioapp.utils.Constant.keyForReply
 
 class SearchFragment : Fragment(), View.OnClickListener {
 
     lateinit var notificationManager: NotificationManager
     lateinit var binding: FragmentSearchBinding
-
     lateinit var intentActivity: Intent
     var notificationId = 0
     lateinit var notification: BaseNotificationHelper
@@ -60,7 +60,7 @@ class SearchFragment : Fragment(), View.OnClickListener {
             clickHandler = this@SearchFragment
         }
         val bundle = arguments
-        val notificationMessage = bundle?.getString("mText")
+        val notificationMessage = bundle?.getString(bundleKey)
         binding.tvNotificationReply.text = notificationMessage
 
     }
@@ -92,8 +92,7 @@ class SearchFragment : Fragment(), View.OnClickListener {
                 description = descriptionText
             }
             // Register the channel with the system
-            notificationManager =
-                requireContext().getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager = requireContext().getSystemService(NOTIFICATION_SERVICE) as NotificationManager
             notificationManager.createNotificationChannel(channel)
         }
     }
@@ -128,11 +127,12 @@ class SearchFragment : Fragment(), View.OnClickListener {
 
     fun startProgressBarNotification() {
         val builder = NotificationCompat.Builder(requireContext(), CHANNEL_ID)
-            .setContentTitle("Picture Download in Progress")
-            .setContentText("Downloading")
+            .setContentTitle(getString(R.string.title_dowload_in_progress))
+            .setContentText(getString(R.string.text_downloading))
             .setOngoing(true)
             .setOnlyAlertOnce(true)
             .setSmallIcon(R.drawable.ic_notification)
+            .setNumber(5)
             .setPriority(NotificationCompat.PRIORITY_LOW)
 
         val maxProgress = 100
@@ -156,7 +156,7 @@ class SearchFragment : Fragment(), View.OnClickListener {
                   notify(notificationId, builder.build())
                 }
                 builder.apply {
-                    setContentText("Download complete")
+                    setContentText(getString(R.string.text_download_complete))
                     setProgress(0, 0, false)
                     setOngoing(false)
                 }
