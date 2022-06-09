@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.helioapp.signup.SignUpViewModel" />
+
+        <variable
+            name="clickHandler"
+            type="android.view.View.OnClickListener" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:context=".signup.SignUpActivity">
+
+            <include
+                android:id="@+id/custom_toolbar"
+                layout="@layout/custom_toolbar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:toolbarClickHandler="@{clickHandler}" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewCreateYourAccount"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_18sdp"
+                android:layout_marginTop="@dimen/_55sdp"
+                android:layout_marginEnd="@dimen/_18sdp"
+                android:fontFamily="@font/urbanist_bold"
+                android:text="@string/tv_create_your_account"
+                android:textAlignment="viewStart"
+                android:textColor="@color/grayscale_900"
+                android:textSize="@dimen/_35ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/custom_toolbar" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/editTextEmail"
+                style="@style/EditTextStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_48sdp"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:background="@drawable/edit_text_style"
+                android:drawableStart="@drawable/email_selector"
+                android:hint="@string/editText_email"
+                android:imeOptions="actionNext"
+                android:inputType="textEmailAddress"
+                android:singleLine="true"
+                android:text="@={viewModel.email}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textViewCreateYourAccount" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/editTextPassword"
+                style="@style/EditTextStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_18sdp"
+                android:background="@drawable/edit_text_style"
+                android:drawableStart="@drawable/lock_selector"
+                android:hint="@string/hint_password"
+                android:imeOptions="actionDone"
+                android:inputType="textPassword"
+                android:singleLine="true"
+                app:layout_constraintEnd_toEndOf="@id/editTextEmail"
+                app:layout_constraintStart_toStartOf="@id/editTextEmail"
+                app:layout_constraintTop_toBottomOf="@id/editTextEmail" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/imageBtnEye"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:background="@android:color/transparent"
+                android:onClick="@{clickHandler::onClick}"
+                android:padding="@dimen/_5sdp"
+                android:src="@drawable/close_eye_selector"
+                app:layout_constraintBottom_toBottomOf="@id/editTextPassword"
+                app:layout_constraintEnd_toEndOf="@id/editTextPassword"
+                app:layout_constraintTop_toTopOf="@id/editTextPassword" />
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/checkboxRememberMe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_13sdp"
+                android:button="@drawable/custom_checkbox"
+                android:fontFamily="@font/urbanist_semibold"
+                android:padding="@dimen/_10sdp"
+                android:text="@string/tv_checkbox_remember_me"
+                android:textColor="@color/grayscale_900"
+                android:textSize="@dimen/_12ssp"
+                app:layout_constraintEnd_toEndOf="@id/editTextEmail"
+                app:layout_constraintStart_toStartOf="@id/editTextEmail"
+                app:layout_constraintTop_toBottomOf="@id/editTextPassword" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnSignUp"
+                style="@style/CustomButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:background="@drawable/rounded_disable_button"
+                android:onClick="@{clickHandler::onClick}"
+                android:text="@string/btn_sign_up"
+                android:textColor="@color/white"
+                app:layout_constraintEnd_toEndOf="@id/editTextEmail"
+                app:layout_constraintStart_toStartOf="@id/editTextEmail"
+                app:layout_constraintTop_toBottomOf="@id/checkboxRememberMe" />
+
+            <View
+                android:id="@+id/leftViewDivider"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_1sdp"
+                android:layout_marginTop="@dimen/_45sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:background="@color/grayscale_200"
+                app:layout_constraintEnd_toStartOf="@+id/textViewOr"
+                app:layout_constraintStart_toStartOf="@id/editTextEmail"
+                app:layout_constraintTop_toBottomOf="@id/btnSignUp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewOr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/urbanist_semibold"
+                android:text="@string/tv_or_continue_with"
+                android:textColor="@color/grayscale_700"
+                android:textSize="@dimen/_12ssp"
+                app:layout_constraintBottom_toBottomOf="@id/leftViewDivider"
+                app:layout_constraintEnd_toStartOf="@+id/rightViewDivider"
+                app:layout_constraintStart_toEndOf="@+id/leftViewDivider"
+                app:layout_constraintTop_toTopOf="@id/leftViewDivider" />
+
+            <View
+                android:id="@+id/rightViewDivider"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_1sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_45sdp"
+                android:background="@color/grayscale_200"
+                app:layout_constraintEnd_toEndOf="@id/editTextEmail"
+                app:layout_constraintStart_toEndOf="@+id/textViewOr"
+                app:layout_constraintTop_toBottomOf="@id/btnSignUp" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/imageBtnGoogle"
+                style="@style/ImageButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_32sdp"
+                android:layout_marginEnd="@dimen/_17sdp"
+                android:onClick="@{clickHandler::onClick}"
+                android:src="@drawable/icon_google"
+                app:layout_constraintEnd_toStartOf="@+id/imageButtonApple"
+                app:layout_constraintStart_toEndOf="@+id/imageBtnFacebook"
+                app:layout_constraintTop_toBottomOf="@id/leftViewDivider" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/imageBtnFacebook"
+                style="@style/ImageButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_32sdp"
+                android:layout_marginTop="@dimen/_32sdp"
+                android:layout_marginEnd="@dimen/_17sdp"
+                android:onClick="@{clickHandler::onClick}"
+                android:src="@drawable/icon_facebook"
+                app:layout_constraintEnd_toStartOf="@+id/imageBtnGoogle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/leftViewDivider" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/imageButtonApple"
+                style="@style/ImageButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_32sdp"
+                android:layout_marginEnd="@dimen/_32sdp"
+                android:onClick="@{clickHandler::onClick}"
+                android:src="@drawable/icon_apple"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imageBtnGoogle"
+                app:layout_constraintTop_toBottomOf="@id/leftViewDivider" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewAlreadyHaveSignIn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_45sdp"
+                android:layout_marginBottom="@dimen/_35sdp"
+                android:fontFamily="@font/urbanist_medium"
+                android:maxLines="1"
+                android:text="@string/tv_already_have_an_account_sign_in"
+                android:textAlignment="center"
+                android:textColor="@color/grayscale_500"
+                android:textSize="@dimen/_12ssp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/editTextEmail"
+                app:layout_constraintStart_toStartOf="@id/editTextEmail"
+                app:layout_constraintTop_toBottomOf="@id/imageBtnGoogle" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</layout>
