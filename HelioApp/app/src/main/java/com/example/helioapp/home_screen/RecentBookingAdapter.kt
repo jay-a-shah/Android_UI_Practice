@@ -3,13 +3,16 @@ package com.example.helioapp.home_screen
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.helioapp.database.HotelBookingDataClass
 import com.example.helioapp.databinding.ItemOnBoardingScreenBinding
 import com.example.helioapp.databinding.ItemRecentBookingListBinding
 import com.example.helioapp.onboarding_screen.OnBoardingModel
 
-class RecentBookingAdapter(private val recentItemList: ArrayList<RecentBookingModelClass>): RecyclerView.Adapter<RecentBookingAdapter.ViewPagerHolder>() {
+class RecentBookingAdapter(): RecyclerView.Adapter<RecentBookingAdapter.ViewPagerHolder>() {
 
+    var recentBookingList = emptyList<HotelBookingDataClass>()
     lateinit var binding: ItemRecentBookingListBinding
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewPagerHolder {
         binding = ItemRecentBookingListBinding.inflate(LayoutInflater.from(parent.context),parent,false)
         binding.apply {
@@ -21,14 +24,19 @@ class RecentBookingAdapter(private val recentItemList: ArrayList<RecentBookingMo
     }
 
     override fun onBindViewHolder(holder: ViewPagerHolder, position: Int) {
-       binding.viewModel = recentItemList[position]
+       binding.viewModel = recentBookingList[position]
     }
 
     override fun getItemCount(): Int {
-        return recentItemList.count()
+        return recentBookingList.count()
     }
 
     class ViewPagerHolder(binding: ItemRecentBookingListBinding) : RecyclerView.ViewHolder(binding.root) {
         //implement Later when needed
+    }
+
+    fun setRoomData(db: List<HotelBookingDataClass>) {
+        this.recentBookingList = db
+        notifyDataSetChanged()
     }
 }

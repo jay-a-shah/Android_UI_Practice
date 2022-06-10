@@ -5,7 +5,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.helioapp.home_screen.RecentBookingModelClass" />
+            type="com.example.helioapp.database.HotelBookingDataClass" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
