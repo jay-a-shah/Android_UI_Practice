@@ -28,7 +28,7 @@ class SplashScreenActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this,R.layout.activity_splash_screen)
         supportActionBar?.hide()
-        inAppMessagingInitialization(this,true,""); //Stops inAppMessaging
+        //inAppMessagingInitialization(this,true,""); //Stops inAppMessaging
         topAnimation = AnimationUtils.loadAnimation(this, R.anim.anim_up_to_bottom_logo)
         binding.splashLogo.animation = topAnimation
         val prefs = getSharedPreferences(SHAREDKEY, Context.MODE_PRIVATE)

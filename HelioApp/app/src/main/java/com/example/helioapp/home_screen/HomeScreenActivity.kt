@@ -44,7 +44,7 @@ class HomeScreenActivity : BaseActivity() {
         intentActivity = Intent(this, SignInActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
-        inAppMessagingInitialization(this,false,"main_activity_inappmessaging"); //Starts inAppMessaging
+       // inAppMessagingInitialization(this,false,"main_activity_inappmessaging"); //Starts inAppMessaging
         FirebaseAnalytics.getInstance(this).logEvent("main_activity_ready",null)
         pendingIntent =
             PendingIntent.getActivity(this, 0, intentActivity, PendingIntent.FLAG_IMMUTABLE)
