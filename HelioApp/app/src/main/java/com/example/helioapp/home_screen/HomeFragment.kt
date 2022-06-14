@@ -19,8 +19,6 @@ import com.example.helioapp.utils.showMessage
 class HomeFragment : Fragment() {
 
     lateinit var binding: FragmentHomeBinding
-    var recentBookingList: ArrayList<RecentBookingModelClass> = arrayListOf()
-    var hotelBookingList: ArrayList<HotelBookingDataClass> = arrayListOf()
     lateinit var hotelBookingDetailsViewModel: HotelBookingDetailsViewModel
     lateinit var myAdapter: RecentBookingAdapter
     override fun onCreateView(
@@ -28,16 +26,13 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_home ,container,false)
-        hotelBookingDetailsViewModel = ViewModelProvider(this).get(HotelBookingDetailsViewModel::class.java)
+        hotelBookingDetailsViewModel = ViewModelProvider(this)[HotelBookingDetailsViewModel::class.java]
         myAdapter = RecentBookingAdapter(hotelBookingDetailsViewModel)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setData()
-        hotelBookingDetailsViewModel.addData(hotelBookingList)
-        showMessage(requireContext(),"SuccessFull Data Added in Room")
         binding.apply {
             recyclerViewRecentlyBooked.layoutManager = LinearLayoutManager(requireContext())
             recyclerViewRecentlyBooked.adapter = myAdapter
@@ -46,7 +41,7 @@ class HomeFragment : Fragment() {
     }
     fun setAdapter(){
         hotelBookingDetailsViewModel.readAllData.observe(viewLifecycleOwner){
-            myAdapter.setRoomData(hotelBookingList)
+            myAdapter.setRoomData(it)
         }
     }
     fun setData(){
@@ -57,12 +52,12 @@ class HomeFragment : Fragment() {
 //            add(RecentBookingModelClass("Bulgari Resort","Istanbul, Turkiye","4.8","(4,981 reviews)","$27",R.drawable.fourth_item_image))
 //            add(RecentBookingModelClass("Martinez Cannes","London, United Kingdom","4.6","(3,672 reviews)","$32",R.drawable.fifth_item_image))
 //        }
-        hotelBookingList.apply {
-            add(HotelBookingDataClass("President Hotel","Paris, France","4.8","(4,378 reviews)","$35",R.drawable.first_item_image,false,1))
-            add(HotelBookingDataClass("Palms Casino","Amsterdam, Netherlands","4.9","(5,283 reviews)","$29",R.drawable.second_item_image,false,2))
-            add(HotelBookingDataClass("Palazzo Versace","Rome, Italia","4.7","(3,277 reviews)","$36",R.drawable.third_item_image,false,3))
-            add(HotelBookingDataClass("Bulgari Resort","Istanbul, Turkiye","4.8","(4,981 reviews)","$27",R.drawable.fourth_item_image,false,4))
-            add(HotelBookingDataClass("Martinez Cannes","London, United Kingdom","4.6","(3,672 reviews)","$32",R.drawable.fifth_item_image,false,5))
-        }
+//        hotelBookingList.apply {
+//            add()
+//            add(HotelBookingDataClass("Palms Casino","Amsterdam, Netherlands","4.9","(5,283 reviews)","$29",R.drawable.second_item_image,false,2))
+//            add(HotelBookingDataClass("Palazzo Versace","Rome, Italia","4.7","(3,277 reviews)","$36",R.drawable.third_item_image,false,3))
+//            add(HotelBookingDataClass("Bulgari Resort","Istanbul, Turkiye","4.8","(4,981 reviews)","$27",R.drawable.fourth_item_image,false,4))
+//            add(HotelBookingDataClass("Martinez Cannes","London, United Kingdom","4.6","(3,672 reviews)","$32",R.drawable.fifth_item_image,false,5))
+//        }
     }
 }

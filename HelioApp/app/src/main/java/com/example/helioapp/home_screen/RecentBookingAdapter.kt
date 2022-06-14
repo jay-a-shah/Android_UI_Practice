@@ -28,13 +28,14 @@ class RecentBookingAdapter(val viewModel: HotelBookingDetailsViewModel): Recycle
     override fun onBindViewHolder(holder: ViewPagerHolder, position: Int) {
        binding.viewModel = recentBookingList[position]
         var hotel = recentBookingList[position]
+        if(hotel.bookmarkValue) {
+            binding.imageBtnBookmark.isSelected = true
+        }
         binding.imageBtnBookmark.setOnClickListener {
             it.isSelected = !it.isSelected
-            viewModel.updateData(position,it.isSelected )
+            viewModel.updateData(recentBookingList[position].id,it.isSelected )
             Log.d("Update","Yes")
         }
-        binding.imageBtnBookmark.isSelected = hotel.bookmarkValue
-
     }
 
     override fun getItemCount(): Int {

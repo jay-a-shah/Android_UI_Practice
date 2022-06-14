@@ -11,6 +11,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.example.helioapp.BaseActivity
 import com.example.helioapp.R
+import com.example.helioapp.database.HotelBookingDetailsViewModel
 import com.example.helioapp.databinding.ActivitySignInWithPasswordBinding
 import com.example.helioapp.forgot_password.ForgotPasswordSelectionActivity
 import com.example.helioapp.home_screen.HomeScreenActivity
@@ -27,6 +28,7 @@ class SignInWithPasswordActivity : BaseActivity(), View.OnClickListener {
     lateinit var binding: ActivitySignInWithPasswordBinding
     private lateinit var signInViewModel : SignInViewModel
     lateinit var prefs: SharedPreferences
+    lateinit var hotelBookingDetailsViewModel: HotelBookingDetailsViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,6 +69,7 @@ class SignInWithPasswordActivity : BaseActivity(), View.OnClickListener {
         signInViewModel = ViewModelProvider(this)[SignInViewModel::class.java]
         validation()
         setSpannable()
+        hotelBookingDetailsViewModel = ViewModelProvider(this)[HotelBookingDetailsViewModel::class.java]
         setUpPasswordToggle(this, binding.imageBtnEye.isSelected, binding.editTextPassword, binding.imageBtnEye, false)
         binding.apply {
             viewModel = signInViewModel
@@ -92,6 +95,8 @@ class SignInWithPasswordActivity : BaseActivity(), View.OnClickListener {
                         prefs.edit().putString(CHECKEDPREF,email.value.toString()).apply()
                     }
                     prefs.edit().putBoolean(MAINSCREENKEY,true).apply()
+                    //Adding Data to Recycler View in Home Fragment
+                    hotelBookingDetailsViewModel.addData()
                     startActivity(Intent(this@SignInWithPasswordActivity,HomeScreenActivity::class.java))
                     finish()
                 } else {

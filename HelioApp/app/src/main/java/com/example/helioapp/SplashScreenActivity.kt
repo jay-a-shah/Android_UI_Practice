@@ -9,6 +9,10 @@ import android.os.Looper
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
+import com.example.helioapp.database.HotelBookingDataClass
+import com.example.helioapp.database.HotelBookingDetailsViewModel
+import com.example.helioapp.database.MyRoomDatabaseHelper
 import com.example.helioapp.databinding.ActivitySplashScreenBinding
 import com.example.helioapp.home_screen.HomeScreenActivity
 import com.example.helioapp.sign_in_screen.SignInActivity
@@ -28,6 +32,7 @@ class SplashScreenActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this,R.layout.activity_splash_screen)
         supportActionBar?.hide()
+
         inAppMessagingInitialization(this,true,""); //Stops inAppMessaging
         topAnimation = AnimationUtils.loadAnimation(this, R.anim.anim_up_to_bottom_logo)
         binding.splashLogo.animation = topAnimation
@@ -46,6 +51,7 @@ class SplashScreenActivity : BaseActivity() {
             startActivity(intent)
             finish()
         }, Constant.THREETHOUSAND.toLong())
+
     }
 
     override fun onPause() {
@@ -53,5 +59,7 @@ class SplashScreenActivity : BaseActivity() {
         handler.removeCallbacksAndMessages(null)
 //        startActivity(Intent(this,WalkthroughOneActivity::class.java))
     }
+
+
 
 }

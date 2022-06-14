@@ -6,11 +6,11 @@ import androidx.room.*
 @Dao
 interface DataAccessObject {
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)//This Ignores Same Records
+    @Insert(onConflict = OnConflictStrategy.IGNORE)//This Ignores Same Records
     fun insert(db: List<HotelBookingDataClass>)
 
     @Query("UPDATE hotel_booking_detail SET bookmarkValue = :bookmarkValue WHERE id = :id")
-    fun updateItem(id:Int, bookmarkValue:Boolean)
+    fun updateItem(id:Int?, bookmarkValue:Boolean)
 
     @Delete
     fun delete(db: HotelBookingDataClass)
