@@ -11,5 +11,6 @@ data class HotelBookingDataClass(
     val noOfReviews: String,
     val price: String,
     val hotelImage: Int,
+    val bookmarkValue: Boolean = false,
     @PrimaryKey(autoGenerate = false) val id: Int? = null
 )

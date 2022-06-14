@@ -40,7 +40,6 @@ class SignInActivity : AppCompatActivity(),View.OnClickListener {
            }
            R.id.btnSignInWithPassword -> {
                startActivity(Intent(this@SignInActivity, SignInWithPasswordActivity::class.java))
-               finish()
            }
            R.id.btnFacebook -> {
               showMessage(this,getString(R.string.toast_facebook_btn))

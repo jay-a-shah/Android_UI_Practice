@@ -22,4 +22,10 @@ class HotelBookingDetailsViewModel(application: Application): AndroidViewModel(a
             repository.addData(db)
         }
     }
+
+    fun updateData(itemPosition: Int, bookmarkValue: Boolean) {
+        viewModelScope.launch(Dispatchers.IO){
+            repository.updateData(itemPosition,bookmarkValue)
+        }
+    }
 }

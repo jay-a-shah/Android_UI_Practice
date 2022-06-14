@@ -7,7 +7,11 @@ class HotelBookingRepository(private val dao: DataAccessObject) {
 
     val readAllData: LiveData<List<HotelBookingDataClass>> = dao.readAllData()
 
-    suspend fun addData(db: List<HotelBookingDataClass>) {
-        dao.insert(db)
+    fun addData(db: List<HotelBookingDataClass>) {
+       // dao.insert(db)
+    }
+
+    fun updateData(id: Int, bookmarkValue: Boolean) {
+        dao.updateItem(id, bookmarkValue)
     }
 }

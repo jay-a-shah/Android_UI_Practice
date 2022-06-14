@@ -22,13 +22,14 @@ class HomeFragment : Fragment() {
     var recentBookingList: ArrayList<RecentBookingModelClass> = arrayListOf()
     var hotelBookingList: ArrayList<HotelBookingDataClass> = arrayListOf()
     lateinit var hotelBookingDetailsViewModel: HotelBookingDetailsViewModel
-    val myAdapter = RecentBookingAdapter()
+    lateinit var myAdapter: RecentBookingAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_home ,container,false)
         hotelBookingDetailsViewModel = ViewModelProvider(this).get(HotelBookingDetailsViewModel::class.java)
+        myAdapter = RecentBookingAdapter(hotelBookingDetailsViewModel)
         return binding.root
     }
 
@@ -57,11 +58,11 @@ class HomeFragment : Fragment() {
 //            add(RecentBookingModelClass("Martinez Cannes","London, United Kingdom","4.6","(3,672 reviews)","$32",R.drawable.fifth_item_image))
 //        }
         hotelBookingList.apply {
-            add(HotelBookingDataClass("President Hotel","Paris, France","4.8","(4,378 reviews)","$35",R.drawable.first_item_image,1))
-            add(HotelBookingDataClass("Palms Casino","Amsterdam, Netherlands","4.9","(5,283 reviews)","$29",R.drawable.second_item_image,2))
-            add(HotelBookingDataClass("Palazzo Versace","Rome, Italia","4.7","(3,277 reviews)","$36",R.drawable.third_item_image,3))
-            add(HotelBookingDataClass("Bulgari Resort","Istanbul, Turkiye","4.8","(4,981 reviews)","$27",R.drawable.fourth_item_image,4))
-            add(HotelBookingDataClass("Martinez Cannes","London, United Kingdom","4.6","(3,672 reviews)","$32",R.drawable.fifth_item_image,5))
+            add(HotelBookingDataClass("President Hotel","Paris, France","4.8","(4,378 reviews)","$35",R.drawable.first_item_image,false,1))
+            add(HotelBookingDataClass("Palms Casino","Amsterdam, Netherlands","4.9","(5,283 reviews)","$29",R.drawable.second_item_image,false,2))
+            add(HotelBookingDataClass("Palazzo Versace","Rome, Italia","4.7","(3,277 reviews)","$36",R.drawable.third_item_image,false,3))
+            add(HotelBookingDataClass("Bulgari Resort","Istanbul, Turkiye","4.8","(4,981 reviews)","$27",R.drawable.fourth_item_image,false,4))
+            add(HotelBookingDataClass("Martinez Cannes","London, United Kingdom","4.6","(3,672 reviews)","$32",R.drawable.fifth_item_image,false,5))
         }
     }
 }
