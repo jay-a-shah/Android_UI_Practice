@@ -96,9 +96,9 @@ class SearchFragment : Fragment(), View.OnClickListener {
             notificationManager.createNotificationChannel(channel)
         }
     }
+// Notification With Reply
 
     fun remoteInput() {
-
         var replyLabel: String = getString(R.string.lbl_please_reply)
         val remoteInput: RemoteInput = RemoteInput.Builder(keyForReply)
             .run {
@@ -114,7 +114,6 @@ class SearchFragment : Fragment(), View.OnClickListener {
                 .setAllowGeneratedReplies(true)
                 .build()
         //Set Reply From Notification
-
         val newMessageNotification = NotificationCompat.Builder(requireContext(), CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_notification)
             .setContentTitle("Reply Notification")
