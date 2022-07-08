@@ -1,17 +1,21 @@
 package com.example.helioapp
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import com.example.helioapp.utils.showMessage
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.firebase.messaging.FirebaseMessaging
+import androidx.appcompat.app.AppCompatActivity
+import com.microsoft.appcenter.AppCenter
+import com.microsoft.appcenter.analytics.Analytics
+import com.microsoft.appcenter.crashes.Crashes
+
 
 class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        AppCenter.start(
+            application, "e97d5838-af92-45e9-9df5-9f0962ab9e8d",
+            Analytics::class.java, Crashes::class.java
+        )
     }
-
 
 }
